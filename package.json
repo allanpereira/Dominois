@@ -1,0 +1,21 @@
+{
+  "name": "dominois",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://daviialves.visualstudio.com/_git/Dominois"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.2",
+    "phaser": "^2.6.2",
+    "phaser-ce": "^2.7.5",
+    "socket.io": "^1.7.3"
+  }
+}
