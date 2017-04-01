@@ -27,9 +27,7 @@ var EventosHelper = (function() {
 	}
 	
 	if (serverSide) {
-		exports.eventosServer = _eventosHelper.eventosServer;
-		exports.eventosClient = _eventosHelper.eventosClient;
-		exports.eventosSocketIo = _eventosHelper.eventosSocketIo;
+		exports.instance = _eventosHelper;
     } else {	
 		return _eventosHelper;
 	}	

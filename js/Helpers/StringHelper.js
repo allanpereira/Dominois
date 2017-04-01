@@ -1,8 +1,3 @@
-var serverSide = false;
-if (typeof module === "object" && module && typeof module.exports === "object") {
-	serverSide = true;
-}
-
 var StringHelper = (function() {	
 	var _stringHelper = {
 		MontarCaminho: function(arrayPastas) {
@@ -23,11 +18,5 @@ var StringHelper = (function() {
 		}		
 	}
 	
-	if (serverSide) {
-		exports.MontarCaminho = _stringHelper.MontarCaminho;
-		exports.ApendarCaminho = _stringHelper.ApendarCaminho;
-		exports.ApendarExtensao = _stringHelper.ApendarExtensao;
-	} else {
-		return _stringHelper;
-	}
+	return _stringHelper;
 })();

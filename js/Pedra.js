@@ -1,7 +1,8 @@
-var Pedra = function(nome, valorSuperior, valorInferior, nomeSprite) {
+var Pedra = function(nome, valorSuperior, valorInferior, sprite) {
 	var self = this;	
 	this.nome = nome;
 	this.valorSuperior = valorSuperior;
 	this.valorInferior = valorInferior;	
-	this.nomeSprite = nomeSprite;
+	
+	this.sprite = sprite;
 }

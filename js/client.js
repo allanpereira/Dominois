@@ -6,5 +6,5 @@ Client.PedirRegistroNovoJogador = function() {
 }
 
 Client.socket.on(EventosHelper.eventosServer.novoJogadorCriado, function (jogador) {
-	console.log(jogador);
+	Game.AdicionarNovoJogador(jogador);
 })

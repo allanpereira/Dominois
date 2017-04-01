@@ -15,11 +15,12 @@ server.listen(8081, function() {
 });
 
 var EventosHelper = require("./js/Helpers/EventosHelper");
-var mesa;
+// TODO: O export não está aceitando uma função construtora, arrumar isso
+var Jogador = require("./js/Jogador");
 
-io.on(EventosHelper.eventosSocketIo.connection, function(socket) {	
-	socket.on(EventosHelper.eventosClient.novoJogadorEntrou, function() {
-		console.log("Novo jogador entrou");
-		socket.emit(EventosHelper.eventosServer.novoJogadorCriado, "Novo jogador");
+io.on(EventosHelper.instance.eventosSocketIo.connection, function(socket) {	
+	socket.on(EventosHelper.instance.eventosClient.novoJogadorEntrou, function() {
+		var jogador = Jogador;
+		socket.emit(EventosHelper.instance.eventosServer.novoJogadorCriado, jogador);
 	});
 });

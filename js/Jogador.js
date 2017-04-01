@@ -1,7 +1,19 @@
-// Require Pedra
+var serverSide = false;
+if (typeof module === "object" && module && typeof module.exports === "object") {
+	serverSide = true;
+}
 
-var Jogardor = function(pedras) {
+var Jogador = function() {
 	var self = this;
-	
-	this.pedras = pedras;
+	this.pedras = [];
+
+	this.ParaCadaPedra = function(callback) {
+		for (var i = 0; i < self.pedras.length; i++) {
+			callback(self.pedras[i]);
+		}
+	}
+}
+
+if (serverSide) {
+	exports.Jogador = Jogador;
 }
