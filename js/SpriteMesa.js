@@ -3,12 +3,12 @@ var SpriteMesa = function() {
 	this.nome = "mesa";
 	
 	this.posicao = {
-		x: 0,
-		y: 0
+		x: 50,
+		y: 50
 	}
 	
 	this.tamanho = {
-		altura: 100,
-		largura: 100
+		altura: 500,
+		largura: 700
 	}
 }

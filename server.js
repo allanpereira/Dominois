@@ -11,16 +11,17 @@ app.get("/", function(req, res) {
 });
 
 server.listen(8081, function() {
-	console.log("Listening on ".concat(server.address().port));
+	console.log("server: Conexão aberta na porta ".concat(server.address().port));
 });
 
 var EventosHelper = require("./js/Helpers/EventosHelper");
-// TODO: O export não está aceitando uma função construtora, arrumar isso
-var Jogador = require("./js/Jogador");
 
-io.on(EventosHelper.instance.eventosSocketIo.connection, function(socket) {	
+io.on(EventosHelper.instance.eventosSocketIo.connection, function(socket) {
+	console.log("server: Pedido de conexão do client recebido, registrando callbacks.");
+	
 	socket.on(EventosHelper.instance.eventosClient.novoJogadorEntrou, function() {
-		var jogador = Jogador;
-		socket.emit(EventosHelper.instance.eventosServer.novoJogadorCriado, jogador);
+		var idJogador = 1;
+		console.log("server: Pedido de novo jogador recebido do client registrado, id: ".concat(idJogador));
+		socket.emit(EventosHelper.instance.eventosServer.novoJogadorCriado, idJogador);
 	});
 });
