@@ -43,7 +43,7 @@ Game.IniciarPartida = function() {
 	console.log("Game: status jogador: ");
 	console.log(Game.jogador);
 	
-	console.log("Game: exibir as pedras na tela");
+	console.log("Game: exibindo as pedras na tela");
 	Game.jogador.ParaCadaPedra(MostrarPedraNaTela);
 }
 
