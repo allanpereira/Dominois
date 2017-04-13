@@ -1,9 +1,9 @@
 var Jogador = function() {
-    var self = this;
     this.pedras = [];
-    this.ParaCadaPedra = function(callback) {
-        for (var i = 0; i < self.pedras.length; i++) {
-            callback(self.pedras[i]);
-        }
+};
+
+Jogador.prototype.ParaCadaPedra = function(callback) {
+    for (var i = 0; i < this.pedras.length; i++) {
+        callback(this.pedras[i]);
     }
-}
+};

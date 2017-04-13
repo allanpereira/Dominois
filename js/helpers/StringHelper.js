@@ -9,8 +9,7 @@ var StringHelper = (function() {
         },
     
         ApendarCaminho: function(base, caminhoApendar) {
-            base = String(base).concat("/").concat(caminhoApendar);
-            return base;
+            return String(base).concat("/").concat(caminhoApendar);
         },
     
         ApendarExtensao: function(caminho, extensao) {

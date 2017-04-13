@@ -1,7 +1,4 @@
-var serverSide = false;
-if (typeof module === "object" && module && typeof module.exports === "object") {
-    serverSide = true;
-}
+var serverSide = (typeof module === "object" && module && typeof module.exports === "object");
 
 var EventosHelper = (function() {	
     var _eventosServer = {
