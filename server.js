@@ -4,6 +4,7 @@ var server = require('http').Server(app);
 var io = require('socket.io').listen(server);
 
 app.use("/js", express.static(__dirname.concat("/js")));
+app.use("/css", express.static(__dirname.concat("/css")));
 app.use("/assets", express.static(__dirname.concat("/assets")));
 
 app.get("/", function(req, res) {
