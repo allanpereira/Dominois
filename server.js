@@ -5,6 +5,10 @@ var io = require('socket.io').listen(server);
 
 const SocketServer = require('./js/Server/Communication/SocketServer');
 
+app.all('/js/Server/*', function (req, res) {
+   res.status(403).send({ message: 'Forbidden'});
+});
+
 app.use("/js", express.static(__dirname.concat("/js")));
 app.use("/css", express.static(__dirname.concat("/css")));
 app.use("/assets", express.static(__dirname.concat("/assets")));
