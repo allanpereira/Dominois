@@ -1,4 +1,4 @@
-var Client = function(jogo){
+var SocketClient = function(jogo){
     this.socket = io.connect();
     
     this.socket.on(EventosHelper.eventosServer.novoJogadorCriado, function (idJogador) {
@@ -7,7 +7,7 @@ var Client = function(jogo){
     });
 };
 
-Client.prototype.PedirRegistroNovoJogador = function() {
+SocketClient.prototype.PedirRegistroNovoJogador = function() {
     console.log("client: Pedindo novo jogador para o server.");
     this.socket.emit(EventosHelper.eventosClient.novoJogadorEntrou);
 };

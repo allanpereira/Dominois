@@ -3,6 +3,8 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io').listen(server);
 
+const SocketServer = require('./js/Server/Communication/SocketServer');
+
 app.use("/js", express.static(__dirname.concat("/js")));
 app.use("/css", express.static(__dirname.concat("/css")));
 app.use("/assets", express.static(__dirname.concat("/assets")));
@@ -12,17 +14,8 @@ app.get("/", function(req, res) {
 });
 
 server.listen(8081, function() {
-    console.log("server: Conexão aberta na porta ".concat(server.address().port));
+    console.log(`[SERVER] New connection opened in port ${server.address().port}.`);
 });
 
-var EventosHelper = require("./js/helpers/EventosHelper");
-
-io.on(EventosHelper.instance.eventosSocketIo.connection, function(socket) {
-    console.log("server: Pedido de conexão do client recebido, registrando callbacks.");
-    
-    socket.on(EventosHelper.instance.eventosClient.novoJogadorEntrou, function() {
-        var idJogador = 1;
-        console.log("server: Pedido de novo jogador recebido do client registrado, id: ".concat(idJogador));
-        socket.emit(EventosHelper.instance.eventosServer.novoJogadorCriado, idJogador);
-    });
-});
+let socketServer = new SocketServer(io);
+socketServer.init();

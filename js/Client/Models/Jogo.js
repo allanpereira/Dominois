@@ -5,7 +5,7 @@
 
 //Classe
 var Jogo = function(){
-    this.socketClient = new Client(this);
+    this.socketClient = new SocketClient(this);
     this.tela = new Tela(new SpriteMesa(), new MaoPrincipal());
     this.mesa = MesaFactory.CriarMesa();
 
