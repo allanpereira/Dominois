@@ -14,7 +14,8 @@ var EventosHelper = (function() {
     }
     
     var _eventosSocketIo = {
-        connection: "connection"
+        connection: "connection",
+        disconnect: "disconnect"
     }
     
     var _eventosHelper = {

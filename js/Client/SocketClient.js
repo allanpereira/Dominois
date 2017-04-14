@@ -1,5 +1,5 @@
 var SocketClient = function(jogo){
-    this.socket = io.connect();
+    this.socket = io.connect('localhost:8081', {'sync disconnect on unload' : true });
     
     this.socket.on(EventosHelper.eventosServer.novoJogadorCriado, function (idJogador) {
         console.log("client: Id jogador recebido do server e encaminhado para o game. Id ".concat(idJogador));
