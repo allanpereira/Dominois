@@ -1,6 +1,5 @@
 // Require SpritePedra
 // Require Pedra
-
 var PedraFactory = (function() {
     
     var CriarPedra = function(valorSuperior, valorInferior) {
@@ -13,12 +12,13 @@ var PedraFactory = (function() {
     }
     
     var _pedraFactory = {		
-        CriarPedras: function() {
+        CriarPedrasAPartirDoServer : function(dominoes) {
             var pedras = [];
-            for (var i = 0; i <= 6; i++) {
-                for (var j = i; j <= 6; j++) {
-                    pedras.push(CriarPedra(i, j));
-                }
+            
+            for(var i = 0; i < dominoes.length; i++){
+                var domino = dominoes[i];
+                var pedra = CriarPedra(domino.value1, domino.value2);
+                pedras.push(pedra);
             }
             return pedras;
         }

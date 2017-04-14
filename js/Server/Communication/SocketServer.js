@@ -1,8 +1,12 @@
 const EventosHelper = require('../../Shared/Helpers/EventosHelper');
+const GameController = require('../Controller/GameController');
+
 class SocketServer{
     constructor(io){
         this.io = io;
         this.sockets = [];
+
+        this.controller = new GameController();
     }
 
     init(){
@@ -32,15 +36,11 @@ class SocketServer{
     registerNewPlayerHasEntered(socket){
         var self = this;
         socket.on(EventosHelper.instance.eventosClient.novoJogadorEntrou, function() {
-            let playerId = self.getNextPlayerId();
-            socket.emit(EventosHelper.instance.eventosServer.novoJogadorCriado, playerId);
+            let player = self.controller.addNewPlayer();
+            socket.emit(EventosHelper.instance.eventosServer.novoJogadorCriado, player);
 
-            console.log(`[SERVER] New player has entered with id ${playerId}.`);
+            console.log(`[SERVER] New player has entered with id ${player.getId()}.`);
         });
-    }
-
-    getNextPlayerId(){
-        return 1; //TODO: Should be dynamic
     }
 }
 

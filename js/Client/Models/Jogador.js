@@ -1,5 +1,5 @@
-var Jogador = function() {
-    this.pedras = [];
+var Jogador = function(pedras) {
+    this.pedras = pedras;
 };
 
 Jogador.prototype.ParaCadaPedra = function(callback) {

@@ -10,6 +10,7 @@ var game = new Phaser.Game(
 );
 
 
+console.log("[MAIN] Jogo criado, dando start...");
+game.state.add('Start', jogo.ObterEstadoInicial());
 game.state.add('Game', jogo.ObterEstadoPrincipal());
-console.log("main: Jogo criado, dando start");
-game.state.start('Game');
+game.state.start('Start');

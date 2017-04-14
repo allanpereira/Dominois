@@ -1,13 +1,13 @@
 var SocketClient = function(jogo){
     this.socket = io.connect('localhost:8081', {'sync disconnect on unload' : true });
     
-    this.socket.on(EventosHelper.eventosServer.novoJogadorCriado, function (idJogador) {
-        console.log("client: Id jogador recebido do server e encaminhado para o game. Id ".concat(idJogador));
-        jogo.AoCriarNovoJogador(idJogador);
+    this.socket.on(EventosHelper.eventosServer.novoJogadorCriado, function (player) {
+        console.log("[CLIENT] Jogador recebido do Server e encaminhado para o game. Id: " + player.id + " - Nome: " + player.name + ".");
+        jogo.AoCriarNovoJogador(player);
     });
 };
 
 SocketClient.prototype.PedirRegistroNovoJogador = function() {
-    console.log("client: Pedindo novo jogador para o server.");
+    console.log("[CLIENT] Pedindo novo jogador para o server...");
     this.socket.emit(EventosHelper.eventosClient.novoJogadorEntrou);
 };
