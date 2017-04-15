@@ -9,6 +9,7 @@ var Jogo = function(){
     this.tela = new Tela(new SpriteMesa(), new MaoPrincipal());
 
     this.jogador = undefined;
+    this.pedraJogando = undefined;
 
     this.AoCriarEstadoInicial = function(){
         this.socketClient.PedirRegistroNovoJogador();
@@ -16,6 +17,14 @@ var Jogo = function(){
 
     this.AoCriarNovoJogador = function(player){
         this.AdicionarNovoJogador(player);
+    };
+
+    this.AoJogarPedra = function(value1, value2){
+        this.socketClient.RealizarJogada(value1, value2);
+    };
+
+    this.AoRealizarJogadaComSucesso = function(domino){
+        this.RemoverPedra(domino);
     };
 };
 
@@ -36,6 +45,12 @@ Jogo.prototype.AdicionarNovoJogador = function(player) {
 
     this.TrocarEstadoParaPartida();
     this.IniciarPartida();
+};
+
+Jogo.prototype.RemoverPedra = function(domino){
+    this.pedraJogando.destroy(); //Na implementacao real, sera movido para a mesa
+
+    console.log("[JOGO] A pedra " + domino.value1 + "|" + domino.value2 + " foi jogada.");
 };
 
 Jogo.prototype.TrocarEstadoParaPartida = function(){
@@ -70,6 +85,11 @@ Jogo.prototype.ObterEstadoInicial = function(){
 Jogo.prototype.ObterEstadoPrincipal = function(){
     var self = this;
 
+    var aoClicarNaPedra = function(sprite){
+        self.pedraJogando = sprite;
+        self.AoJogarPedra(sprite.data.valorSuperior, sprite.data.valorInferior);
+    };
+
     return {
         preload : function(){
             game.load.image(self.tela.spriteMesa.nome, AssetsHelper.BuscarImagemMesa(self.tela.spriteMesa.nome));
@@ -82,8 +102,14 @@ Jogo.prototype.ObterEstadoPrincipal = function(){
             game.add.sprite(self.tela.spriteMesa.posicao.x, self.tela.spriteMesa.posicao.y, self.tela.spriteMesa.nome);
 
             self.jogador.ParaCadaPedra(function(pedra) {
-                game.add.sprite(self.tela.maoPrincipal.posicaoProximaPedra.x, self.tela.maoPrincipal.posicaoProximaPedra.y, pedra.sprite.nome);
+                var spritePedra = game.add.sprite(self.tela.maoPrincipal.posicaoProximaPedra.x, self.tela.maoPrincipal.posicaoProximaPedra.y, pedra.sprite.nome);
+                spritePedra.data = pedra;
+
                 self.tela.maoPrincipal.AdicionarPedra(pedra);
+                
+                spritePedra.inputEnabled = true;
+                spritePedra.events.onInputDown.add(aoClicarNaPedra, this);
+                spritePedra.input.useHandCursor = true;
             });
         }
     };

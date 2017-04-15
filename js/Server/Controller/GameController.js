@@ -1,5 +1,6 @@
 const Game = require('../Models/Game');
 const Player = require('../Models/Player');
+const Domino = require('../Models/Domino');
 
 class GameController{
     constructor(){
@@ -16,14 +17,15 @@ class GameController{
             this.games.push(lastGame);
         }
 
-
-
-
         this.firstId++;
         let player = new Player(this.firstId, "New player ".concat(this.firstId));
         lastGame.addPlayer(player);
 
         return player;
+    }
+
+    play(value1, value2){
+        return new Domino(value1, value2); //TODO: Find player and remove domino
     }
 }
 

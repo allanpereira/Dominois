@@ -41,6 +41,16 @@ class SocketServer{
 
             console.log(`[SERVER] New player has entered with id ${player.getId()}.`);
         });
+
+        socket.on(EventosHelper.instance.eventosClient.jogadaRealizada, function(data) {
+            //TODO: Validar jogada
+            //TODO: Remover pedra da mão
+            
+            console.log(`[SERVER] The domino ${data.value1} | ${data.value2} has been placed on board.`);
+
+            let domino = self.controller.play(data.value1, data.value2);
+            socket.emit(EventosHelper.instance.eventosServer.jogadaRealizadaComSucesso, domino);
+        });
     }
 }
 
