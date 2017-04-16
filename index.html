@@ -3,31 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <script type="text/javascript" src="/socket.io/socket.io.js"></script>
-    <script type="text/javascript" src="js/plugins/phaser.min.js"></script>
+    <script type="text/javascript" src="js/Client/Plugins/phaser.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="css/style.css">
     <title>Dominois</title>
 </head>
 <body>
     <div id="game"></div>
     
-    <script type="text/javascript" src="js/helpers/StringHelper.js"></script>
-    <script type="text/javascript" src="js/helpers/AssetsHelper.js"></script>
-    <script type="text/javascript" src="js/helpers/EventosHelper.js"></script>
+    <script type="text/javascript" src="js/Shared/Helpers/EventosHelper.js"></script>
 
-    <script type="text/javascript" src="js/controllers/MaoPrincipal.js"></script>
+    <script type="text/javascript" src="js/Client/Helpers/StringHelper.js"></script>
+    <script type="text/javascript" src="js/Client/Helpers/AssetsHelper.js"></script>
     
-    <script type="text/javascript" src="js/models/sprites/SpritePedra.js"></script>
-    <script type="text/javascript" src="js/models/sprites/SpriteMesa.js"></script>
-
-    <script type="text/javascript" src="js/models/Pedra.js"></script>
-    <script type="text/javascript" src="js/models/Jogador.js"></script>
-    <script type="text/javascript" src="js/models/Mesa.js"></script>
-    <script type="text/javascript" src="js/models/Tela.js"></script>
-    <script type="text/javascript" src="js/models/Game.js"></script>
-
-    <script type="text/javascript" src="js/factories/PedraFactory.js"></script>
-    <script type="text/javascript" src="js/factories/MesaFactory.js"></script>
+    <script type="text/javascript" src="js/Client/Controllers/MaoPrincipal.js"></script>
     
-    <script type="text/javascript" src="js/main.js"></script>
-    <script type="text/javascript" src="js/client.js"></script>
+    <script type="text/javascript" src="js/Client/Factories/PedraFactory.js"></script>
+
+    <script type="text/javascript" src="js/Client/Models/Sprites/SpritePedra.js"></script>
+    <script type="text/javascript" src="js/Client/Models/Sprites/SpriteMesa.js"></script>
+
+    <script type="text/javascript" src="js/Client/Models/Pedra.js"></script>
+    <script type="text/javascript" src="js/Client/Models/Jogador.js"></script>
+    <script type="text/javascript" src="js/Client/Models/Tela.js"></script>
+    <script type="text/javascript" src="js/Client/Models/Jogo.js"></script>
+    
+    <script type="text/javascript" src="js/Client/SocketClient.js"></script>
+    <script type="text/javascript" src="js/Client/main.js"></script>
 </body>
 </html>

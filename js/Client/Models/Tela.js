@@ -1,15 +1,12 @@
 var Tela = function(spriteMesa, maoPrincipal) {
-    var self = this;
-    
     this.tamanho = {
-        altura: 600,
-        largura: 800
-    }	
+        largura : 800,
+        altura : 600
+    };
     
-    this.tipoRenderizacao = Phaser.AUTO;
-    this.tagHtmlContainer = document.getElementById('game');
+    this.containerId = 'game';
     this.backgroundColor = "#FFF";
     
     this.spriteMesa = spriteMesa;	
     this.maoPrincipal = maoPrincipal;
-}
+};

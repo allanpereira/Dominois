@@ -1,23 +1,22 @@
-var serverSide = false;
-if (typeof module === "object" && module && typeof module.exports === "object") {
-    serverSide = true;
-}
+var serverSide = (typeof module === "object" && module && typeof module.exports === "object");
 
 var EventosHelper = (function() {	
     var _eventosServer = {
         atualizarMesa: "atualizarMesa",
         novoJogadorCriado: "novoJogadorCriado",
-        pedraJogada: "pedraJogada"
+        pedraJogada: "pedraJogada",
+        jogadaRealizadaComSucesso : "jogadaRealizadaComSucesso"
     }
     
     var _eventosClient = {
         pedirMesa: "pedirMesa",
         novoJogadorEntrou: "novoJogadorEntrou",
-        jogadorClicouPedra: "jogadorJogouPedra"
+        jogadaRealizada: "jogadaRealizada"
     }
     
     var _eventosSocketIo = {
-        connection: "connection"
+        connection: "connection",
+        disconnect: "disconnect"
     }
     
     var _eventosHelper = {
