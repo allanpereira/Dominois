@@ -13,7 +13,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.17.1",
     "express": "^4.15.2",
+    "express-session": "^1.15.2",
     "phaser": "^2.6.2",
     "phaser-ce": "^2.7.5",
     "socket.io": "^1.7.3"

@@ -27,6 +27,10 @@ class Game{
     isFull(){
         return this.players.length === this.playersAmount;
     }
+
+    hasPlayer(playerId){
+        return this.players.filter(p => p.getId() === playerId).length > 0;
+    }
 }
 
 module.exports = Game;

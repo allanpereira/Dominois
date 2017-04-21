@@ -1,5 +1,5 @@
 const EventosHelper = require('../../Shared/Helpers/EventosHelper');
-const GameController = require('../Controller/GameController');
+const GameController = require('../Controllers/GameController');
 
 class SocketServer{
     constructor(io){
@@ -36,7 +36,8 @@ class SocketServer{
     registerNewPlayerHasEntered(socket){
         var self = this;
         socket.on(EventosHelper.instance.eventosClient.novoJogadorEntrou, function() {
-            let player = self.controller.addNewPlayer();
+            let id = socket.request.session.user.id;
+            let player = self.controller.addNewPlayer(id);
             socket.emit(EventosHelper.instance.eventosServer.novoJogadorCriado, player);
 
             console.log(`[SERVER] New player has entered with id ${player.getId()}.`);
