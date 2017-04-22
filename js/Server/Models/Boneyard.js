@@ -1,4 +1,4 @@
-//Boneyard é a àrea de compra
+//Boneyard é a área de compra
 class Boneyard{
     constructor(dominoes){
         this.dominoes = dominoes;

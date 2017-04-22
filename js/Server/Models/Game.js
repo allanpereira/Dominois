@@ -2,11 +2,56 @@ const DominoFactory = require("../Factories/DominoFactory");
 const Boneyard = require("./Boneyard");
 
 class Game{
-    constructor(playersAmount, dominoesByPlayer){
+    constructor(id, name, playersAmount, dominoesByPlayer, players, boneyard){
+        this.id = id;
+        this.name = name || "Default Game";
         this.playersAmount = playersAmount || 4;
         this.dominoesByPlayer = dominoesByPlayer || 7;
-        this.players = [];
-        this.boneyard = new Boneyard(DominoFactory.create());
+        this.players = players || [];
+        this.boneyard = boneyard || new Boneyard(DominoFactory.create());
+    }
+
+    getId(){
+        return this.id;
+    }
+
+    getName(){
+        return this.name;
+    }
+
+    getPlayers(){
+        return this.players;
+    }
+
+    /**
+    * Returns the object exposed to clients in browser.
+    */
+    getPublicInterface(){
+        return {
+            id : this.id,
+            name : this.name
+        };
+    }
+
+    findPlayerById(userId){
+        return this.players.find(p => p.getId() == userId);
+    }
+
+    isFull(){
+        return this.players.length === this.playersAmount;
+    }
+
+    hasPlayer(userId){
+        return this.players.filter(p => p.getId() === userId).length > 0;
+    }
+
+    canStart(){
+        return this.players.length == this.playersAmount;
+    }
+
+    start(){
+        if(!this.canStart())
+            throw new Error(`${this.playersAmount} players are required to start the game.`);
     }
 
     addPlayer(player){
@@ -17,15 +62,6 @@ class Game{
 
         player.setDominoes(dominoes);
         this.players.push(player);
-    }
-
-    start(){
-        if(this.players.length < this.playersAmount)
-            throw new Error(`${this.playersAmount} players are required to start the game.`);
-    }
-
-    isFull(){
-        return this.players.length === this.playersAmount;
     }
 }
 
