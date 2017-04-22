@@ -1,22 +1,17 @@
+const User = require('../Models/User');
+
 class LoginService {
-    static post(data) {
+    static post(data, db) {
         return new Promise((resolve, reject) => {
             try{
                 if(!data)
                     reject("Invalid data!");
 
                 //TODO: Load from DB. We can use Knex.
-                if(data.username === "vitao" && data.password === "unilever"){
-                    return resolve({
-                        "id" : 1,
-                        "name" : "Vitor",
-                        "username" : "vitao"
-                    });
-                }
-
-                return null;
+                let user = db.users.find(u => u.username == data.username);
+                return resolve(user);
             }catch(err){
-                reject(err);
+                reject(err.message);
             }
         });
     }

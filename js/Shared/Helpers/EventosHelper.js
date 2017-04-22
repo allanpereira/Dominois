@@ -3,14 +3,14 @@ var serverSide = (typeof module === "object" && module && typeof module.exports 
 var EventosHelper = (function() {	
     var _eventosServer = {
         atualizarMesa: "atualizarMesa",
-        novoJogadorCriado: "novoJogadorCriado",
+        jogadorEntrou: "jogadorEntrouS",
         pedraJogada: "pedraJogada",
         jogadaRealizadaComSucesso : "jogadaRealizadaComSucesso"
     }
     
     var _eventosClient = {
         pedirMesa: "pedirMesa",
-        novoJogadorEntrou: "novoJogadorEntrou",
+        jogadorEntrou: "jogadorEntrou",
         jogadaRealizada: "jogadaRealizada"
     }
     

@@ -1,8 +1,9 @@
 const LoginService = require('../Services/LoginService');
+const DB = require('../Database/DB');
 
 class LoginController {
     static post(req, res) {
-        LoginService.post(req.body)
+        LoginService.post(req.body, DB)
         .then((user) => {
             if(user){
                 req.session.user = user;

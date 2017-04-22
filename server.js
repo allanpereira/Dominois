@@ -11,7 +11,7 @@ const app = express();
 const server = http.Server(app);
 
 /* Routes */
-const loginRoutes = require("./js/Server/Communication/Routes/Api/Login");
+const apiRoutes = require("./js/Server/Communication/Routes/Api");
 const staticRoutes = require("./js/Server/Communication/Routes/Static");
 
 /* Session Middleware */
@@ -46,7 +46,7 @@ app.use(bodyParser.json());
 app.use(sessionMiddleware);
 
 /* Setting routes */
-app.use("/api", restricted, loginRoutes);
+app.use("/api", restricted, apiRoutes);
 app.use("/", restricted, staticRoutes);
 
 /* Express Initialization */

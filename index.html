@@ -2,32 +2,74 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
-    <script type="text/javascript" src="js/Client/Plugins/phaser.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="css/style.css">
-    <title>Dominois</title>
+    <title>Salas de Jogo - Dominois</title>
 </head>
 <body>
-    <div id="game"></div>
-    
-    <script type="text/javascript" src="js/Shared/Helpers/EventosHelper.js"></script>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-danger hidden">
+                    <h4>Não foi possível carregar as salas disponíveis.</h4><br>
+                    <button id="btnReload" class="btn btn-primary">Recarregar</button>
+                </div>
 
-    <script type="text/javascript" src="js/Client/Helpers/StringHelper.js"></script>
-    <script type="text/javascript" src="js/Client/Helpers/AssetsHelper.js"></script>
-    
-    <script type="text/javascript" src="js/Client/Controllers/MaoPrincipal.js"></script>
-    
-    <script type="text/javascript" src="js/Client/Factories/PedraFactory.js"></script>
+                <div id="rooms-list" class="hidden"></div>
+                
+                <h4 id="loading">Carregando salas...</h4>
+                <h4 id="no-rooms" class="hidden">Não há salas disponíveis para entrar. Crie um jogo!</h4>
+                <br>
+            </div>
+            <div class="col-md-12">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createGameModal">Criar Jogo</button>
+            </div>
+        </div>
+    </div>
 
-    <script type="text/javascript" src="js/Client/Models/Sprites/SpritePedra.js"></script>
-    <script type="text/javascript" src="js/Client/Models/Sprites/SpriteMesa.js"></script>
-
-    <script type="text/javascript" src="js/Client/Models/Pedra.js"></script>
-    <script type="text/javascript" src="js/Client/Models/Jogador.js"></script>
-    <script type="text/javascript" src="js/Client/Models/Tela.js"></script>
-    <script type="text/javascript" src="js/Client/Models/Jogo.js"></script>
+    <div class="modal fade" id="createGameModal" data-backdrop="static" data-keyboard="false" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Criar Jogo</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form">
+                        <div id="name-group" class="form-group has-feedback">
+                            <label for="name">Nome</label>
+                            <input type="text" class="form-control" id="name" placeholder="Nome da Sala" value="Sala 01">
+                        </div>
+                        <div class="form-group">
+                            <label for="playersAmount">Quantidade de jogadores</label>
+                            <select class="form-control" id="playersAmount">
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="dominoesByPlayer">Quantidade de pedras</label>
+                            <select class="form-control" id="dominoesByPlayer">
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-success" id="btnCreateRoom">Criar</button>
+                    <button type="button" class="btn btn-default btn-default" data-dismiss="modal" id="btnCancelCreateRoom">Cancelar</button>
+                    <h4 id="create-room-loading" class="hidden">Salvando...</h4>
+                </div>
+            </div>
+        </div>
+    </div>
     
-    <script type="text/javascript" src="js/Client/SocketClient.js"></script>
-    <script type="text/javascript" src="js/Client/main.js"></script>
+    <script type="text/javascript" src="js/Client/Plugins/jquery.min.js"></script>
+    <script type="text/javascript" src="js/Client/Plugins/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/Client/load_rooms.js"></script>
+    <script type="text/javascript" src="js/Client/create_room.js"></script>
 </body>
 </html>

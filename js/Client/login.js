@@ -20,7 +20,6 @@ $(function(){
                 window.location.href = "/";
             },
             error : function(res){
-                console.log(res);
                 alert("Deu ruim!"); //TODO: Change this feedback.
             }
         });

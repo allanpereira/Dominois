@@ -4,27 +4,29 @@
 // Require MaoPrincipal
 
 //Classe
-var Jogo = function(){
+var Jogo = function(gameId){
     this.socketClient = new SocketClient(this);
     this.tela = new Tela(new SpriteMesa(), new MaoPrincipal());
 
     this.jogador = undefined;
     this.pedraJogando = undefined;
+    this.gameId = gameId;
 
     this.AoCriarEstadoInicial = function(){
-        this.socketClient.PedirRegistroNovoJogador();
+        this.socketClient.ObterDadosJogador(this.gameId);
     };
 
-    this.AoCriarNovoJogador = function(player){
-        this.AdicionarNovoJogador(player);
+    this.AoAdicionarJogador = function(result){
+        if(result.success)
+            this.AdicionarNovoJogador(result.player);
     };
 
     this.AoJogarPedra = function(value1, value2){
-        this.socketClient.RealizarJogada(value1, value2);
+        this.socketClient.RealizarJogada(this.gameId, value1, value2);
     };
 
-    this.AoRealizarJogadaComSucesso = function(domino){
-        this.RemoverPedra(domino);
+    this.AoRealizarJogadaComSucesso = function(result){
+        this.RemoverPedra(result.domino);
     };
 };
 
@@ -55,7 +57,7 @@ Jogo.prototype.RemoverPedra = function(domino){
 
 Jogo.prototype.TrocarEstadoParaPartida = function(){
     console.log("[JOGO] Carregando as pedras na tela...");
-    game.state.start('Game');
+    game.state.start('Game');self.gameId
 };
 
 Jogo.prototype.IniciarPartida = function(){
