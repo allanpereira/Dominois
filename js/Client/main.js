@@ -1,6 +1,11 @@
 // Require Game
 
-var jogo = new Jogo();
+var url = window.location.href;
+if(url.endsWith("/"))
+    url = url.substr(0, url.length - 1);
+
+var gameId = url.substr(url.lastIndexOf("/") + 1);
+var jogo = new Jogo(gameId);
 
 var game = new Phaser.Game(
     jogo.ObterLarguraTela(),

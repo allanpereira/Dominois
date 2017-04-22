@@ -1,25 +1,66 @@
-var express = require('express');
-var app = express();
-var server = require('http').Server(app);
-var io = require('socket.io').listen(server);
-
+/* Dependencies */
+const express = require('express');
+const session = require('express-session');
+const bodyParser = require('body-parser');
+const http = require('http');
+const socketio = require('socket.io');
 const SocketServer = require('./js/Server/Communication/SocketServer');
 
-app.all('/js/Server/*', function (req, res) {
-   res.status(403).send({ message: 'Forbidden'});
+/* Initialization */
+const app = express();
+const server = http.Server(app);
+
+/* Routes */
+const apiRoutes = require("./js/Server/Communication/Routes/Api");
+const staticRoutes = require("./js/Server/Communication/Routes/Static");
+
+/* Session Middleware */
+var sessionMiddleware = session({   
+    secret: 'fcPKZ1Cc9xloGLtGE3Pvg5i44bUFyedAM6MeziORpWcJpuBYIhFTxwCnKHCz',
+    saveUninitialized: false,
+    resave: false,
 });
 
-app.use("/js", express.static(__dirname.concat("/js")));
-app.use("/css", express.static(__dirname.concat("/css")));
-app.use("/assets", express.static(__dirname.concat("/assets")));
+/* Middleware for restricted routes */
+const restricted = function(req, res, next) {
+    var isLoggedIn = req.session.user instanceof Object;
+    var isLoginCall = req.path === "/login" || req.path === "/api/login";
+    var isLoginPagePath = 
+        req.path.startsWith("/css") ||
+        req.path.startsWith("/js/plugins/") ||
+        req.path.startsWith("/js/Client");
 
-app.get("/", function(req, res) {
-    res.sendFile(__dirname.concat("/index.html"));
-});
+    if (isLoggedIn && isLoginCall) {
+        res.redirect('/');
+    } else if (isLoggedIn || isLoginCall || isLoginPagePath) {
+        next();
+    } else {
+        res.redirect('/login');
+    }
+}
 
+/* Body parser configuration */
+app.use(bodyParser.json());
+
+/* Setting session middleware to Express */
+app.use(sessionMiddleware);
+
+/* Setting routes */
+app.use("/api", restricted, apiRoutes);
+app.use("/", restricted, staticRoutes);
+
+/* Express Initialization */
 server.listen(8081, function() {
     console.log(`[SERVER] New connection opened in port ${server.address().port}.`);
 });
 
-let socketServer = new SocketServer(io);
-socketServer.init();
+/* Socket IO Initialization */
+const io = socketio.listen(server);
+
+/* Setting session middleware to SocketIO */
+io.use(function(socket, next) {
+    sessionMiddleware(socket.request, socket.request.res, next);
+});
+
+/* Socket Server Initialization */
+new SocketServer(io).init();

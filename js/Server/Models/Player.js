@@ -1,7 +1,7 @@
 class Player{
-    constructor(id, name){
-        this.id = id;
-        this.name = name;
+    constructor(user){
+        this.id = user.id;
+        this.name = user.name;
         this.dominoes = [];
     }
 
@@ -13,8 +13,21 @@ class Player{
         return this.name;
     }
 
+    getDominoes(){
+        return this.dominoes;
+    }
+
     setDominoes(dominoes){
         dominoes.map(domino => this.dominoes.push(domino));
+    }
+
+    hasDomino(value1, value2){
+        return this.dominoes.find(d => d.getValue1() == value1 && d.getValue2() == value2);
+    }
+
+    removeDomino(value1, value2){
+        const index = this.dominoes.findIndex(d => d.getValue1() == value1 && d.getValue2() == value2);
+        return this.dominoes.splice(index, 1)[0];
     }
 }
 

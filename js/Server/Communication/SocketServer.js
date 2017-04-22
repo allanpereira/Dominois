@@ -1,12 +1,11 @@
 const EventosHelper = require('../../Shared/Helpers/EventosHelper');
-const GameController = require('../Controller/GameController');
+const RoomService = require('../Services/RoomService');
+const DB = require('../Database/DB');
 
 class SocketServer{
     constructor(io){
         this.io = io;
         this.sockets = [];
-
-        this.controller = new GameController();
     }
 
     init(){
@@ -22,7 +21,7 @@ class SocketServer{
 
     registerEvents(socket){
         this.registerDisconnection(socket);
-        this.registerNewPlayerHasEntered(socket);
+        this.registerPlayerHasEntered(socket);
     }
 
     registerDisconnection(socket){
@@ -33,23 +32,29 @@ class SocketServer{
         });
     }
 
-    registerNewPlayerHasEntered(socket){
-        var self = this;
-        socket.on(EventosHelper.instance.eventosClient.novoJogadorEntrou, function() {
-            let player = self.controller.addNewPlayer();
-            socket.emit(EventosHelper.instance.eventosServer.novoJogadorCriado, player);
-
-            console.log(`[SERVER] New player has entered with id ${player.getId()}.`);
+    registerPlayerHasEntered(socket){
+        socket.on(EventosHelper.instance.eventosClient.jogadorEntrou, function(data) {
+            let user = socket.request.session.user;
+            RoomService.playerEntered(data.gameId, user, DB)
+            .then((player) => {
+                socket.emit(EventosHelper.instance.eventosServer.jogadorEntrou, { success : true, player : player});
+                console.log(`[SERVER] Player ${player.getId()} has entered in game ${data.gameId}.`);
+            })
+            .catch((err) => {
+                socket.emit(EventosHelper.instance.eventosServer.jogadorEntrou, { success : false, error : err});
+            });
         });
 
         socket.on(EventosHelper.instance.eventosClient.jogadaRealizada, function(data) {
-            //TODO: Validar jogada
-            //TODO: Remover pedra da mão
-            
-            console.log(`[SERVER] The domino ${data.value1} | ${data.value2} has been placed on board.`);
-
-            let domino = self.controller.play(data.value1, data.value2);
-            socket.emit(EventosHelper.instance.eventosServer.jogadaRealizadaComSucesso, domino);
+            let userId = socket.request.session.user.id;
+            RoomService.play(data, userId, DB)
+            .then((domino) => {
+                socket.emit(EventosHelper.instance.eventosServer.jogadaRealizadaComSucesso, { success : true, domino : domino});
+                console.log(`[SERVER] The domino ${domino.value1} | ${domino.value2} has been placed on board.`);
+            })
+            .catch((err) => {
+                socket.emit(EventosHelper.instance.eventosServer.jogadaRealizadaComSucesso, { success : false, error : err});
+            });
         });
     }
 }
