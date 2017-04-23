@@ -21,12 +21,12 @@ var Jogo = function(gameId){
             this.AdicionarNovoJogador(result.player);
     };
 
-    this.AoJogarPedra = function(value1, value2){
-        this.socketClient.RealizarJogada(this.gameId, value1, value2);
+    this.AoJogarPedra = function(value1, value2, moveType){
+        this.socketClient.RealizarJogada(this.gameId, value1, value2, moveType);
     };
 
     this.AoRealizarJogadaComSucesso = function(result){
-        this.RemoverPedra(result.domino);
+        this.MoverPedraParaMesa(result.domino, result.moveType);
     };
 };
 
@@ -49,10 +49,9 @@ Jogo.prototype.AdicionarNovoJogador = function(player) {
     this.IniciarPartida();
 };
 
-Jogo.prototype.RemoverPedra = function(domino){
+Jogo.prototype.MoverPedraParaMesa = function(domino, moveType){
     this.pedraJogando.destroy(); //Na implementacao real, sera movido para a mesa
-
-    console.log("[JOGO] A pedra " + domino.value1 + "|" + domino.value2 + " foi jogada.");
+    console.log("[JOGO] A pedra " + domino.value1 + "|" + domino.value2 + " foi jogada. MoveType: " + moveType);
 };
 
 Jogo.prototype.TrocarEstadoParaPartida = function(){
@@ -89,7 +88,8 @@ Jogo.prototype.ObterEstadoPrincipal = function(){
 
     var aoClicarNaPedra = function(sprite){
         self.pedraJogando = sprite;
-        self.AoJogarPedra(sprite.data.valorSuperior, sprite.data.valorInferior);
+		console.log(sprite.data);
+        self.AoJogarPedra(sprite.data.valorSuperior, sprite.data.valorInferior, sprite.data.moveType);
     };
 
     return {
@@ -112,6 +112,8 @@ Jogo.prototype.ObterEstadoPrincipal = function(){
                 spritePedra.inputEnabled = true;
                 spritePedra.events.onInputDown.add(aoClicarNaPedra, this);
                 spritePedra.input.useHandCursor = true;
+				
+				pedra.moveType = MoveType.FirstDomino;
             });
         }
     };

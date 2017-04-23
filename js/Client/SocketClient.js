@@ -21,7 +21,7 @@ SocketClient.prototype.ObterDadosJogador = function(gameId) {
     this.socket.emit(EventosHelper.eventosClient.jogadorEntrou, {gameId : gameId});
 };
 
-SocketClient.prototype.RealizarJogada = function(gameId, value1, value2) {
+SocketClient.prototype.RealizarJogada = function(gameId, value1, value2, moveType) {
     console.log("[CLIENT] Enviando jogada ao servidor...");
-    this.socket.emit(EventosHelper.eventosClient.jogadaRealizada, { gameId : gameId, value1 : value1, value2 : value2 });
+    this.socket.emit(EventosHelper.eventosClient.jogadaRealizada, { gameId : gameId, value1 : value1, value2 : value2, moveType: moveType });
 };

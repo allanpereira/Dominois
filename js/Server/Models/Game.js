@@ -1,5 +1,7 @@
 const DominoFactory = require("../Factories/DominoFactory");
 const Boneyard = require("./Boneyard");
+const BoardSequencies = require('./BoardSequencies');
+const MoveType = require('../../Shared/MoveType');
 
 class Game{
     constructor(id, name, playersAmount, dominoesByPlayer, players, boneyard){
@@ -9,6 +11,7 @@ class Game{
         this.dominoesByPlayer = dominoesByPlayer || 7;
         this.players = players || [];
         this.boneyard = boneyard || new Boneyard(DominoFactory.create());
+		this.boardSequencies = null;
     }
 
     getId(){
@@ -63,6 +66,22 @@ class Game{
         player.setDominoes(dominoes);
         this.players.push(player);
     }
+	
+	playDomino(domino, moveType) {
+		console.log(moveType);
+		if (moveType == MoveType.instance.FirstDomino) {
+			this.boardSequencies = new BoardSequencies(domino);
+		}
+		
+		if (moveType == MoveType.instance.RightSide) {
+			this.boardSequencies.PlayInSequency1(domino);
+		}
+		
+		if (moveType == MoveType.instance.LeftSide) {
+			this.boardSequencies.PlayInSequency2(domino);
+		}
+		
+	}
 }
 
 module.exports = Game;

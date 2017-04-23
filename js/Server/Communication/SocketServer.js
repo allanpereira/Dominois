@@ -36,11 +36,12 @@ class SocketServer{
         socket.on(EventosHelper.instance.eventosClient.jogadorEntrou, function(data) {
             let user = socket.request.session.user;
             RoomService.playerEntered(data.gameId, user, DB)
-            .then((player) => {
+			.then((player) => {
                 socket.emit(EventosHelper.instance.eventosServer.jogadorEntrou, { success : true, player : player});
                 console.log(`[SERVER] Player ${player.getId()} has entered in game ${data.gameId}.`);
             })
             .catch((err) => {
+				console.log(err);
                 socket.emit(EventosHelper.instance.eventosServer.jogadorEntrou, { success : false, error : err});
             });
         });
@@ -48,11 +49,12 @@ class SocketServer{
         socket.on(EventosHelper.instance.eventosClient.jogadaRealizada, function(data) {
             let userId = socket.request.session.user.id;
             RoomService.play(data, userId, DB)
-            .then((domino) => {
-                socket.emit(EventosHelper.instance.eventosServer.jogadaRealizadaComSucesso, { success : true, domino : domino});
-                console.log(`[SERVER] The domino ${domino.value1} | ${domino.value2} has been placed on board.`);
+            .then((data) => {
+				console.log(`[SERVER] The domino ${data.domino.value1} | ${data.domino.value2} has been placed on board.`);
+                socket.emit(EventosHelper.instance.eventosServer.jogadaRealizadaComSucesso, { success : true, domino : data.domino, moveType: data.moveType });
             })
             .catch((err) => {
+				console.log(err);
                 socket.emit(EventosHelper.instance.eventosServer.jogadaRealizadaComSucesso, { success : false, error : err});
             });
         });

@@ -71,14 +71,19 @@ class RoomService {
             try{
                 let value1 = data.value1;
                 let value2 = data.value2;
-                let gameId = data.gameId;
-
+				let gameId = data.gameId;
+				let moveType = data.moveType;
+				
                 let player = RoomService.findPlayer(gameId, userId, db);
+				
                 if(!player.hasDomino(value1, value2))
                     reject(`The player doesn't have the domino with value ${value1}|${value2}.`);
-                
+
                 let domino = player.removeDomino(value1, value2);
-                resolve(domino);
+				let game = RoomService.findGame(gameId, db);
+				game.playDomino(domino, data.moveType);
+
+                resolve({domino: domino, moveType: moveType});
             }catch(err){
                 reject(err.message);
             }
