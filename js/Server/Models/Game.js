@@ -26,6 +26,10 @@ class Game{
         return this.players;
     }
 
+    getBoneyard(){
+        return this.boneyard;
+    }
+
     /**
     * Returns the object exposed to clients in browser.
     */
@@ -68,7 +72,7 @@ class Game{
     }
 	
 	playDomino(domino, moveType) {
-		console.log(moveType);
+		console.log(`A domino was played with moveType = ${moveType}`);
 		if (moveType == MoveType.instance.FirstDomino) {
 			this.boardSequencies = new BoardSequencies(domino);
 		}

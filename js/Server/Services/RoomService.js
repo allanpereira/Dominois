@@ -1,3 +1,4 @@
+const GameConnectionPool = require('../Communication/GameConnectionPool');
 const Game = require('../Models/Game');
 const Player = require('../Models/Player');
 
@@ -58,8 +59,12 @@ class RoomService {
                     player = new Player(user);
                     game.addPlayer(player);
                 }
-                
-                resolve(player);
+
+                let boneyard = game.getBoneyard().getPublicInterface();
+                let data = { boneyard : boneyard };
+                GameConnectionPool.notifyBoneyardChangedFor(gameId, data);
+
+                resolve({player : player, boneyard : boneyard});
             }catch(err){
                 reject(err.message);
             }
