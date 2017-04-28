@@ -51,7 +51,7 @@ app.use("/", restricted, staticRoutes);
 
 /* Express Initialization */
 server.listen(8081, function() {
-    console.log(`[SERVER] New connection opened in port ${server.address().port}.`);
+    console.log(`New connection opened in port ${server.address().port}.`);
 });
 
 /* Socket IO Initialization */
