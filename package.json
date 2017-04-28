@@ -19,6 +19,7 @@
     "phaser": "^2.6.2",
     "phaser-ce": "^2.7.5",
     "socket.io": "^1.7.3",
-    "sqlite-sync": "^0.3.6"
+    "sqlite-sync": "^0.3.6",
+    "toastr": "^2.1.2"
   }
 }

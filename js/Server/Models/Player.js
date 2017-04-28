@@ -17,6 +17,12 @@ class Player{
         return this.dominoes;
     }
 
+    getPublicInterface(){
+        return {
+            name : this.name
+        }
+    }
+
     setDominoes(dominoes){
         dominoes.map(domino => this.dominoes.push(domino));
     }

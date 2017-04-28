@@ -24,6 +24,14 @@ var SocketClient = function(jogo){
         console.log("[CLIENT] A área de compra foi alterada!");
         jogo.AoAlterarAreaDeCompra(result.data.boneyard);
     });
+
+    this.socket.on(EventosHelper.eventosServer.entradaDeJogador, function (result) {
+        if(!result.success)
+            return;
+
+        console.log("[CLIENT] Um novo jogador entrou na partida!");
+        jogo.AoEntrarNovoJogador(result.data.player);
+    });
 };
 
 SocketClient.prototype.RegistrarEntrada = function(gameId) {

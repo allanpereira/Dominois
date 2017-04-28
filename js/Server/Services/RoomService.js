@@ -61,8 +61,10 @@ class RoomService {
                 }
 
                 let boneyard = game.getBoneyard().getPublicInterface();
-                let data = { boneyard : boneyard };
-                GameConnectionPool.notifyBoneyardChangedFor(gameId, data);
+                let playerData = player.getPublicInterface();
+                
+                GameConnectionPool.notifyBoneyardChanged(gameId, { boneyard : boneyard });
+                GameConnectionPool.notifyPlayerEntered(gameId, player.getId(), { player : playerData });
 
                 resolve({player : player, boneyard : boneyard});
             }catch(err){

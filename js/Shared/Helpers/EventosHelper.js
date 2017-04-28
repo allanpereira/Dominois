@@ -6,7 +6,8 @@ var EventosHelper = (function() {
         entradaRegistrada : "entradaRegistrada",
         pedraJogada: "pedraJogada",
         jogadaRealizadaComSucesso : "jogadaRealizadaComSucesso",
-        areaDeCompraAlterada : "boneyardChanged"
+        areaDeCompraAlterada : "boneyardChanged",
+        entradaDeJogador : "entradaDeJogador"
     }
     
     var _eventosClient = {

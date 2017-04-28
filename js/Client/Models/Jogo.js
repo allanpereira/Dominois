@@ -9,6 +9,7 @@ var Jogo = function(gameId){
     this.pedraJogando = undefined;
     this.gameId = gameId;
     
+    
     this.socketClient = new SocketClient(this);
     this.tela = new Tela(new SpriteMesa(), new MaoPrincipal());
 
@@ -31,6 +32,10 @@ var Jogo = function(gameId){
 
     this.AoAlterarAreaDeCompra = function(boneyard){
         this.AtualizarAreaDeCompra(boneyard.size);
+    }
+
+    this.AoEntrarNovoJogador = function(player){
+        this.NotificarEntradaJogador(player);
     }
 };
 
@@ -56,6 +61,10 @@ Jogo.prototype.AdicionarNovoJogador = function(player) {
 Jogo.prototype.MoverPedraParaMesa = function(domino, moveType){
     this.pedraJogando.destroy(); //Na implementacao real, sera movido para a mesa
     console.log("[JOGO] A pedra " + domino.value1 + "|" + domino.value2 + " foi jogada. MoveType: " + moveType);
+};
+
+Jogo.prototype.NotificarEntradaJogador = function(player){
+    toastr.info(player.name + " entrou no jogo!");
 };
 
 Jogo.prototype.TrocarEstadoParaPartida = function(){

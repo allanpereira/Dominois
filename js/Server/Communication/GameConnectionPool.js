@@ -21,7 +21,12 @@ var GameConnectionPool = (function(){
         resolveFor(gameId).addSocket(socket);
     }
 
-    const notifyBoneyardChangedFor = function(gameId, data){
+    const notifyPlayerEntered = function(gameId, playerId, data){
+        let result = {success : true, data : data};
+        resolveFor(gameId).emitExcept(playerId, EventosHelper.instance.eventosServer.entradaDeJogador, result);
+    }
+
+    const notifyBoneyardChanged = function(gameId, data){
         let result = {success : true, data : data};
         resolveFor(gameId).emit(EventosHelper.instance.eventosServer.areaDeCompraAlterada, result);
     }
@@ -32,7 +37,8 @@ var GameConnectionPool = (function(){
         removeSocketFor : removeSocketFor,
         createFor : createFor,
         resolveFor: resolveFor,
-        notifyBoneyardChangedFor : notifyBoneyardChangedFor
+        notifyBoneyardChanged : notifyBoneyardChanged,
+        notifyPlayerEntered : notifyPlayerEntered
     };
 })();
 
