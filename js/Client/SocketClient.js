@@ -6,7 +6,7 @@ var SocketClient = function(jogo){
             return;
 
         console.log("[CLIENT] Jogador recebido do Server e encaminhado para o game. Id: " + result.data.player.id + " - Nome: " + result.data.player.name + ".");
-        jogo.AoAdicionarJogador(result.data);
+        jogo.AoRegistrarEntrada(result.data);
     });
 
     this.socket.on(EventosHelper.eventosServer.jogadaRealizadaComSucesso, function (result) {

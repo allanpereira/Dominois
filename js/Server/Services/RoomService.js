@@ -66,7 +66,11 @@ class RoomService {
                 GameConnectionPool.notifyBoneyardChanged(gameId, { boneyard : boneyard });
                 GameConnectionPool.notifyPlayerEntered(gameId, player.getId(), { player : playerData });
 
-                resolve({player : player, boneyard : boneyard});
+                resolve({
+                    player : player, 
+                    boneyard : boneyard, 
+                    game : game
+                });
             }catch(err){
                 reject(err.message);
             }

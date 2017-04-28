@@ -9,7 +9,6 @@ var Jogo = function(gameId){
     this.pedraJogando = undefined;
     this.gameId = gameId;
     
-    
     this.socketClient = new SocketClient(this);
     this.tela = new Tela(new SpriteMesa(), new MaoPrincipal());
 
@@ -17,8 +16,8 @@ var Jogo = function(gameId){
         this.socketClient.RegistrarEntrada(this.gameId);
     };
 
-    this.AoAdicionarJogador = function(data){
-        this.AdicionarNovoJogador(data.player);
+    this.AoRegistrarEntrada = function(data){
+        this.RegistrarEntrada(data.player);
         this.AoAlterarAreaDeCompra(data.boneyard);
     };
 
@@ -48,7 +47,7 @@ Jogo.prototype.ObterAlturaTela = function(){
     return this.tela.altura;
 };
 
-Jogo.prototype.AdicionarNovoJogador = function(player) {
+Jogo.prototype.RegistrarEntrada = function(player) {
     var pedras = PedraFactory.CriarPedrasAPartirDoServer(player.dominoes);
     this.jogador = new Jogador(pedras);
     

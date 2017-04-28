@@ -1,15 +1,14 @@
-const DB = require('../Database/DB');
-const RoomService = require('../Services/RoomService');
-const EventosHelper = require('../../Shared/Helpers/EventosHelper');
+const DB = require('../../Database/DB');
+const RoomService = require('../../Services/RoomService');
+const EventosHelper = require('../../../Shared/Helpers/EventosHelper');
 
 /**
- * Handle registration of events for each new socket connection.
+ * Handle registration of client events for each new socket connection.
  */
-class EventRegister{
+class ClientEventsRegister{
     static register(gameId, socket, disconnectionCallback){
-        EventRegister.registerDisconnection(gameId, socket, disconnectionCallback);
-        EventRegister.registerPlayerHasEntered(gameId, socket);
-        EventRegister.registerBoneyardChanged(gameId, socket);
+        ClientEventsRegister.registerDisconnection(gameId, socket, disconnectionCallback);
+        ClientEventsRegister.registerPlayerHasEntered(gameId, socket);
     }
 
     static registerDisconnection(gameId, socket, disconnectionCallback){
@@ -23,6 +22,7 @@ class EventRegister{
     static registerPlayerHasEntered(gameId, socket){
         socket.on(EventosHelper.instance.eventosClient.registrarEntrada, function(req) {
             let user = socket.request.session.user;
+
             RoomService.playerEntered(gameId, user, DB)
 			.then((data) => {
                 console.log(`Player ${data.player.getId()} has entered in game ${gameId}.`);
@@ -47,10 +47,6 @@ class EventRegister{
             });
         });
     }
-
-    static registerBoneyardChanged(gameId, socket){
-        //TODO: Implement boneyard change event
-    }
 }
 
-module.exports = EventRegister;
+module.exports = ClientEventsRegister;

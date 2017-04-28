@@ -1,5 +1,7 @@
 const GameConnection = require('./GameConnection');
 const EventosHelper = require('../../Shared/Helpers/EventosHelper');
+const ServerEventsRegister = require('./Events/ServerEventsRegister');
+
 /**
  * Mantain all active connections acessible for all application.
  */
@@ -31,23 +33,25 @@ var GameConnectionPool = (function(){
         resolveFor(gameId).emit(EventosHelper.instance.eventosServer.areaDeCompraAlterada, result);
     }
 
-    return {
+    var pool = {
         hasConnectionFor : hasConnectionFor,
         addSocketFor : addSocketFor,
         removeSocketFor : removeSocketFor,
         createFor : createFor,
-        resolveFor: resolveFor,
-        notifyBoneyardChanged : notifyBoneyardChanged,
-        notifyPlayerEntered : notifyPlayerEntered
+        resolveFor: resolveFor
     };
+
+    ServerEventsRegister.register(pool);
+
+    return pool;
 })();
 
 module.exports = GameConnectionPool;
 
 //Definition after module.exports to solve problems caused by circular dependencies.
-const EventRegister = require('./EventRegister');
+const ClientEventsRegister = require('./Events/ClientEventsRegister');
 GameConnectionPool.addConnectionFor = function(gameId, socket){
-    EventRegister.register(gameId, socket, function(gId, s){
+    ClientEventsRegister.register(gameId, socket, function(gId, s){
         GameConnectionPool.removeSocketFor(gId, s);
     });
 
