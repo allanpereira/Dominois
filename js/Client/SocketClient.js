@@ -14,6 +14,13 @@ var SocketClient = function(jogo){
 
         jogo.AoRealizarJogadaComSucesso(result);
     });
+
+    this.socket.on(EventosHelper.eventosServer.enviaPedra, function (result) {
+        if(result.success)
+            console.log("[CLIENT] Nova pedra enviada pelo server!");
+
+        jogo.AoReceberPedra(result);
+    });
 };
 
 SocketClient.prototype.ObterDadosJogador = function(gameId) {

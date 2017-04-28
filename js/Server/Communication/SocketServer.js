@@ -48,14 +48,14 @@ class SocketServer{
 
         socket.on(EventosHelper.instance.eventosClient.pedirPedra, function(data) {
             let user = socket.request.session.user;
-            console.log("[SERVER] Cheguei ao SocketServer");
             RoomService.buyPiece(data.gameId, user, DB)
             .then((data) => {
-                socket.emit(EventosHelper.instance.eventosServer.enviaPedra, { sucess : true, domino : data });
+                socket.emit(EventosHelper.instance.eventosServer.enviaPedra, { success : true, domino : data });
                 console.log(`[SERVER] A player has bought a piece.`);
             })
             .catch((err) => {
-                console.log(err)
+                console.log(err);
+                socket.emit(EventosHelper.instance.eventosServer.enviaPedra, { success : false, error : err});
             });
         });
 

@@ -29,6 +29,10 @@ var Jogo = function(gameId){
     this.AoRealizarJogadaComSucesso = function(result){
         this.MoverPedraParaMesa(result.domino, result.moveType);
     };
+
+    this.AoReceberPedra = function(result){
+        console.log("[JOGO] A pedra " + result.domino[0].value1 + "|" + result.domino[0].value1 + " foi recebida.");
+    };
 };
 
 //Métodos
@@ -92,12 +96,10 @@ Jogo.prototype.ObterEstadoPrincipal = function(){
 		console.log(sprite.data);
         self.AoJogarPedra(sprite.data.valorSuperior, sprite.data.valorInferior, sprite.data.moveType);
     };
-    //rge dev <<<
+
     var aoClicarEmComprar = function(){
-        console.log("Parâmetro enviado no comprarPedra: " + this.gameId);
-        this.socketClient.comprarPedra(this);
+        this.socketClient.comprarPedra(this.gameId);
     };
-    //rge dev >>>
 
     return {
         preload : function(){
