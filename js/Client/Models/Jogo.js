@@ -1,6 +1,6 @@
 // Require MesaFactory
 // Require Tela
-// Require SpriteMesa
+// Require Mesa
 // Require MaoPrincipal
 
 //Classe
@@ -10,7 +10,7 @@ var Jogo = function(gameId){
     this.gameId = gameId;
     
     this.socketClient = new SocketClient(this);
-    this.tela = new Tela(new SpriteMesa(), new MaoPrincipal());
+    this.tela = new Tela(new Mesa(), new MaoPrincipal());
 
     this.AoCriarEstadoInicial = function(){
         this.socketClient.RegistrarEntrada(this.gameId);
@@ -54,7 +54,7 @@ Jogo.prototype.AdicionarNovoJogador = function(player) {
 };
 
 Jogo.prototype.MoverPedraParaMesa = function(domino, moveType){
-    this.pedraJogando.destroy(); //Na implementacao real, sera movido para a mesa
+    this.pedraJogando.destroy();
     console.log("[JOGO] A pedra " + domino.value1 + "|" + domino.value2 + " foi jogada. MoveType: " + moveType);
 };
 
@@ -98,20 +98,21 @@ Jogo.prototype.ObterEstadoPrincipal = function(){
 
     var aoClicarNaPedra = function(sprite){
         self.pedraJogando = sprite;
-		console.log(sprite.data);
-        self.AoJogarPedra(sprite.data.valorSuperior, sprite.data.valorInferior, sprite.data.moveType);
+		sprite.data.AoReceberClique(function(pedra, moveType) {
+			self.AoJogarPedra(pedra.valorSuperior, pedra.valorInferior, moveType);
+		});        
     };
 
     return {
         preload : function(){
-            game.load.image(self.tela.spriteMesa.nome, AssetsHelper.BuscarImagemMesa(self.tela.spriteMesa.nome));
+            game.load.image(self.tela.mesa.sprite.nome, AssetsHelper.BuscarImagemMesa(self.tela.mesa.sprite.nome));
             self.jogador.ParaCadaPedra(function(pedra) {
                 game.load.image(pedra.sprite.nome, AssetsHelper.BuscarImagemPedra(pedra.sprite.nome));
             });
         },
 
         create : function(){
-            game.add.sprite(self.tela.spriteMesa.posicao.x, self.tela.spriteMesa.posicao.y, self.tela.spriteMesa.nome);
+            game.add.sprite(self.tela.mesa.sprite.posicao.x, self.tela.mesa.sprite.posicao.y, self.tela.mesa.sprite.nome);
 
             self.jogador.ParaCadaPedra(function(pedra) {
                 var spritePedra = game.add.sprite(self.tela.maoPrincipal.posicaoProximaPedra.x, self.tela.maoPrincipal.posicaoProximaPedra.y, pedra.sprite.nome);
@@ -122,8 +123,6 @@ Jogo.prototype.ObterEstadoPrincipal = function(){
                 spritePedra.inputEnabled = true;
                 spritePedra.events.onInputDown.add(aoClicarNaPedra, this);
                 spritePedra.input.useHandCursor = true;
-				
-				pedra.moveType = MoveType.FirstDomino;
             });
         }
     };
