@@ -3,9 +3,10 @@ var serverSide = (typeof module === "object" && module && typeof module.exports 
 var EventosHelper = (function() {	
     var _eventosServer = {
         atualizarMesa: "atualizarMesa",
-        jogadorEntrou: "jogadorEntrouS",
+        entradaRegistrada : "entradaRegistrada",
         pedraJogada: "pedraJogada",
         jogadaRealizadaComSucesso : "jogadaRealizadaComSucesso",
+<<<<<<< HEAD
         enviaPedra : "enviaPedra"
     }
     
@@ -14,6 +15,14 @@ var EventosHelper = (function() {
         jogadorEntrou: "jogadorEntrou",
         jogadaRealizada: "jogadaRealizada",
         pedirPedra: "pedirPedra"
+=======
+        areaDeCompraAlterada : "boneyardChanged"
+    }
+    
+    var _eventosClient = {
+        registrarEntrada : "registrarEntrada",
+        jogadaRealizada: "jogadaRealizada",
+>>>>>>> b25419201b9a95882bb80c794ab548f680a95924
     }
     
     var _eventosSocketIo = {

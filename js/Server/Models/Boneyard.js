@@ -4,8 +4,21 @@ class Boneyard{
         this.dominoes = dominoes;
     }
 
+    /**
+    * Returns the object exposed to clients in browser.
+    */
+    getPublicInterface(){
+        return {
+            size : this.size(),
+        };
+    }
+
     isEmpty(){
-        return this.dominoes.length === 0;
+        return this.size() === 0;
+    }
+
+    size(){
+        return this.dominoes.length;
     }
 
     take(amount){

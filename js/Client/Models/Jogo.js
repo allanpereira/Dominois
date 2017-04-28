@@ -6,33 +6,45 @@
 
 //Classe
 var Jogo = function(gameId){
+<<<<<<< HEAD
     this.socketClient = new SocketClient(this);
     this.tela = new Tela(new SpriteMesa(), new MaoPrincipal(), new SpriteComprar());
 
+=======
+>>>>>>> b25419201b9a95882bb80c794ab548f680a95924
     this.jogador = undefined;
     this.pedraJogando = undefined;
     this.gameId = gameId;
+    
+    this.socketClient = new SocketClient(this);
+    this.tela = new Tela(new SpriteMesa(), new MaoPrincipal());
 
     this.AoCriarEstadoInicial = function(){
-        this.socketClient.ObterDadosJogador(this.gameId);
+        this.socketClient.RegistrarEntrada(this.gameId);
     };
 
-    this.AoAdicionarJogador = function(result){
-        if(result.success)
-            this.AdicionarNovoJogador(result.player);
+    this.AoAdicionarJogador = function(data){
+        this.AdicionarNovoJogador(data.player);
+        this.AoAlterarAreaDeCompra(data.boneyard);
     };
 
     this.AoJogarPedra = function(value1, value2, moveType){
         this.socketClient.RealizarJogada(this.gameId, value1, value2, moveType);
     };
 
-    this.AoRealizarJogadaComSucesso = function(result){
-        this.MoverPedraParaMesa(result.domino, result.moveType);
+    this.AoRealizarJogadaComSucesso = function(data){
+        this.MoverPedraParaMesa(data.domino, data.moveType);
     };
 
+<<<<<<< HEAD
     this.AoReceberPedra = function(result){
         console.log("[JOGO] A pedra " + result.domino[0].value1 + "|" + result.domino[0].value1 + " foi recebida.");
     };
+=======
+    this.AoAlterarAreaDeCompra = function(boneyard){
+        this.AtualizarAreaDeCompra(boneyard.size);
+    }
+>>>>>>> b25419201b9a95882bb80c794ab548f680a95924
 };
 
 //Métodos
@@ -61,7 +73,7 @@ Jogo.prototype.MoverPedraParaMesa = function(domino, moveType){
 
 Jogo.prototype.TrocarEstadoParaPartida = function(){
     console.log("[JOGO] Carregando as pedras na tela...");
-    game.state.start('Game');self.gameId
+    game.state.start('Game');
 };
 
 Jogo.prototype.IniciarPartida = function(){
@@ -70,6 +82,12 @@ Jogo.prototype.IniciarPartida = function(){
     console.log(this.jogador);
 };
 
+// Isto será removido quando tivermos o "monte de compra" na tela do jogo.
+var boneyardCount = document.getElementById("boneyard");
+
+Jogo.prototype.AtualizarAreaDeCompra = function(size){
+    boneyardCount.innerHTML = size + " pedras na área de compra.";
+}
 
 //Estados
 Jogo.prototype.ObterEstadoInicial = function(){
