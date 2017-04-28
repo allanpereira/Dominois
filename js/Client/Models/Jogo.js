@@ -1,12 +1,13 @@
 // Require MesaFactory
 // Require Tela
 // Require SpriteMesa
+// Require SpriteComprar
 // Require MaoPrincipal
 
 //Classe
 var Jogo = function(gameId){
     this.socketClient = new SocketClient(this);
-    this.tela = new Tela(new SpriteMesa(), new MaoPrincipal());
+    this.tela = new Tela(new SpriteMesa(), new MaoPrincipal(), new SpriteComprar());
 
     this.jogador = undefined;
     this.pedraJogando = undefined;
@@ -91,10 +92,18 @@ Jogo.prototype.ObterEstadoPrincipal = function(){
 		console.log(sprite.data);
         self.AoJogarPedra(sprite.data.valorSuperior, sprite.data.valorInferior, sprite.data.moveType);
     };
+    //rge dev <<<
+    var aoClicarEmComprar = function(){
+        console.log("Parâmetro enviado no comprarPedra: " + this.gameId);
+        this.socketClient.comprarPedra(this);
+    };
+    //rge dev >>>
 
     return {
         preload : function(){
             game.load.image(self.tela.spriteMesa.nome, AssetsHelper.BuscarImagemMesa(self.tela.spriteMesa.nome));
+            game.load.image(self.tela.spriteComprar.nome, AssetsHelper.BuscarImagemComprar(self.tela.spriteComprar.nome));
+
             self.jogador.ParaCadaPedra(function(pedra) {
                 game.load.image(pedra.sprite.nome, AssetsHelper.BuscarImagemPedra(pedra.sprite.nome));
             });
@@ -115,6 +124,12 @@ Jogo.prototype.ObterEstadoPrincipal = function(){
 				
 				pedra.moveType = MoveType.FirstDomino;
             });
+
+            var spriteComprar = game.add.sprite(self.tela.spriteComprar.posicao.x, self.tela.spriteComprar.posicao.y, self.tela.spriteComprar.nome);
+            spriteComprar.inputEnabled = true;
+            spriteComprar.input.useHandCursor = true;
+            spriteComprar.events.onInputDown.add(aoClicarEmComprar, self); 
+  
         }
     };
 };

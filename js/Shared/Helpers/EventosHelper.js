@@ -5,13 +5,15 @@ var EventosHelper = (function() {
         atualizarMesa: "atualizarMesa",
         jogadorEntrou: "jogadorEntrouS",
         pedraJogada: "pedraJogada",
-        jogadaRealizadaComSucesso : "jogadaRealizadaComSucesso"
+        jogadaRealizadaComSucesso : "jogadaRealizadaComSucesso",
+        enviaPedra : "enviaPedra"
     }
     
     var _eventosClient = {
         pedirMesa: "pedirMesa",
         jogadorEntrou: "jogadorEntrou",
-        jogadaRealizada: "jogadaRealizada"
+        jogadaRealizada: "jogadaRealizada",
+        pedirPedra: "pedirPedra"
     }
     
     var _eventosSocketIo = {

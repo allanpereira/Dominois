@@ -25,3 +25,8 @@ SocketClient.prototype.RealizarJogada = function(gameId, value1, value2, moveTyp
     console.log("[CLIENT] Enviando jogada ao servidor...");
     this.socket.emit(EventosHelper.eventosClient.jogadaRealizada, { gameId : gameId, value1 : value1, value2 : value2, moveType: moveType });
 };
+
+SocketClient.prototype.comprarPedra = function(gameId) {
+    console.log("[CLIENT] Solicitando pedra ao servidor...");
+    this.socket.emit(EventosHelper.eventosClient.pedirPedra, {gameId : gameId});
+};
