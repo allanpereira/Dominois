@@ -77,12 +77,12 @@ class Game{
 			this.boardSequencies = new BoardSequencies(domino);
 		}
 		
-		if (moveType == MoveType.instance.RightSide) {
-			this.boardSequencies.PlayInSequency1(domino);
+		if (moveType == MoveType.instance.LeftSide) {
+			this.boardSequencies.PlayInSequence1(domino);
 		}
 		
-		if (moveType == MoveType.instance.LeftSide) {
-			this.boardSequencies.PlayInSequency2(domino);
+		if (moveType == MoveType.instance.RightSide) {
+			this.boardSequencies.PlayInSequence2(domino);
 		}
 		
 	}
