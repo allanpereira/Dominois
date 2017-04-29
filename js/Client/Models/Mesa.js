@@ -8,7 +8,7 @@ var Mesa = function() {
 	this.valorInferior;
 }
 
-Mesa.prototype.VerificarMovimentosPossiveisParaPedra(pedra) {
+Mesa.prototype.VerificarMovimentosPossiveisParaPedra = function(pedra) {
 	var movimentosPossiveis = [];
 	
 	if (this.pedras.length == 0) {
@@ -29,7 +29,7 @@ Mesa.prototype.VerificarMovimentosPossiveisParaPedra(pedra) {
 	return movimentosPossiveis;
 }
 
-Mesa.prototype.JogarPedra(pedra, moveType) {
+Mesa.prototype.JogarPedra = function(pedra, moveType) {
 	var ladoMesa = "";
 	this.pedrasJogadas.push(pedra);
 	if (moveType == MoveType.FirstDomino) {

@@ -1,16 +1,17 @@
 // Require MesaFactory
 // Require Tela
 // Require Mesa
+// Require SpriteComprar
 // Require MaoPrincipal
 
 //Classe
 var Jogo = function(gameId){
+
+    this.tela = new Tela(new Mesa(), new MaoPrincipal(), new SpriteComprar());
     this.jogador = undefined;
     this.pedraJogando = undefined;
     this.gameId = gameId;
-    
-    this.socketClient = new SocketClient(this);
-    this.tela = new Tela(new Mesa(), new MaoPrincipal());
+	this.socketClient = new SocketClient(this);
 
     this.AoCriarEstadoInicial = function(){
         this.socketClient.RegistrarEntrada(this.gameId);
@@ -29,6 +30,10 @@ var Jogo = function(gameId){
         this.MoverPedraParaMesa(data.domino, data.moveType);
     };
 
+    this.AoReceberPedra = function(result){
+        console.log("[JOGO] A pedra " + result.domino[0].value1 + "|" + result.domino[0].value1 + " foi recebida.");
+    };
+	
     this.AoAlterarAreaDeCompra = function(boneyard){
         this.AtualizarAreaDeCompra(boneyard.size);
     }
@@ -95,7 +100,7 @@ Jogo.prototype.ObterEstadoInicial = function(){
 
 Jogo.prototype.ObterEstadoPrincipal = function(){
     var self = this;
-
+	
     var aoClicarNaPedra = function(sprite){
         self.pedraJogando = sprite;
 		sprite.data.AoReceberClique(function(pedra, moveType) {
@@ -103,9 +108,21 @@ Jogo.prototype.ObterEstadoPrincipal = function(){
 		});        
     };
 
+    var aoClicarEmComprar = function() {
+        this.socketClient.comprarPedra(this.gameId);
+    };
+	
+	var TornarSpriteClicavel = function(sprite, callbackAoClicar) {
+		sprite.inputEnabled = true;
+		sprite.input.useHandCursor = true;
+		sprite.events.onInputDown.add(callbackAoClicar, self); 
+	}
+
     return {
         preload : function(){
             game.load.image(self.tela.mesa.sprite.nome, AssetsHelper.BuscarImagemMesa(self.tela.mesa.sprite.nome));
+            game.load.image(self.tela.spriteComprar.nome, AssetsHelper.BuscarImagemComprar(self.tela.spriteComprar.nome));
+
             self.jogador.ParaCadaPedra(function(pedra) {
                 game.load.image(pedra.sprite.nome, AssetsHelper.BuscarImagemPedra(pedra.sprite.nome));
             });
@@ -119,11 +136,11 @@ Jogo.prototype.ObterEstadoPrincipal = function(){
                 spritePedra.data = pedra;
 
                 self.tela.maoPrincipal.AdicionarPedra(pedra);
-                
-                spritePedra.inputEnabled = true;
-                spritePedra.events.onInputDown.add(aoClicarNaPedra, this);
-                spritePedra.input.useHandCursor = true;
+                TornarSpriteClicavel(spritePedra, aoClicarNaPedra);
             });
+
+            var spriteComprar = game.add.sprite(self.tela.spriteComprar.posicao.x, self.tela.spriteComprar.posicao.y, self.tela.spriteComprar.nome);
+            TornarSpriteClicavel(spriteComprar, aoClicarEmComprar);  
         }
     };
 };

@@ -16,15 +16,15 @@ var SpriteMesa = function() {
 	this.proximaPedraInferior = this.posicaoPedraInicial;
 };
 
-SpriteMesa.prototype.JogarPrimeiraPedra(pedra) {
+SpriteMesa.prototype.JogarPrimeiraPedra = function(pedra) {
 	this.JogarPedraSuperior(pedra);
 	this.JogarPedraInferior(pedra);
 }
 
-SpriteMesa.prototype.JogarPedraSuperior(pedra) {
+SpriteMesa.prototype.JogarPedraSuperior = function(pedra) {
 	
 }
 
-SpriteMesa.prototype.JogarPedraInferior(pedra) {
+SpriteMesa.prototype.JogarPedraInferior = function(pedra) {
 	
 }

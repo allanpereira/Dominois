@@ -6,12 +6,15 @@ var EventosHelper = (function() {
         entradaRegistrada : "entradaRegistrada",
         pedraJogada: "pedraJogada",
         jogadaRealizadaComSucesso : "jogadaRealizadaComSucesso",
-        areaDeCompraAlterada : "boneyardChanged"
+		areaDeCompraAlterada : "boneyardChanged",
+        enviaPedra : "enviaPedra"
     }
-    
+        
     var _eventosClient = {
         registrarEntrada : "registrarEntrada",
         jogadaRealizada: "jogadaRealizada",
+		pedirPedra: "pedirPedra",
+		areaDeCompraAlterada : "boneyardChanged"
     }
     
     var _eventosSocketIo = {

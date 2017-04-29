@@ -24,6 +24,13 @@ var SocketClient = function(jogo){
         console.log("[CLIENT] A área de compra foi alterada!");
         jogo.AoAlterarAreaDeCompra(result.data.boneyard);
     });
+
+    this.socket.on(EventosHelper.eventosServer.enviaPedra, function (result) {
+        if(result.success)
+            console.log("[CLIENT] Nova pedra enviada pelo server!");
+
+        jogo.AoReceberPedra(result);
+    });
 };
 
 SocketClient.prototype.RegistrarEntrada = function(gameId) {
@@ -34,4 +41,9 @@ SocketClient.prototype.RegistrarEntrada = function(gameId) {
 SocketClient.prototype.RealizarJogada = function(gameId, value1, value2, moveType) {
     console.log("[CLIENT] Enviando jogada ao servidor...");
     this.socket.emit(EventosHelper.eventosClient.jogadaRealizada, { gameId : gameId, value1 : value1, value2 : value2, moveType: moveType });
+};
+
+SocketClient.prototype.comprarPedra = function(gameId) {
+    console.log("[CLIENT] Solicitando pedra ao servidor...");
+    this.socket.emit(EventosHelper.eventosClient.pedirPedra, {gameId : gameId});
 };

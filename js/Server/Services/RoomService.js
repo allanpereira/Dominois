@@ -71,6 +71,21 @@ class RoomService {
         });
     }
 
+    static buyPiece(gameId, user, db){
+        return new Promise((resolve, reject) => {
+            try{
+                let game = RoomService.findGame(gameId, db);
+                let player = game.findPlayerById(user.id)
+                let piece = game.boneyard.take(1);
+
+                resolve(piece);
+                
+            }catch(err){
+                reject(err.message)
+            }            
+        });
+    }
+
     static play(data, userId, db){
         return new Promise((resolve, reject) => {
             try{
@@ -112,6 +127,7 @@ class RoomService {
 
         return player;
     }
+
 }
 
 module.exports = RoomService;
