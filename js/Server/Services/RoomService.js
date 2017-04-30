@@ -82,13 +82,15 @@ class RoomService {
         return new Promise((resolve, reject) => {
             try{
                 //TODO: Validate action
-                //TODO: Notify boneyard changed
-
+                
                 let game = RoomService.findGame(gameId, db);
                 let domino = game.boneyard.take(1)[0];
 
                 let player = game.findPlayerById(user.id);
                 player.addDomino(domino);
+
+                let boneyardData = game.getBoneyard().getPublicInterface();
+                GameConnectionPool.notifyBoneyardChanged(game.getId(), { boneyard : boneyardData });
 
                 resolve(domino);
             }catch(err){
