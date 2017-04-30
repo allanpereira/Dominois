@@ -23,12 +23,12 @@ class ClientEventsRegister{
             let user = socket.request.session.user;
 
             RoomService.playerEntered(gameId, user, DB)
-			.then((data) => {
+            .then((data) => {
                 console.log(`Player ${data.player.getId()} has entered in game ${gameId}.`);
                 socket.emit(EventosHelper.instance.eventosServer.entradaRegistrada, { success : true, data : data});
             })
             .catch((err) => {
-				console.log(err);
+                console.log(err);
                 socket.emit(EventosHelper.instance.eventosServer.entradaRegistrada, { success : false, error : err});
             });
         });
@@ -37,11 +37,11 @@ class ClientEventsRegister{
             let userId = socket.request.session.user.id;
             RoomService.play(req, userId, DB)
             .then((data) => {
-				console.log(`The domino ${data.domino.value1} | ${data.domino.value2} has been placed on board.`);
+                console.log(`The domino ${data.domino.value1} | ${data.domino.value2} has been placed on board.`);
                 socket.emit(EventosHelper.instance.eventosServer.jogadaRealizadaComSucesso, { success : true, data : data});
             })
             .catch((err) => {
-				console.log(err);
+                console.log(err);
                 socket.emit(EventosHelper.instance.eventosServer.jogadaRealizadaComSucesso, { success : false, error : err});
             });
         });

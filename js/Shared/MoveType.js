@@ -2,10 +2,10 @@ var serverSide = (typeof module === "object" && module && typeof module.exports 
 
 var MoveType = (function() {	
     var _moveType = {
-		NoMove: 0,
+        NoMove: 0,
         FirstDomino: 1,
-		RightSide: 2,
-		LeftSide: 3
+        RightSide: 2,
+        LeftSide: 3
     }
 
     if (serverSide) {

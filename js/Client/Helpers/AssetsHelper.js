@@ -14,7 +14,7 @@ var AssetsHelper = (function () {
     var _assetsHelper = {
         BuscarImagemPedra: function(nomePedra) { 
             return BuscarImagem([_caminhoPedras, nomePedra]);
-        },		
+        },
         BuscarImagemMesa: function(nomeSprite) { 
             return BuscarImagem([nomeSprite]);
         }

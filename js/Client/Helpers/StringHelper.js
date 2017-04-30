@@ -14,7 +14,7 @@ var StringHelper = (function() {
     
         ApendarExtensao: function(caminho, extensao) {
             return caminho.concat(extensao);
-        }		
+        }
     }
     
     return _stringHelper;

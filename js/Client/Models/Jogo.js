@@ -122,7 +122,7 @@ Jogo.prototype.ObterEstadoPrincipal = function(){
 
     var aoClicarNaPedra = function(sprite){
         self.pedraJogando = sprite;
-		console.log(sprite.data);
+        console.log(sprite.data);
         self.AoJogarPedra(sprite.data.valorSuperior, sprite.data.valorInferior, sprite.data.moveType);
     };
 
@@ -146,8 +146,8 @@ Jogo.prototype.ObterEstadoPrincipal = function(){
                 spritePedra.inputEnabled = true;
                 spritePedra.events.onInputDown.add(aoClicarNaPedra, this);
                 spritePedra.input.useHandCursor = true;
-				
-				pedra.moveType = MoveType.FirstDomino;
+
+                pedra.moveType = MoveType.FirstDomino;
             });
         }
     };

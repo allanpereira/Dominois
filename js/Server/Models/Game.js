@@ -13,7 +13,7 @@ class Game{
         this.state = state || GameState.WAITING_PLAYERS;
         this.players = players || [];
         this.boneyard = boneyard || new Boneyard(DominoFactory.create());
-		this.boardSequencies = null;
+        this.boardSequencies = null;
     }
 
     getId(){
@@ -78,22 +78,22 @@ class Game{
         player.setDominoes(dominoes);
         this.players.push(player);
     }
-	
-	playDomino(domino, moveType) {
-		console.log(`A domino was played with moveType = ${moveType}`);
-		if (moveType == MoveType.instance.FirstDomino) {
-			this.boardSequencies = new BoardSequencies(domino);
-		}
-		
-		if (moveType == MoveType.instance.RightSide) {
-			this.boardSequencies.PlayInSequency1(domino);
-		}
-		
-		if (moveType == MoveType.instance.LeftSide) {
-			this.boardSequencies.PlayInSequency2(domino);
-		}
-		
-	}
+    
+    playDomino(domino, moveType) {
+        console.log(`A domino was played with moveType = ${moveType}`);
+        if (moveType == MoveType.instance.FirstDomino) {
+            this.boardSequencies = new BoardSequencies(domino);
+        }
+        
+        if (moveType == MoveType.instance.RightSide) {
+            this.boardSequencies.PlayInSequency1(domino);
+        }
+        
+        if (moveType == MoveType.instance.LeftSide) {
+            this.boardSequencies.PlayInSequency2(domino);
+        }
+        
+    }
 }
 
 module.exports = Game;
