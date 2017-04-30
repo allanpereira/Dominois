@@ -11,7 +11,8 @@ var PedraFactory = (function() {
         return pedra;
     }
     
-    var _pedraFactory = {		
+    var _pedraFactory = {
+        CriarPedra : CriarPedra,
         CriarPedrasAPartirDoServer : function(dominoes) {
             var pedras = [];
             
@@ -21,6 +22,13 @@ var PedraFactory = (function() {
                 pedras.push(pedra);
             }
             return pedras;
+        },
+        ParaCadaPedraPossivel : function(callback){ //TODO: Workaround. Fix it.
+            for(var i = 0; i <= 6; i++){
+                for(var j = i; j <= 6; j++){
+                    callback(CriarPedra(i, j));
+                }
+            }
         }
     }
     

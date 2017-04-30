@@ -60,16 +60,17 @@ class RoomService {
                     game.addPlayer(player);
                 }
 
-                let boneyard = game.getBoneyard().getPublicInterface();
+                let boneyardData = game.getBoneyard().getPublicInterface();
                 let playerData = player.getPublicInterface();
+                let gameData = game.getPublicInterface();
                 
-                GameConnectionPool.notifyBoneyardChanged(gameId, { boneyard : boneyard });
+                GameConnectionPool.notifyBoneyardChanged(gameId, { boneyard : boneyardData });
                 GameConnectionPool.notifyPlayerEntered(gameId, player.getId(), { player : playerData });
 
                 resolve({
-                    player : player, 
-                    boneyard : boneyard, 
-                    game : game
+                    player : playerData, 
+                    boneyard : boneyardData, 
+                    game : gameData
                 });
             }catch(err){
                 reject(err.message);
@@ -81,13 +82,15 @@ class RoomService {
         return new Promise((resolve, reject) => {
             try{
                 //TODO: Validate action
-                //TODO: Add piece to player's hand
+                //TODO: Notify boneyard changed
 
                 let game = RoomService.findGame(gameId, db);
-                let player = game.findPlayerById(user.id)
-                let piece = game.boneyard.take(1);
+                let domino = game.boneyard.take(1)[0];
 
-                resolve(piece);
+                let player = game.findPlayerById(user.id);
+                player.addDomino(domino);
+
+                resolve(domino);
             }catch(err){
                 reject(err.message)
             }

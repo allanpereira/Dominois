@@ -9,6 +9,8 @@ class ClientEventsRegister{
     static register(gameId, socket, disconnectionCallback, notifyPlayerLeaveCallback){
         ClientEventsRegister.registerDisconnection(gameId, socket, disconnectionCallback, notifyPlayerLeaveCallback);
         ClientEventsRegister.registerPlayerHasEntered(gameId, socket);
+        ClientEventsRegister.registerMove(gameId, socket);
+        ClientEventsRegister.registerTakeFromBoneyard(gameId, socket);
     }
 
     static registerDisconnection(gameId, socket, disconnectionCallback, notifyPlayerLeaveCallback){
@@ -21,7 +23,6 @@ class ClientEventsRegister{
                 let player = { name : user.name };
                 notifyPlayerLeaveCallback(user.id, {player : player});
             } catch (err) {
-                console.log(err);
                 console.log(`Unable to notify disconnection to other players.`);
             }
 
@@ -35,7 +36,7 @@ class ClientEventsRegister{
 
             RoomService.playerEntered(gameId, user, DB)
             .then((data) => {
-                console.log(`Player ${data.player.getId()} has entered in game ${gameId}.`);
+                console.log(`Player ${data.player.id} has entered in game ${gameId}.`);
                 socket.emit(EventosHelper.instance.eventosServer.entradaRegistrada, { success : true, data : data});
             })
             .catch((err) => {
@@ -43,7 +44,9 @@ class ClientEventsRegister{
                 socket.emit(EventosHelper.instance.eventosServer.entradaRegistrada, { success : false, error : err});
             });
         });
+    }
 
+    static registerMove(gameId, socket){
         socket.on(EventosHelper.instance.eventosClient.jogadaRealizada, function(req) {
             let userId = socket.request.session.user.id;
             RoomService.play(req, userId, DB)
@@ -56,7 +59,9 @@ class ClientEventsRegister{
                 socket.emit(EventosHelper.instance.eventosServer.jogadaRealizadaComSucesso, { success : false, error : err});
             });
         });
-        
+    }
+
+    static registerTakeFromBoneyard(gameId, socket){
         socket.on(EventosHelper.instance.eventosClient.pedirPedra, function(data) {
             let user = socket.request.session.user;
             RoomService.buyPiece(data.gameId, user, DB)
