@@ -6,14 +6,25 @@ const EventosHelper = require('../../../Shared/Helpers/EventosHelper');
  * Handle registration of client events for each new socket connection.
  */
 class ClientEventsRegister{
-    static register(gameId, socket, disconnectionCallback){
-        ClientEventsRegister.registerDisconnection(gameId, socket, disconnectionCallback);
+    static register(gameId, socket, disconnectionCallback, notifyPlayerLeaveCallback){
+        ClientEventsRegister.registerDisconnection(gameId, socket, disconnectionCallback, notifyPlayerLeaveCallback);
         ClientEventsRegister.registerPlayerHasEntered(gameId, socket);
     }
 
-    static registerDisconnection(gameId, socket, disconnectionCallback){
+    static registerDisconnection(gameId, socket, disconnectionCallback, notifyPlayerLeaveCallback){
         socket.on(EventosHelper.instance.eventosSocketIo.disconnect, function() {
             disconnectionCallback(gameId, socket);
+
+            //We do not want stop the application if it is not possible to notify a player's exit.
+            try {
+                let user = socket.request.session.user;
+                let player = { name : user.name };
+                notifyPlayerLeaveCallback(user.id, {player : player});
+            } catch (err) {
+                console.log(err);
+                console.log(`Unable to notify disconnection to other players.`);
+            }
+
             console.log(`A player has disconnected.`);
         });
     }

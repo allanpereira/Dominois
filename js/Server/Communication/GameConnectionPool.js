@@ -43,11 +43,9 @@ module.exports = GameConnectionPool;
 const ClientEventsRegister = require('./Events/ClientEventsRegister');
 GameConnectionPool.addConnectionFor = function(gameId, socket){
     ClientEventsRegister.register(gameId, socket, function(gId, s){
-        let user = socket.request.session.user;
-        let player = { name : user.name };
-
         GameConnectionPool.removeSocketFor(gId, s);
-        GameConnectionPool.notifyPlayerLeave(gId, user.id, {player : player});
+    }, function(playerId, data){
+        GameConnectionPool.notifyPlayerLeave(gameId, playerId, data);
     });
 
     if(GameConnectionPool.hasConnectionFor(gameId)){
