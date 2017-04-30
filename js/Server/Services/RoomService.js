@@ -77,22 +77,39 @@ class RoomService {
         });
     }
 
+    static buyPiece(gameId, user, db){
+        return new Promise((resolve, reject) => {
+            try{
+                //TODO: Validate action
+                //TODO: Add piece to player's hand
+
+                let game = RoomService.findGame(gameId, db);
+                let player = game.findPlayerById(user.id)
+                let piece = game.boneyard.take(1);
+
+                resolve(piece);
+            }catch(err){
+                reject(err.message)
+            }
+        });
+    }
+
     static play(data, userId, db){
         return new Promise((resolve, reject) => {
             try{
                 let value1 = data.value1;
                 let value2 = data.value2;
-				let gameId = data.gameId;
-				let moveType = data.moveType;
-				
+                let gameId = data.gameId;
+                let moveType = data.moveType;
+                
                 let player = RoomService.findPlayer(gameId, userId, db);
-				
+                
                 if(!player.hasDomino(value1, value2))
                     reject(`The player doesn't have the domino with value ${value1}|${value2}.`);
 
                 let domino = player.removeDomino(value1, value2);
-				let game = RoomService.findGame(gameId, db);
-				game.playDomino(domino, data.moveType);
+                let game = RoomService.findGame(gameId, db);
+                game.playDomino(domino, data.moveType);
 
                 resolve({domino: domino, moveType: moveType});
             }catch(err){
@@ -118,6 +135,7 @@ class RoomService {
 
         return player;
     }
+
 }
 
 module.exports = RoomService;

@@ -7,11 +7,11 @@ class BoardSequencies {
     }
     
     PlayInSequence1(domino) {
-        this.sequence1 = this.sequence1.AppendDomino(domino);
+        this.sequence1 = this.sequence1.AppendValue(domino);
     }
     
     PlayInSequence2(domino) {
-        this.sequence2 = this.sequence2.AppendDomino(domino);
+        this.sequence2 = this.sequence2.AppendValue(domino);
     }
 }
 

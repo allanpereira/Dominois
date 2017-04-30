@@ -1,4 +1,4 @@
-var Tela = function(spriteMesa, maoPrincipal) {
+var Tela = function(mesa, maoPrincipal, spriteComprar) {
     this.tamanho = {
         largura : 800,
         altura : 600
@@ -7,6 +7,7 @@ var Tela = function(spriteMesa, maoPrincipal) {
     this.containerId = 'game';
     this.backgroundColor = "#FFF";
     
-    this.spriteMesa = spriteMesa;	
+    this.mesa = mesa;	
     this.maoPrincipal = maoPrincipal;
+    this.spriteComprar = spriteComprar;
 };

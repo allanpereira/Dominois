@@ -4,13 +4,13 @@ var MoveType = (function() {
     var _moveType = {
         NoMove: 0,
         FirstDomino: 1,
-        RightSide: 2,
-        LeftSide: 3
+        LeftSide: 2,
+        RightSide: 3
     }
 
     if (serverSide) {
         exports.instance = _moveType;
-    } else {	
+    } else {
         return _moveType;
-    }	
+    }
 })();

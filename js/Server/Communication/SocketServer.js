@@ -18,7 +18,9 @@ class SocketServer{
             console.log(`New client connection received, adding to pool...`);
             GameConnectionPool.addConnectionFor(gameId, socket);
         });
+
     }
+
 }
 
 module.exports = SocketServer;

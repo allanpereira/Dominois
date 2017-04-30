@@ -9,12 +9,15 @@ var EventosHelper = (function() {
         areaDeCompraAlterada : "boneyardChanged",
         entradaDeJogador : "entradaDeJogador",
         saidaDeJogador : "saidaDeJogador",
-        jogoIniciado : "jogoIniciado"
+        jogoIniciado : "jogoIniciado",
+        enviaPedra : "enviaPedra"
     }
-    
+        
     var _eventosClient = {
         registrarEntrada : "registrarEntrada",
         jogadaRealizada: "jogadaRealizada",
+        pedirPedra: "pedirPedra",
+        areaDeCompraAlterada : "boneyardChanged"
     }
     
     var _eventosSocketIo = {
@@ -30,7 +33,7 @@ var EventosHelper = (function() {
     
     if (serverSide) {
         exports.instance = _eventosHelper;
-    } else {	
+    } else {
         return _eventosHelper;
-    }	
+    }
 })();
