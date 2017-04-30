@@ -8,6 +8,7 @@ var EventosHelper = (function() {
         jogadaRealizadaComSucesso : "jogadaRealizadaComSucesso",
         areaDeCompraAlterada : "boneyardChanged",
         entradaDeJogador : "entradaDeJogador",
+        saidaDeJogador : "saidaDeJogador",
         jogoIniciado : "jogoIniciado"
     }
     

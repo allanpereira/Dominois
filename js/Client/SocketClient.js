@@ -22,7 +22,7 @@ var SocketClient = function(jogo){
             return;
 
         console.log("[CLIENT] A área de compra foi alterada!");
-        jogo.AoAlterarAreaDeCompra(result.data.boneyard);
+        jogo.AoAlterarAreaDeCompra(result.data);
     });
 
     this.socket.on(EventosHelper.eventosServer.entradaDeJogador, function (result) {
@@ -30,7 +30,15 @@ var SocketClient = function(jogo){
             return;
 
         console.log("[CLIENT] Um novo jogador entrou na partida!");
-        jogo.AoEntrarNovoJogador(result.data.player);
+        jogo.AoEntrarNovoJogador(result.data);
+    });
+
+    this.socket.on(EventosHelper.eventosServer.saidaDeJogador, function (result) {
+        if(!result.success)
+            return;
+        
+        console.log("[CLIENT] Um jogador saiu da partida!");
+        jogo.AoSairJogador(result.data);
     });
 };
 

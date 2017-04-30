@@ -23,16 +23,7 @@ var GameConnectionPool = (function(){
         resolveFor(gameId).addSocket(socket);
     }
 
-    const notifyPlayerEntered = function(gameId, playerId, data){
-        let result = {success : true, data : data};
-        resolveFor(gameId).emitExcept(playerId, EventosHelper.instance.eventosServer.entradaDeJogador, result);
-    }
-
-    const notifyBoneyardChanged = function(gameId, data){
-        let result = {success : true, data : data};
-        resolveFor(gameId).emit(EventosHelper.instance.eventosServer.areaDeCompraAlterada, result);
-    }
-
+    
     var pool = {
         hasConnectionFor : hasConnectionFor,
         addSocketFor : addSocketFor,
@@ -52,7 +43,11 @@ module.exports = GameConnectionPool;
 const ClientEventsRegister = require('./Events/ClientEventsRegister');
 GameConnectionPool.addConnectionFor = function(gameId, socket){
     ClientEventsRegister.register(gameId, socket, function(gId, s){
+        let user = socket.request.session.user;
+        let player = { name : user.name };
+
         GameConnectionPool.removeSocketFor(gId, s);
+        GameConnectionPool.notifyPlayerLeave(gId, user.id, {player : player});
     });
 
     if(GameConnectionPool.hasConnectionFor(gameId)){

@@ -12,7 +12,6 @@ class ClientEventsRegister{
     }
 
     static registerDisconnection(gameId, socket, disconnectionCallback){
-        let self = this;
         socket.on(EventosHelper.instance.eventosSocketIo.disconnect, function() {
             disconnectionCallback(gameId, socket);
             console.log(`A player has disconnected.`);
@@ -20,7 +19,7 @@ class ClientEventsRegister{
     }
 
     static registerPlayerHasEntered(gameId, socket){
-        socket.on(EventosHelper.instance.eventosClient.registrarEntrada, function(req) {
+        socket.on(EventosHelper.instance.eventosClient.registrarEntrada, function() {
             let user = socket.request.session.user;
 
             RoomService.playerEntered(gameId, user, DB)

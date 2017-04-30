@@ -11,34 +11,9 @@ var Jogo = function(gameId){
     
     this.socketClient = new SocketClient(this);
     this.tela = new Tela(new SpriteMesa(), new MaoPrincipal());
-
-    this.AoCriarEstadoInicial = function(){
-        this.socketClient.RegistrarEntrada(this.gameId);
-    };
-
-    this.AoRegistrarEntrada = function(data){
-        this.RegistrarEntrada(data.player);
-        this.AoAlterarAreaDeCompra(data.boneyard);
-    };
-
-    this.AoJogarPedra = function(value1, value2, moveType){
-        this.socketClient.RealizarJogada(this.gameId, value1, value2, moveType);
-    };
-
-    this.AoRealizarJogadaComSucesso = function(data){
-        this.MoverPedraParaMesa(data.domino, data.moveType);
-    };
-
-    this.AoAlterarAreaDeCompra = function(boneyard){
-        this.AtualizarAreaDeCompra(boneyard.size);
-    }
-
-    this.AoEntrarNovoJogador = function(player){
-        this.NotificarEntradaJogador(player);
-    }
 };
 
-//Métodos
+// Getters/Setters
 Jogo.prototype.ObterLarguraTela = function(){
     return this.tela.largura;
 };
@@ -47,6 +22,49 @@ Jogo.prototype.ObterAlturaTela = function(){
     return this.tela.altura;
 };
 
+
+//Enviar Eventos
+Jogo.prototype.AoCriarEstadoInicial = function(){
+    this.socketClient.RegistrarEntrada(this.gameId);
+};
+
+Jogo.prototype.AoJogarPedra = function(value1, value2, moveType){
+    this.socketClient.RealizarJogada(this.gameId, value1, value2, moveType);
+};
+
+
+//Eventos Recebidos
+Jogo.prototype.AoRegistrarEntrada = function(data){
+    this.RegistrarEntrada(data.player);
+    this.AoAlterarAreaDeCompra(data);
+};
+Jogo.prototype.AoRealizarJogadaComSucesso = function(data){
+    this.MoverPedraParaMesa(data.domino, data.moveType);
+};
+
+Jogo.prototype.AoAlterarAreaDeCompra = function(data){
+    this.AtualizarAreaDeCompra(data.boneyard.size);
+};
+
+Jogo.prototype.AoEntrarNovoJogador = function(data){
+    this.NotificarEntradaJogador(data.player);
+};
+
+Jogo.prototype.AoSairJogador = function(data){
+    this.NotificarSaidaJogador(data.player);
+};
+
+
+//Notificações
+Jogo.prototype.NotificarEntradaJogador = function(player){
+    toastr.info(player.name + " entrou no jogo!");
+};
+Jogo.prototype.NotificarSaidaJogador = function(player){
+    toastr.warning(player.name + " saiu do jogo!");
+};
+
+
+//Métodos do Jogo
 Jogo.prototype.RegistrarEntrada = function(player) {
     var pedras = PedraFactory.CriarPedrasAPartirDoServer(player.dominoes);
     this.jogador = new Jogador(pedras);
@@ -62,15 +80,6 @@ Jogo.prototype.MoverPedraParaMesa = function(domino, moveType){
     console.log("[JOGO] A pedra " + domino.value1 + "|" + domino.value2 + " foi jogada. MoveType: " + moveType);
 };
 
-Jogo.prototype.NotificarEntradaJogador = function(player){
-    toastr.info(player.name + " entrou no jogo!");
-};
-
-Jogo.prototype.TrocarEstadoParaPartida = function(){
-    console.log("[JOGO] Carregando as pedras na tela...");
-    game.state.start('Game');
-};
-
 Jogo.prototype.IniciarPartida = function(){
     console.log("[JOGO] Partida iniciada.");
     console.log("[JOGO] Jogador: ");
@@ -83,6 +92,13 @@ var boneyardCount = document.getElementById("boneyard");
 Jogo.prototype.AtualizarAreaDeCompra = function(size){
     boneyardCount.innerHTML = size + " pedras na área de compra.";
 }
+
+
+// Troca de Estados
+Jogo.prototype.TrocarEstadoParaPartida = function(){
+    console.log("[JOGO] Carregando as pedras na tela...");
+    game.state.start('Game');
+};
 
 //Estados
 Jogo.prototype.ObterEstadoInicial = function(){
