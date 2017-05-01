@@ -22,6 +22,13 @@ class GameConnection{
     emit(event, data) {
         this.sockets.map(s => s.emit(event, data));
     }
+
+    emitExcept(playerId, event, data) {
+        this.sockets.map(s => {
+            if(s.request.session.user.id != playerId)
+                s.emit(event, data)
+        });
+    }
 }
 
 module.exports = GameConnection;

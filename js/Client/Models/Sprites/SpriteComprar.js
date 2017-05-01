@@ -1,4 +1,3 @@
-
 var SpriteComprar = function() {
     this.nome = "comprar";
     

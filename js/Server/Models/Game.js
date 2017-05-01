@@ -1,17 +1,19 @@
 const DominoFactory = require("../Factories/DominoFactory");
 const Boneyard = require("./Boneyard");
 const BoardSequencies = require('./BoardSequencies');
+const GameState = require("./GameState");
 const MoveType = require('../../Shared/MoveType');
 
 class Game{
-    constructor(id, name, playersAmount, dominoesByPlayer, players, boneyard){
+    constructor(id, name, playersAmount, dominoesByPlayer, state, players, boneyard){
         this.id = id;
         this.name = name || "Default Game";
         this.playersAmount = playersAmount || 4;
         this.dominoesByPlayer = dominoesByPlayer || 7;
+        this.state = state || GameState.WAITING_PLAYERS;
         this.players = players || [];
         this.boneyard = boneyard || new Boneyard(DominoFactory.create());
-		this.boardSequencies = null;
+        this.boardSequencies = null;
     }
 
     getId(){
@@ -30,13 +32,20 @@ class Game{
         return this.boneyard;
     }
 
+    getState(){
+        return this.state;
+    }
+
     /**
     * Returns the object exposed to clients in browser.
     */
     getPublicInterface(){
         return {
             id : this.id,
-            name : this.name
+            name : this.name,
+            canStart : this.canStart,
+            state : this.state,
+            playersCount : this.players.length,
         };
     }
 
@@ -52,13 +61,12 @@ class Game{
         return this.players.filter(p => p.getId() === userId).length > 0;
     }
 
-    canStart(){
-        return this.players.length == this.playersAmount;
-    }
-
     start(){
-        if(!this.canStart())
-            throw new Error(`${this.playersAmount} players are required to start the game.`);
+        //Keep commented until client side is ready.
+        //if(this.players.length < this.playersAmount)
+            //throw new Error(`${this.playersAmount} players are required to start the game.`);
+        
+        this.state = GameState.PLAYING;
     }
 
     addPlayer(player){
@@ -70,22 +78,21 @@ class Game{
         player.setDominoes(dominoes);
         this.players.push(player);
     }
-	
-	playDomino(domino, moveType) {
-		console.log(`A domino was played with moveType = ${moveType}`);
-		if (moveType == MoveType.instance.FirstDomino) {
-			this.boardSequencies = new BoardSequencies(domino);
-		}
-		
-		if (moveType == MoveType.instance.LeftSide) {
-			this.boardSequencies.PlayInSequence1(domino);
-		}
-		
-		if (moveType == MoveType.instance.RightSide) {
-			this.boardSequencies.PlayInSequence2(domino);
-		}
-		
-	}
+    
+    playDomino(domino, moveType) {
+        console.log(`A domino was played with moveType = ${moveType}`);
+        if (moveType == MoveType.instance.FirstDomino) {
+            this.boardSequencies = new BoardSequencies(domino);
+        }
+        
+        if (moveType == MoveType.instance.LeftSide) {
+            this.boardSequencies.PlayInSequence1(domino);
+        }
+        
+        if (moveType == MoveType.instance.RightSide) {
+            this.boardSequencies.PlayInSequence2(domino);
+        }
+    }
 }
 
 module.exports = Game;

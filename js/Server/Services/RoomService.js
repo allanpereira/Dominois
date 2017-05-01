@@ -60,11 +60,18 @@ class RoomService {
                     game.addPlayer(player);
                 }
 
-                let boneyard = game.getBoneyard().getPublicInterface();
-                let data = { boneyard : boneyard };
-                GameConnectionPool.notifyBoneyardChangedFor(gameId, data);
+                let boneyardData = game.getBoneyard().getPublicInterface();
+                let playerData = player.getPublicInterface();
+                let gameData = game.getPublicInterface();
+                
+                GameConnectionPool.notifyBoneyardChanged(gameId, { boneyard : boneyardData });
+                GameConnectionPool.notifyPlayerEntered(gameId, player.getId(), { player : playerData });
 
-                resolve({player : player, boneyard : boneyard});
+                resolve({
+                    player : playerData, 
+                    boneyard : boneyardData, 
+                    game : gameData
+                });
             }catch(err){
                 reject(err.message);
             }
@@ -74,15 +81,21 @@ class RoomService {
     static buyPiece(gameId, user, db){
         return new Promise((resolve, reject) => {
             try{
-                let game = RoomService.findGame(gameId, db);
-                let player = game.findPlayerById(user.id)
-                let piece = game.boneyard.take(1);
-
-                resolve(piece);
+                //TODO: Validate action
                 
+                let game = RoomService.findGame(gameId, db);
+                let domino = game.boneyard.take(1)[0];
+
+                let player = game.findPlayerById(user.id);
+                player.addDomino(domino);
+
+                let boneyardData = game.getBoneyard().getPublicInterface();
+                GameConnectionPool.notifyBoneyardChanged(game.getId(), { boneyard : boneyardData });
+
+                resolve(domino);
             }catch(err){
                 reject(err.message)
-            }            
+            }
         });
     }
 
@@ -91,17 +104,17 @@ class RoomService {
             try{
                 let value1 = data.value1;
                 let value2 = data.value2;
-				let gameId = data.gameId;
-				let moveType = data.moveType;
-				
+                let gameId = data.gameId;
+                let moveType = data.moveType;
+                
                 let player = RoomService.findPlayer(gameId, userId, db);
-				
+                
                 if(!player.hasDomino(value1, value2))
                     reject(`The player doesn't have the domino with value ${value1}|${value2}.`);
 
                 let domino = player.removeDomino(value1, value2);
-				let game = RoomService.findGame(gameId, db);
-				game.playDomino(domino, data.moveType);
+                let game = RoomService.findGame(gameId, db);
+                game.playDomino(domino, data.moveType);
 
                 resolve({domino: domino, moveType: moveType});
             }catch(err){

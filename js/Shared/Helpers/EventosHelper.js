@@ -6,15 +6,18 @@ var EventosHelper = (function() {
         entradaRegistrada : "entradaRegistrada",
         pedraJogada: "pedraJogada",
         jogadaRealizadaComSucesso : "jogadaRealizadaComSucesso",
-		areaDeCompraAlterada : "boneyardChanged",
+        areaDeCompraAlterada : "boneyardChanged",
+        entradaDeJogador : "entradaDeJogador",
+        saidaDeJogador : "saidaDeJogador",
+        jogoIniciado : "jogoIniciado",
         enviaPedra : "enviaPedra"
     }
         
     var _eventosClient = {
         registrarEntrada : "registrarEntrada",
         jogadaRealizada: "jogadaRealizada",
-		pedirPedra: "pedirPedra",
-		areaDeCompraAlterada : "boneyardChanged"
+        pedirPedra: "pedirPedra",
+        areaDeCompraAlterada : "boneyardChanged"
     }
     
     var _eventosSocketIo = {
@@ -30,7 +33,7 @@ var EventosHelper = (function() {
     
     if (serverSide) {
         exports.instance = _eventosHelper;
-    } else {	
+    } else {
         return _eventosHelper;
-    }	
+    }
 })();

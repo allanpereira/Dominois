@@ -17,8 +17,25 @@ class Player{
         return this.dominoes;
     }
 
+    getPublicInterface(){
+        return {
+            id : this.id,
+            name : this.name,
+            dominoes : this.dominoes
+        }
+    }
+
+    addDomino(domino){
+        this.dominoes.push(domino);
+    }
+
+    addDominoes(dominoes){
+        dominoes.map(domino => this.addDomino(domino));
+    }
+
     setDominoes(dominoes){
-        dominoes.map(domino => this.dominoes.push(domino));
+        this.dominoes = [];
+        this.addDominoes(dominoes);
     }
 
     hasDomino(value1, value2){
