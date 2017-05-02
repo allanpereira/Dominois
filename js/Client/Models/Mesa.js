@@ -13,9 +13,7 @@ var Mesa = function() {
 Mesa.prototype.VerificarMovimentosPossiveisParaPedra = function(pedra) {
     
     var movimentosPossiveis = [];
-    
-    debugger;
-    
+ 
     if (this.pedrasJogadas.length == 0) {
         movimentosPossiveis.push(MoveType.FirstDomino);
         return movimentosPossiveis;
@@ -40,10 +38,8 @@ Mesa.prototype.VerificarMovimentosPossiveisParaPedra = function(pedra) {
 
 Mesa.prototype.JogarPedra = function(pedra, moveType) {
 
-    debugger;
-
     var baseJogada = {pedra: pedra, moveType: moveType, mesa: this };
-    var jogada = new Jogada(MetodoSpriteMesa(MetodoMesa(TamanhoHorizontal(RotacaoPedra(ValoresMesa(baseJogada))))));
+    var jogada = new Jogada(MetodoSpriteMesa(MetodoMesa(TamanhoHorizontal(DesvioSprite(RotacaoPedra(ValoresMesa(baseJogada)))))));
     
     jogada.EfetuarJogada();
 }

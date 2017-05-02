@@ -7,6 +7,7 @@ var Jogada = function(jogada) {
     this.valorDireitaMesa = jogada.valorDireitaMesa;
     this.tamanhoHorizontal = jogada.tamanhoHorizontal;
     this.rotacaoSprite = jogada.rotacaoSprite;
+	this.desvioSprite = jogada.desvioSprite;
     
     this.MetodoMesa = jogada.MetodoMesa;
     this.MetodoSpriteMesa = jogada.MetodoSpriteMesa;

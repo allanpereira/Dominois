@@ -14,36 +14,39 @@ var SpriteMesa = function() {
     };
     
     this.posicaoPedraInicial = { x: 330, y: 220 };
-    this.proximaPedraEsquerda = JSON.parse(JSON.stringify(this.posicaoPedraInicial));
-    this.proximaPedraDireita = JSON.parse(JSON.stringify(this.posicaoPedraInicial));
+    this.posicaoPedraEsquerda = JSON.parse(JSON.stringify(self.posicaoPedraInicial));
+    this.posicaoPedraDireita = JSON.parse(JSON.stringify(self.posicaoPedraInicial));
     
     this.JogarPrimeiraPedra = function(jogada) {
-        self.JogarPedraEsquerda(jogada);
-        self.AtualizarValorProximaDireita(jogada);
+        self.JogarPedra(jogada, self.AplicarDesvioSprite(jogada, self.posicaoPedraInicial));
     }
 
     this.JogarPedraEsquerda = function(jogada) {
-        self.JogarPedra(jogada, self.proximaPedraEsquerda);	
-        self.AtualizarValorProximaEsquerda(jogada);
+		var posicao = self.CalcularPosicaoPedra(jogada, self.posicaoPedraEsquerda);
+        self.JogarPedra(jogada, posicao);	
     }
     
-    this.AtualizarValorProximaEsquerda = function(jogada) {
-        self.proximaPedraEsquerda.x = self.proximaPedraEsquerda.x - jogada.tamanhoHorizontal;
-    }
-
     this.JogarPedraDireita = function(jogada) {
-        self.JogarPedra(jogada, self.proximaPedraDireita);
-        self.AtualizarValorProximaDireita(jogada);
+        var posicao = self.CalcularPosicaoPedra(jogada, self.posicaoPedraDireita);
+        self.JogarPedra(jogada, posicao);
     }
-
-    this.AtualizarValorProximaDireita = function(jogada) {
-        self.proximaPedraDireita.x = self.proximaPedraDireita.x + jogada.tamanhoHorizontal;
-    }
-    
-    this.JogarPedra = function(jogada, posicao) {
+	
+	this.AplicarDesvioSprite = function (jogada, posicao) {
+		posicao.x = posicao.x + jogada.desvioSprite.x;
+		posicao.y = posicao.y + jogada.desvioSprite.y;
+		return posicao;
+	}
+	
+	this.CalcularPosicaoPedra = function(jogada, posicao) {
+		posicao.x = posicao.x + jogada.tamanhoHorizontal;
+		posicao = self.AplicarDesvioSprite(jogada, posicao);
+		return posicao;
+	}
+	    
+    this.JogarPedra = function(jogada, posicao) {		
         jogada.pedra.sprite.phaserSprite.position.x = posicao.x;
         jogada.pedra.sprite.phaserSprite.position.y = posicao.y;
-        jogada.pedra.sprite.phaserSprite.angle = jogada.rotacaoSprite;
+		jogada.pedra.sprite.phaserSprite.angle = jogada.rotacaoSprite;
     }
 };
 
