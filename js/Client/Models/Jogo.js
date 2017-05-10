@@ -3,6 +3,7 @@
 // Require Mesa
 // Require SpriteComprar
 // Require MaoPrincipal
+// Require MaoSecundaria
 
 //Classe
 var Jogo = function(gameId){
@@ -10,7 +11,7 @@ var Jogo = function(gameId){
     this.pedraJogando = undefined;
     this.gameId = gameId;
 
-    this.tela = new Tela(new Mesa(), new MaoPrincipal(), new SpriteComprar());
+    this.tela = new Tela(new Mesa(), new MaoPrincipal(), new SpriteComprar(), new MaoSecundaria());
     this.socketClient = new SocketClient(this);
 };
 
@@ -44,7 +45,7 @@ Jogo.prototype.AoRealizarJogadaComSucesso = function(data){
 };
 Jogo.prototype.AoReceberPedra = function(result){
     console.log("[JOGO] A pedra " + result.domino.value1 + "|" + result.domino.value2 + " foi recebida.");
-    this.AdicionarPedra(result.domino);
+    this.AdicionarPedraComprada(result.domino);
 };
 Jogo.prototype.AoAlterarAreaDeCompra = function(data){
     this.AtualizarAreaDeCompra(data.boneyard.size);
@@ -108,6 +109,21 @@ Jogo.prototype.AdicionarPedra = function(domino){
     this.adicionarSpritePedra(pedra, aoClicarNaPedra);
 };
 
+Jogo.prototype.AdicionarPedraComprada = function(domino){
+    var self = this;
+    var pedra = PedraFactory.CriarPedra(domino.value1, domino.value2);
+    this.jogador.AdicionarPedra(pedra);
+
+    var aoClicarNaPedra = function(sprite){
+        self.pedraJogando = sprite.data;
+
+        sprite.data.AoReceberClique(self.tela.mesa, function(pedra, moveType) {
+            self.AoJogarPedra(pedra.valorSuperior, pedra.valorInferior, moveType);
+        });
+    };
+    this.adicionarSpritePedraComprada(pedra, aoClicarNaPedra);
+};
+
 Jogo.prototype.IniciarPartida = function(){
     console.log("[JOGO] Partida iniciada.");
     console.log("[JOGO] Jogador: ");
@@ -124,11 +140,21 @@ Jogo.prototype.AtualizarAreaDeCompra = function(size){
 // Sprite Functions
 // TODO: Refatorar e colocar em algum lugar mais adequado. Aqui está ruim.
 Jogo.prototype.adicionarSpritePedra = function(pedra, aoClicarNaPedra){
+    debugger;
     pedra.sprite.phaserSprite = game.add.sprite(this.tela.maoPrincipal.posicaoProximaPedra.x, this.tela.maoPrincipal.posicaoProximaPedra.y, pedra.sprite.nome);
     pedra.sprite.phaserSprite.data = pedra;
 
     this.TornarSpriteClicavel(pedra.sprite.phaserSprite, aoClicarNaPedra);
     this.tela.maoPrincipal.AdicionarPedra(pedra);
+};
+
+Jogo.prototype.adicionarSpritePedraComprada = function(pedra, aoClicarNaPedra){
+    debugger;
+    pedra.sprite.phaserSprite = game.add.sprite(this.tela.maoSecundaria.posicaoProximaPedra.x, this.tela.maoSecundaria.posicaoProximaPedra.y, pedra.sprite.nome);
+    pedra.sprite.phaserSprite.data = pedra;
+
+    this.TornarSpriteClicavel(pedra.sprite.phaserSprite, aoClicarNaPedra);
+    this.tela.maoSecundaria.AdicionarPedra(pedra);
 };
 
 Jogo.prototype.TornarSpriteClicavel = function(sprite, callbackAoClicar) {
