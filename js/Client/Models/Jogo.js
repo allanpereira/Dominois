@@ -140,7 +140,6 @@ Jogo.prototype.AtualizarAreaDeCompra = function(size){
 // Sprite Functions
 // TODO: Refatorar e colocar em algum lugar mais adequado. Aqui está ruim.
 Jogo.prototype.adicionarSpritePedra = function(pedra, aoClicarNaPedra){
-    debugger;
     pedra.sprite.phaserSprite = game.add.sprite(this.tela.maoPrincipal.posicaoProximaPedra.x, this.tela.maoPrincipal.posicaoProximaPedra.y, pedra.sprite.nome);
     pedra.sprite.phaserSprite.data = pedra;
 
@@ -149,7 +148,6 @@ Jogo.prototype.adicionarSpritePedra = function(pedra, aoClicarNaPedra){
 };
 
 Jogo.prototype.adicionarSpritePedraComprada = function(pedra, aoClicarNaPedra){
-    debugger;
     pedra.sprite.phaserSprite = game.add.sprite(this.tela.maoSecundaria.posicaoProximaPedra.x, this.tela.maoSecundaria.posicaoProximaPedra.y, pedra.sprite.nome);
     pedra.sprite.phaserSprite.data = pedra;
 
