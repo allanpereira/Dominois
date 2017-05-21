@@ -41,11 +41,20 @@ var SocketClient = function(jogo){
         jogo.AoSairJogador(result.data);
     });
 
+    this.socket.on(EventosHelper.eventosServer.jogoIniciado, function (result) {
+        console.log("[CLIENT] O jogo começou!");
+        jogo.AoIniciarJogo(result);
+    });
+
     this.socket.on(EventosHelper.eventosServer.enviaPedra, function (result) {
         if(result.success)
             console.log("[CLIENT] Nova pedra enviada pelo server!");
 
         jogo.AoReceberPedra(result);
+    });
+
+    this.socket.on(EventosHelper.eventosServer.vez, function (result) {
+        jogo.AoMudarVez(result.data);
     });
 };
 

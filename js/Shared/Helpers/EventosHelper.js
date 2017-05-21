@@ -10,7 +10,8 @@ var EventosHelper = (function() {
         entradaDeJogador : "entradaDeJogador",
         saidaDeJogador : "saidaDeJogador",
         jogoIniciado : "jogoIniciado",
-        enviaPedra : "enviaPedra"
+        enviaPedra : "enviaPedra",
+        vez : "vez"
     }
         
     var _eventosClient = {
