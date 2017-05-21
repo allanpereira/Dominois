@@ -14,8 +14,18 @@ $(function(){
             noRooms.removeClass(hiddenClass);
 
         response.rooms.forEach(function(room) {
-            var room = "<div class='room'><a href='/game/" + room.id + "'>" + room.name + "</a></div>";
-            list.append(room);
+            console.log(room);
+            var roomDescription = room.name + " - " + room.playersCount + "/" + room.playersAmount + " jogadores";
+
+            var content = "<div class='room'>";
+            
+            content += room.isFull ? 
+                    roomDescription : 
+                    "<a href='/game/" + room.id + "'>" + roomDescription + "</a>";
+                    
+            content += "</div>";
+
+            list.append(content);
         }, this);
 
         toggleState();

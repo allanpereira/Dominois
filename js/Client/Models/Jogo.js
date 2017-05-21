@@ -10,9 +10,15 @@ var Jogo = function(gameId){
     this.jogador = undefined;
     this.pedraJogando = undefined;
     this.gameId = gameId;
+    this.vez = false;
+    this.iniciado = false;
 
+    this.fixedToastr = undefined;
+    
     this.tela = new Tela(new Mesa(), new MaoPrincipal(), new SpriteComprar(), new MaoSecundaria());
     this.socketClient = new SocketClient(this);
+
+    toastr.options.preventDuplicates = true;
 };
 
 // Getters/Setters
@@ -39,13 +45,26 @@ Jogo.prototype.AoJogarPedra = function(value1, value2, moveType){
 Jogo.prototype.AoRegistrarEntrada = function(data){
     this.RegistrarEntrada(data.player);
     this.AoAlterarAreaDeCompra(data);
+    this.AlterarEstado(data.game.state);
+    this.AlterarTurno(data.game.turn);
+    this.NotificarEstado();
 };
 Jogo.prototype.AoRealizarJogadaComSucesso = function(data){
     this.MoverPedraParaMesa(data.domino, data.moveType);
+    this.AlterarTurno(data.turn);
+    this.NotificarEstado();
+};
+Jogo.prototype.AoIniciarJogo = function(){
+    this.iniciado = true;
+    this.NotificarEstado();
 };
 Jogo.prototype.AoReceberPedra = function(result){
     console.log("[JOGO] A pedra " + result.domino.value1 + "|" + result.domino.value2 + " foi recebida.");
     this.AdicionarPedraComprada(result.domino);
+};
+Jogo.prototype.AoMudarVez = function(result){
+    this.AlterarTurno(result.turn);
+    this.NotificarEstado();
 };
 Jogo.prototype.AoAlterarAreaDeCompra = function(data){
     this.AtualizarAreaDeCompra(data.boneyard.size);
@@ -60,6 +79,9 @@ Jogo.prototype.AoSairJogador = function(data){
 
 
 //Notificações
+Jogo.prototype.NotificarJogoIniciado = function(){
+    toastr.success("O jogo começou!");
+};
 Jogo.prototype.NotificarEntradaJogador = function(player){
     toastr.info(player.name + " entrou no jogo!");
 };
@@ -67,8 +89,25 @@ Jogo.prototype.NotificarSaidaJogador = function(player){
     toastr.warning(player.name + " saiu do jogo!");
 };
 
+Jogo.prototype.NotificarEstado = function(){
+    if(this.fixedToastr)
+        this.fixedToastr.remove();
+
+    var options = {timeOut: 0, extendedTimeOut: 0, tapToDismiss : false};
+    if(this.iniciado && this.vez){
+        this.fixedToastr = toastr.success("Faça sua jogada.", "", options);
+    }else if(this.iniciado){
+        this.fixedToastr = toastr.warning("Esperando por outro jogador.", "", options);
+    }else{
+        this.fixedToastr = toastr.warning("Esperando outros jogadores para iniciar o jogo...", "", options);
+    }
+};
 
 //Métodos do Jogo
+Jogo.prototype.PodeJogar = function(){
+    return this.iniciado && this.vez;
+};
+
 Jogo.prototype.RegistrarEntrada = function(player) {
     var pedras = PedraFactory.CriarPedrasAPartirDoServer(player.dominoes);
     this.jogador = new Jogador(pedras);
@@ -77,6 +116,14 @@ Jogo.prototype.RegistrarEntrada = function(player) {
 
     this.TrocarEstadoParaPartida();
     this.IniciarPartida();
+};
+
+Jogo.prototype.AlterarEstado = function(state){
+    this.iniciado = state === "STARTED";
+};
+
+Jogo.prototype.AlterarTurno = function(turn){
+    this.vez = turn;
 };
 
 Jogo.prototype.MoverPedraParaMesa = function(domino, moveType) {
@@ -100,6 +147,9 @@ Jogo.prototype.AdicionarPedra = function(domino){
     // TODO: Só implementar o envento de click no sprite da pedra a cada rodada,
     // por que assim teremos bloqueamos o clique caso ela não seja jogável
     var aoClicarNaPedra = function(sprite){
+        if(!self.PodeJogar())
+            return;
+
         self.pedraJogando = sprite.data;
 
         sprite.data.AoReceberClique(self.tela.mesa, function(pedra, moveType) {
@@ -140,7 +190,6 @@ Jogo.prototype.AtualizarAreaDeCompra = function(size){
 // Sprite Functions
 // TODO: Refatorar e colocar em algum lugar mais adequado. Aqui está ruim.
 Jogo.prototype.adicionarSpritePedra = function(pedra, aoClicarNaPedra){
-    debugger;
     pedra.sprite.phaserSprite = game.add.sprite(this.tela.maoPrincipal.posicaoProximaPedra.x, this.tela.maoPrincipal.posicaoProximaPedra.y, pedra.sprite.nome);
     pedra.sprite.phaserSprite.data = pedra;
 
@@ -149,7 +198,6 @@ Jogo.prototype.adicionarSpritePedra = function(pedra, aoClicarNaPedra){
 };
 
 Jogo.prototype.adicionarSpritePedraComprada = function(pedra, aoClicarNaPedra){
-    debugger;
     pedra.sprite.phaserSprite = game.add.sprite(this.tela.maoSecundaria.posicaoProximaPedra.x, this.tela.maoSecundaria.posicaoProximaPedra.y, pedra.sprite.nome);
     pedra.sprite.phaserSprite.data = pedra;
 
@@ -189,9 +237,12 @@ Jogo.prototype.ObterEstadoInicial = function(){
 Jogo.prototype.ObterEstadoPrincipal = function(){
     var self = this;
     
-    // TODO: Só implementar o envento de click no sprite da pedra a cada rodada,
+    // TODO: Só implementar o evento de click no sprite da pedra a cada rodada,
     // por que assim teremos bloqueamos o clique caso ela não seja jogável
     var aoClicarNaPedra = function(sprite){
+        if(!self.PodeJogar())
+            return;
+        
         self.pedraJogando = sprite.data;
 
         sprite.data.AoReceberClique(self.tela.mesa, function(pedra, moveType) {
@@ -201,7 +252,7 @@ Jogo.prototype.ObterEstadoPrincipal = function(){
 
     // TODO: Só permitir a compra em caso do usuário não ter nenhuma pedra a jogar
     var aoClicarEmComprar = function() {
-        self.socketClient.comprarPedra(self.gameId);
+        self.socketClient.comprarPedra(self.game.id);
     };
 
     return {

@@ -22,6 +22,17 @@ class ServerEventsRegister{
             this.resolveFor(gameId)
                 .emitExcept(playerId, EventosHelper.instance.eventosServer.saidaDeJogador, result);
         }
+
+        gameConnectionPool.notifyGameStarted = function(gameId, playerId){
+            this.resolveFor(gameId)
+                .emitExcept(playerId, EventosHelper.instance.eventosServer.jogoIniciado);
+        }
+
+        gameConnectionPool.notifyTurnForPlayer = function(playerId, gameId, data){
+            let result = {success : true, data : data};
+            this.resolveFor(gameId)
+                .emitFor(playerId, EventosHelper.instance.eventosServer.vez, result);
+        }
     }
 }
 

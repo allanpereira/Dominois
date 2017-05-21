@@ -21,27 +21,24 @@ var SpriteMesa = function() {
         self.JogarPedra(jogada, self.AplicarDesvioSprite(jogada, self.posicaoPedraInicial));
     }
 
-    this.JogarPedraEsquerda = function(jogada) {
-		var posicao = self.CalcularPosicaoPedra(jogada, self.posicaoPedraEsquerda);
-        self.JogarPedra(jogada, posicao);	
+    this.JogarPedraEsquerda = function(jogada) {		
+		self.posicaoPedraEsquerda.x = self.posicaoPedraEsquerda.x - jogada.tamanhoHorizontal;
+        self.JogarPedra(jogada, self.AplicarDesvioSprite(jogada, self.posicaoPedraEsquerda));
     }
     
     this.JogarPedraDireita = function(jogada) {
-        var posicao = self.CalcularPosicaoPedra(jogada, self.posicaoPedraDireita);
-        self.JogarPedra(jogada, posicao);
+		self.posicaoPedraDireita.x = self.posicaoPedraDireita.x + jogada.tamanhoHorizontal;
+        self.JogarPedra(jogada, self.AplicarDesvioSprite(jogada, self.posicaoPedraDireita));
     }
 	
 	this.AplicarDesvioSprite = function (jogada, posicao) {
-		posicao.x = posicao.x + jogada.desvioSprite.x;
-		posicao.y = posicao.y + jogada.desvioSprite.y;
-		return posicao;
+		return { x: posicao.x + jogada.desvioSprite.x, y: posicao.y + jogada.desvioSprite.y };
 	}
 	
-	this.CalcularPosicaoPedra = function(jogada, posicao) {
-		posicao.x = posicao.x + jogada.tamanhoHorizontal;
-		posicao = self.AplicarDesvioSprite(jogada, posicao);
-		return posicao;
-	}
+	//this.CalcularPosicaoPedra = function(jogada, posicao) {		
+	//	posicao = self.AplicarDesvioSprite(jogada, posicao);
+	//	return posicao;
+	//}
 	    
     this.JogarPedra = function(jogada, posicao) {		
         jogada.pedra.sprite.phaserSprite.position.x = posicao.x;

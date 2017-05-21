@@ -1,7 +1,8 @@
 const GameState = (function(){
     return {
         WAITING_PLAYERS : "WAITING_PLAYERS",
-        PLAYING : "PLAYING"
+        STARTED : "STARTED",
+        FINISHED : "FINISHED"
     };
 })();
 
