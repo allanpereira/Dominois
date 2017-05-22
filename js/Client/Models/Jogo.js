@@ -146,71 +146,7 @@ Jogo.prototype.adicionarSpritePedraComprada = function(pedra, aoClicarNaPedra){
 // Troca de Estados
 Jogo.prototype.TrocarEstadoParaPartida = function(){
     console.log("[JOGO] Carregando as pedras na tela...");
-    game.state.start('Game');
-};
-
-//Estados
-Jogo.prototype.ObterEstadoInicial = function(){
-    var self = this;
-
-    return {
-        init : function(){
-            this.game.stage.disableVisibilityChange = true;
-        },
-        create : function(){
-            console.log("[JOGO] Criando o estado inicial do jogo...");
-
-            this.game.stage.backgroundColor = self.tela.backgroundColor;
-            self.AoCriarEstadoInicial();
-        }
-    };
-};
-
-Jogo.prototype.ObterEstadoPrincipal = function(){
-    var self = this;
-    
-    // TODO: Só implementar o evento de click no sprite da pedra a cada rodada,
-    // por que assim teremos bloqueamos o clique caso ela não seja jogável
-    var aoClicarNaPedra = function(pedra){
-        if(!self.PodeJogar())
-            return;
-        
-        self.pedraJogando = pedra;
-
-        pedra.AoReceberClique(self.tela.mesa, function(pedra, moveType) {
-            self.AoJogarPedra(pedra.valorSuperior, pedra.valorInferior, moveType);
-        });
-    };
-
-    // TODO: Só permitir a compra em caso do usuário não ter nenhuma pedra a jogar
-    var aoClicarEmComprar = function() {
-        self.socketClient.comprarPedra(self.gameId);
-    };
-
-    return {
-        preload : function(){
-            console.log(self.tela.mesa);
-            game.load.image(self.tela.mesa.sprite.nome, AssetsHelper.BuscarImagemMesa(self.tela.mesa.sprite.nome));
-            game.load.image(self.tela.spriteComprar.nome, AssetsHelper.BuscarImagemComprar(self.tela.spriteComprar.nome));
-
-
-            //TODO: Workaround. Fix it.
-            PedraFactory.ParaCadaPedraPossivel(function(pedra){
-                game.load.image(pedra.sprite.nome, AssetsHelper.BuscarImagemPedra(pedra.sprite.nome));
-            });
-        },
-
-        create : function(){
-            game.add.sprite(self.tela.mesa.sprite.posicao.x, self.tela.mesa.sprite.posicao.y, self.tela.mesa.sprite.nome);
-
-            self.jogador.ParaCadaPedra(function(pedra){
-                self.adicionarSpritePedra(pedra, aoClicarNaPedra);
-            });
-
-            var spriteComprar = game.add.sprite(self.tela.spriteComprar.posicao.x, self.tela.spriteComprar.posicao.y, self.tela.spriteComprar.nome);
-            new TornarSpriteClicavel().Tornar(spriteComprar, aoClicarEmComprar);  
-        }
-    };
+    game.state.start(new EstadoPrincipal(this).nome);
 };
 
 console.log("[JOGO] Objeto jogo criado.");
