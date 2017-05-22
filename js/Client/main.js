@@ -8,8 +8,8 @@ var gameId = url.substr(url.lastIndexOf("/") + 1);
 var jogo = new Jogo(gameId);
 
 var game = new Phaser.Game(
-    jogo.ObterLarguraTela(),
-    jogo.ObterAlturaTela(), 
+    jogo.tela.largura,
+    jogo.tela.altura, 
     Phaser.AUTO, 
     jogo.tela.containerId
 );

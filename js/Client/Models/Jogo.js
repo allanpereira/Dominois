@@ -18,16 +18,6 @@ var Jogo = function(gameId){
     this.socketClient = new SocketClient(this);
 };
 
-// Getters/Setters
-Jogo.prototype.ObterLarguraTela = function(){
-    return this.tela.largura;
-};
-
-Jogo.prototype.ObterAlturaTela = function(){
-    return this.tela.altura;
-};
-
-
 //Enviar Eventos
 Jogo.prototype.AoCriarEstadoInicial = function(){
     this.socketClient.RegistrarEntrada(this.gameId);
@@ -36,7 +26,6 @@ Jogo.prototype.AoCriarEstadoInicial = function(){
 Jogo.prototype.AoJogarPedra = function(value1, value2, moveType){
     this.socketClient.RealizarJogada(this.gameId, value1, value2, moveType);
 };
-
 
 //Métodos do Jogo
 Jogo.prototype.PodeJogar = function(){
@@ -57,7 +46,7 @@ Jogo.prototype.AlterarEstado = function(state){
     this.iniciado = state === "STARTED";
 };
 
-Jogo.prototype.AlterarTurno = function(turn){
+Jogo.prototype.AlterarTurno = function(turn) {
     this.vez = turn;
 };
 
