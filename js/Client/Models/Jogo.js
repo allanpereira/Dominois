@@ -42,18 +42,6 @@ Jogo.prototype.AoJogarPedra = function(value1, value2, moveType){
 
 
 //Eventos Recebidos
-Jogo.prototype.AoRegistrarEntrada = function(data){
-    this.RegistrarEntrada(data.player);
-    this.AoAlterarAreaDeCompra(data);
-    this.AlterarEstado(data.game.state);
-    this.AlterarTurno(data.game.turn);
-    this.NotificarEstado();
-};
-Jogo.prototype.AoRealizarJogadaComSucesso = function(data){
-    this.MoverPedraParaMesa(data.domino, data.moveType);
-    this.AlterarTurno(data.turn);
-    this.NotificarEstado();
-};
 Jogo.prototype.AoIniciarJogo = function(){
     this.iniciado = true;
     this.NotificarEstado();
