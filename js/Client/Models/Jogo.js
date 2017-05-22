@@ -40,29 +40,6 @@ Jogo.prototype.AoJogarPedra = function(value1, value2, moveType){
     this.socketClient.RealizarJogada(this.gameId, value1, value2, moveType);
 };
 
-
-//Eventos Recebidos
-Jogo.prototype.AoIniciarJogo = function(){
-    this.iniciado = true;
-    this.NotificarEstado();
-};
-Jogo.prototype.AoReceberPedra = function(result){
-    console.log("[JOGO] A pedra " + result.domino.value1 + "|" + result.domino.value2 + " foi recebida.");
-    this.AdicionarPedraComprada(result.domino);
-};
-Jogo.prototype.AoMudarVez = function(result){
-    this.AlterarTurno(result.turn);
-    this.NotificarEstado();
-};
-Jogo.prototype.AoEntrarNovoJogador = function(data){
-    this.NotificarEntradaJogador(data.player);
-};
-
-Jogo.prototype.AoSairJogador = function(data){
-    this.NotificarSaidaJogador(data.player);
-};
-
-
 //Notificações
 Jogo.prototype.NotificarJogoIniciado = function(){
     toastr.success("O jogo começou!");
