@@ -12,13 +12,10 @@ var Jogo = function(gameId){
     this.gameId = gameId;
     this.vez = false;
     this.iniciado = false;
-
-    this.fixedToastr = null;
+    this.notificacao = new Notificacao().Configurar();
     
     this.tela = new Tela(new Mesa(), new MaoPrincipal(), new SpriteComprar(), new MaoSecundaria());
     this.socketClient = new SocketClient(this);
-
-    toastr.options.preventDuplicates = true;
 };
 
 // Getters/Setters
@@ -40,30 +37,6 @@ Jogo.prototype.AoJogarPedra = function(value1, value2, moveType){
     this.socketClient.RealizarJogada(this.gameId, value1, value2, moveType);
 };
 
-//Notificações
-Jogo.prototype.NotificarJogoIniciado = function(){
-    toastr.success("O jogo começou!");
-};
-Jogo.prototype.NotificarEntradaJogador = function(player){
-    toastr.info(player.name + " entrou no jogo!");
-};
-Jogo.prototype.NotificarSaidaJogador = function(player){
-    toastr.warning(player.name + " saiu do jogo!");
-};
-
-Jogo.prototype.NotificarEstado = function(){
-    if(this.fixedToastr)
-        this.fixedToastr.remove();
-
-    var options = {timeOut: 0, extendedTimeOut: 0, tapToDismiss : false};
-    if(this.iniciado && this.vez){
-        this.fixedToastr = toastr.success("Faça sua jogada.", "", options);
-    }else if(this.iniciado){
-        this.fixedToastr = toastr.warning("Esperando por outro jogador.", "", options);
-    }else{
-        this.fixedToastr = toastr.warning("Esperando outros jogadores para iniciar o jogo...", "", options);
-    }
-};
 
 //Métodos do Jogo
 Jogo.prototype.PodeJogar = function(){
@@ -103,8 +76,6 @@ Jogo.prototype.AdicionarPedra = function(domino){
     var self = this;
     var pedra = PedraFactory.CriarPedra(domino.value1, domino.value2);
     this.jogador.AdicionarPedra(pedra);
-
-
 
     /**************************************************************************/
     /*********   REFATORAR, JÁ EXISTE NO MOMENTO DA CRIAÇÃO INICIAL   *********/
