@@ -14,12 +14,9 @@ var SocketClient = function(jogo){
     });
 
     this.socket.on(EventosHelper.eventosServer.areaDeCompraAlterada, function (result) {
-        debugger;
-        if(!result.success)
-            return;
-
+        if(!result.success) return;
         console.log("[CLIENT] A área de compra foi alterada!");
-        jogo.AoAlterarAreaDeCompra(result.data);
+        new AoAlterarAreaDeCompra().Disparar(jogo, result.data);
     });
 
     this.socket.on(EventosHelper.eventosServer.entradaDeJogador, function (result) {

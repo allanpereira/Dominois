@@ -54,9 +54,6 @@ Jogo.prototype.AoMudarVez = function(result){
     this.AlterarTurno(result.turn);
     this.NotificarEstado();
 };
-Jogo.prototype.AoAlterarAreaDeCompra = function(data){
-    this.AtualizarAreaDeCompra(data.boneyard.size);
-};
 Jogo.prototype.AoEntrarNovoJogador = function(data){
     this.NotificarEntradaJogador(data.player);
 };
