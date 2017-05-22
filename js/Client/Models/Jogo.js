@@ -3,7 +3,6 @@
 // Require Mesa
 // Require SpriteComprar
 // Require MaoPrincipal
-// Require MaoSecundaria
 
 //Classe
 var Jogo = function(gameId){
@@ -11,7 +10,7 @@ var Jogo = function(gameId){
     this.pedraJogando = undefined;
     this.gameId = gameId;
 
-    this.tela = new Tela(new Mesa(), new MaoPrincipal(), new SpriteComprar(), new MaoSecundaria());
+    this.tela = new Tela(new Mesa(), new MaoPrincipal(), new SpriteComprar());
     this.socketClient = new SocketClient(this);
 };
 
@@ -148,11 +147,11 @@ Jogo.prototype.adicionarSpritePedra = function(pedra, aoClicarNaPedra){
 };
 
 Jogo.prototype.adicionarSpritePedraComprada = function(pedra, aoClicarNaPedra){
-    pedra.sprite.phaserSprite = game.add.sprite(this.tela.maoSecundaria.posicaoProximaPedra.x, this.tela.maoSecundaria.posicaoProximaPedra.y, pedra.sprite.nome);
+    pedra.sprite.phaserSprite = game.add.sprite(this.tela.maoPrincipal.posicaoProximaPedra.x, this.tela.maoPrincipal.posicaoProximaPedra.y, pedra.sprite.nome);
     pedra.sprite.phaserSprite.data = pedra;
 
     this.TornarSpriteClicavel(pedra.sprite.phaserSprite, aoClicarNaPedra);
-    this.tela.maoSecundaria.AdicionarPedra(pedra);
+    this.tela.maoPrincipal.AdicionarPedra(pedra);
 };
 
 Jogo.prototype.TornarSpriteClicavel = function(sprite, callbackAoClicar) {
