@@ -101,10 +101,10 @@ Jogo.prototype.AdicionarPedraComprada = function(domino){
     var pedra = PedraFactory.CriarPedra(domino.value1, domino.value2);
     this.jogador.AdicionarPedra(pedra);
 
-    var aoClicarNaPedra = function(sprite){
-        self.pedraJogando = sprite.data;
+    var aoClicarNaPedra = function(pedra){
+        self.pedraJogando = pedra;
 
-        sprite.data.AoReceberClique(self.tela.mesa, function(pedra, moveType) {
+        pedra.AoReceberClique(self.tela.mesa, function(pedra, moveType) {
             self.AoJogarPedra(pedra.valorSuperior, pedra.valorInferior, moveType);
         });
     };
@@ -130,7 +130,7 @@ Jogo.prototype.adicionarSpritePedra = function(pedra, aoClicarNaPedra){
     pedra.sprite.phaserSprite = game.add.sprite(this.tela.maoPrincipal.posicaoProximaPedra.x, this.tela.maoPrincipal.posicaoProximaPedra.y, pedra.sprite.nome);
     pedra.sprite.phaserSprite.data = pedra;
 
-    this.TornarSpriteClicavel(pedra.sprite.phaserSprite, aoClicarNaPedra);
+    new TornarSpriteClicavel().Tornar(pedra.sprite.phaserSprite, aoClicarNaPedra);
     this.tela.maoPrincipal.AdicionarPedra(pedra);
 };
 
@@ -138,15 +138,10 @@ Jogo.prototype.adicionarSpritePedraComprada = function(pedra, aoClicarNaPedra){
     pedra.sprite.phaserSprite = game.add.sprite(this.tela.maoSecundaria.posicaoProximaPedra.x, this.tela.maoSecundaria.posicaoProximaPedra.y, pedra.sprite.nome);
     pedra.sprite.phaserSprite.data = pedra;
 
-    this.TornarSpriteClicavel(pedra.sprite.phaserSprite, aoClicarNaPedra);
+    new TornarSpriteClicavel().Tornar(pedra.sprite.phaserSprite, aoClicarNaPedra);
     this.tela.maoSecundaria.AdicionarPedra(pedra);
 };
 
-Jogo.prototype.TornarSpriteClicavel = function(sprite, callbackAoClicar) {
-    sprite.inputEnabled = true;
-    sprite.input.useHandCursor = true;
-    sprite.events.onInputDown.add(callbackAoClicar, this); 
-};
 
 // Troca de Estados
 Jogo.prototype.TrocarEstadoParaPartida = function(){
@@ -176,20 +171,20 @@ Jogo.prototype.ObterEstadoPrincipal = function(){
     
     // TODO: Só implementar o evento de click no sprite da pedra a cada rodada,
     // por que assim teremos bloqueamos o clique caso ela não seja jogável
-    var aoClicarNaPedra = function(sprite){
+    var aoClicarNaPedra = function(pedra){
         if(!self.PodeJogar())
             return;
         
-        self.pedraJogando = sprite.data;
+        self.pedraJogando = pedra;
 
-        sprite.data.AoReceberClique(self.tela.mesa, function(pedra, moveType) {
+        pedra.AoReceberClique(self.tela.mesa, function(pedra, moveType) {
             self.AoJogarPedra(pedra.valorSuperior, pedra.valorInferior, moveType);
         });
     };
 
     // TODO: Só permitir a compra em caso do usuário não ter nenhuma pedra a jogar
     var aoClicarEmComprar = function() {
-        self.socketClient.comprarPedra(self.game.id);
+        self.socketClient.comprarPedra(self.gameId);
     };
 
     return {
@@ -213,7 +208,7 @@ Jogo.prototype.ObterEstadoPrincipal = function(){
             });
 
             var spriteComprar = game.add.sprite(self.tela.spriteComprar.posicao.x, self.tela.spriteComprar.posicao.y, self.tela.spriteComprar.nome);
-            self.TornarSpriteClicavel(spriteComprar, aoClicarEmComprar);  
+            new TornarSpriteClicavel().Tornar(spriteComprar, aoClicarEmComprar);  
         }
     };
 };
