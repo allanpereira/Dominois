@@ -7,13 +7,13 @@
 
 //Classe
 var Jogo = function(gameId){
-    this.jogador = undefined;
-    this.pedraJogando = undefined;
+    this.jogador = null;
+    this.pedraJogando = null;
     this.gameId = gameId;
     this.vez = false;
     this.iniciado = false;
 
-    this.fixedToastr = undefined;
+    this.fixedToastr = null;
     
     this.tela = new Tela(new Mesa(), new MaoPrincipal(), new SpriteComprar(), new MaoSecundaria());
     this.socketClient = new SocketClient(this);
@@ -89,10 +89,14 @@ Jogo.prototype.AlterarTurno = function(turn){
 };
 
 Jogo.prototype.MoverPedraParaMesa = function(domino, moveType) {
-    // TODO: Tirar o pedraJogando e procurar a pedra com base no seus valores na mão de todos os jogadores na sala
-    // a variável pedraJogando não estará com o valor correto no browser de todos os jogadores;
-    this.tela.mesa.JogarPedra(this.pedraJogando, moveType);
+    var pedra = this.pedraJogando;
+    if (pedra == null) {
+        pedra = PedraFactory.CriarPedra(domino.value1, domino.value2);
+        pedra = pedra.sprite.phaserSprite = game.add.sprite(0, 0, pedra.sprite.nome);
+    }
+    this.tela.mesa.JogarPedra(pedra, moveType);
     console.log("[JOGO] A pedra " + domino.value1 + "|" + domino.value2 + " foi jogada. MoveType: " + moveType);
+    this.pedraJogando = null;
 };
 
 Jogo.prototype.AdicionarPedra = function(domino){
