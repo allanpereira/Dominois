@@ -1,4 +1,4 @@
-// Require MesaFactory
+// // Require MesaFactory
 // Require Tela
 // Require Mesa
 // Require SpriteComprar
@@ -64,12 +64,6 @@ Jogo.prototype.AdicionarPedra = function(domino){
     var pedra = PedraFactory.CriarPedra(domino.value1, domino.value2);
     this.jogador.AdicionarPedra(pedra);
 
-    /**************************************************************************/
-    /*********   REFATORAR, JÁ EXISTE NO MOMENTO DA CRIAÇÃO INICIAL   *********/
-    /**************************************************************************/
-
-    // TODO: Só implementar o envento de click no sprite da pedra a cada rodada,
-    // por que assim teremos bloqueamos o clique caso ela não seja jogável
     var aoClicarNaPedra = function(sprite){
         if(!self.PodeJogar())
             return;
@@ -114,7 +108,10 @@ Jogo.prototype.AtualizarAreaDeCompra = function(size){
 // Sprite Functions
 // TODO: Refatorar e colocar em algum lugar mais adequado. Aqui está ruim.
 Jogo.prototype.adicionarSpritePedra = function(pedra, aoClicarNaPedra){
-    pedra.sprite.phaserSprite = game.add.sprite(this.tela.maoPrincipal.posicaoProximaPedra.x, this.tela.maoPrincipal.posicaoProximaPedra.y, pedra.sprite.nome);
+    pedra.sprite.CarregarSpritePhaser({
+        x: this.tela.maoPrincipal.posicaoProximaPedra.x,
+	y: this.tela.maoPrincipal.posicaoProximaPedra.y
+    });
     pedra.sprite.phaserSprite.data = pedra;
 
     new TornarSpriteClicavel().Tornar(pedra.sprite.phaserSprite, aoClicarNaPedra);
