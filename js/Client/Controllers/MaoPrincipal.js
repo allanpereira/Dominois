@@ -9,13 +9,16 @@ var MaoPrincipal = function() {
 
 MaoPrincipal.prototype.AdicionarPedra = function(pedra) {
 
-    console.log(pedra);
+    pedra.sprite.CarregarSpritePhaser({
+        x: this.maoPrincipal.posicaoProximaPedra.x,
+		y: this.maoPrincipal.posicaoProximaPedra.y
+    });
 
     var x = this.posicaoProximaPedra.x;    
 
     if (x >= 706 ){
         this.posicaoProximaPedra.x = 162;
-        this.posicaoProximaPedra.y = this.posicaoProximaPedra.y - 130;
+        this.posicaoProximaPedra.y = this.posicaoProximaPedra.y - pedra.sprite.altura;
     } else {
         this.posicaoProximaPedra.x = x + pedra.sprite.largura;
     }

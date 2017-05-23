@@ -18,8 +18,8 @@ SpriteComprar.prototype.CarregarSpritePhaser = function() {
 	this.phaserSprite = game.add.sprite(this.posicao.x, this.posicao.y, this.nome);
 }
 
-SpriteComprar.prototype.TornarSpriteClicavel = function(opcoesJogada) {
-   new TornarCompraClicavel().Tornar(this, opcoesJogada);
+SpriteComprar.prototype.TornarSpriteClicavel = function(liberarCompra) {
+   new TornarCompraClicavel().Tornar(this, liberarCompra);
 }
 
 SpriteComprar.prototype.RenoverEventoClick = function() {
