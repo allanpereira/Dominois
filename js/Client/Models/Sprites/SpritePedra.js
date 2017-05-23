@@ -6,7 +6,7 @@ var SpritePedra = function(nome) {
 }
 
 SpritePedra.prototype.CarregarSpritePhaser = function(posicao) {
-   this.phaserSprite = game.add.sprite(posicao.x, posicao.y, this.nome); 
+   this.phaserSprite = game.add.sprite(posicao.x, posicao.y, this.nome);
 }
 
 SpritePedra.prototype.TornarSpriteClicavel = function(opcoesJogada) {

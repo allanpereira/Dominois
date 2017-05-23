@@ -110,7 +110,7 @@ Jogo.prototype.AtualizarAreaDeCompra = function(size){
 Jogo.prototype.adicionarSpritePedra = function(pedra, aoClicarNaPedra){
     pedra.sprite.CarregarSpritePhaser({
         x: this.tela.maoPrincipal.posicaoProximaPedra.x,
-	y: this.tela.maoPrincipal.posicaoProximaPedra.y
+		y: this.tela.maoPrincipal.posicaoProximaPedra.y
     });
     pedra.sprite.phaserSprite.data = pedra;
 
