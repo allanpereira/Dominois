@@ -23,6 +23,6 @@ SpriteComprar.prototype.TornarSpriteClicavel = function(liberarCompra) {
 }
 
 SpriteComprar.prototype.RenoverEventoClick = function() {
-   // TODO: Remover evento click do spritePhaser
+   new TornarSpriteClicavel().Remover(this.phaserSprite);
 }
 

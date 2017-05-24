@@ -16,10 +16,13 @@ Turno.prototype.Iniciar(jogo) {
     // TODO: Iniciar turno;
 }
 
-Turno.prototype.Finalizar(jogo) {
+Turno.prototype.LimparEventos(jogo) {
     jogo.tela.spriteComprar.RemoverEventoClick();
     jogo.jogador.ParaCadaPedra(function(pedra) {
         pedra.RenoverEventoClick();
     }
-    // TODO: Passar a vez;
+}
+
+Turno.prototype.Finalizar(jogo) {
+    // TODO: Iniciar turno;
 }
