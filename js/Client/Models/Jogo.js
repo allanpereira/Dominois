@@ -1,4 +1,4 @@
-// // Require MesaFactory
+// Require MesaFactory
 // Require Tela
 // Require Mesa
 // Require SpriteComprar
@@ -48,8 +48,7 @@ Jogo.prototype.AlterarTurno = function(turn) {
 };
 
 Jogo.prototype.MoverPedraParaMesa = function(domino, moveType) {
-    // TODO: Ver o usuário possui a pedra na mão
-	var pedra = null;
+	var pedra = jogador.BuscarPedraPorValores(domino.value1, domino.value2);
 	
     if (pedra == null) {
         pedra = PedraFactory.CriarPedra(domino.value1, domino.value2);
@@ -64,10 +63,6 @@ Jogo.prototype.AdicionarPedra = function(domino) {
     var pedra = PedraFactory.CriarPedra(domino.value1, domino.value2);
 	this.jogador.AdicionarPedra(pedra);
 	this.tela.maoPrincipal.AdicionarPedra(pedra);
-	
-	// TODO: Colocar isso ao iniciar a rodada
-	var movimentos = this.mesa.VerificarMovimentosPossiveisParaPedra(pedra);
-	new TornarPedraClicavel().Tonar(this, pedra, movimentos);
 };
 
 Jogo.prototype.IniciarPartida = function(){
