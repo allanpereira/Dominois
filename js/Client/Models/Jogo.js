@@ -81,6 +81,7 @@ Jogo.prototype.RegistrarEntrada = function(player) {
 Jogo.prototype.MoverPedraParaMesa = function(domino, moveType) {
     // TODO: Tirar o pedraJogando e procurar a pedra com base no seus valores na mão de todos os jogadores na sala
     // a variável pedraJogando não estará com o valor correto no browser de todos os jogadores;
+    this.tela.maoPrincipal.RemoverPedra(domino, this.jogador);
     this.tela.mesa.JogarPedra(this.pedraJogando, moveType);
     console.log("[JOGO] A pedra " + domino.value1 + "|" + domino.value2 + " foi jogada. MoveType: " + moveType);
 };
