@@ -33,12 +33,9 @@ var EstadoPrincipal = function(jogo) {
 
      this.create = function() {
         game.add.sprite(jogo.tela.mesa.sprite.posicao.x, jogo.tela.mesa.sprite.posicao.y, jogo.tela.mesa.sprite.nome);
-
-        jogo.jogador.ParaCadaPedra(function(pedra){
-            jogo.adicionarSpritePedra(pedra, aoClicarNaPedra);
+        jogo.tela.spriteComprar.CarregarSpritePhaser();
+        jogo.jogador.ParaCadaPedra(function(pedra) {
+            jogo.tela.maoPrincipal.AdicionarPedra(pedra);
         });
-
-        var spriteComprar = game.add.sprite(jogo.tela.spriteComprar.posicao.x, jogo.tela.spriteComprar.posicao.y, jogo.tela.spriteComprar.nome);
-        new TornarSpriteClicavel().Tornar(spriteComprar, aoClicarEmComprar);  
     };
 }

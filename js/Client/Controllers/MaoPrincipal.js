@@ -10,8 +10,8 @@ var MaoPrincipal = function() {
 MaoPrincipal.prototype.AdicionarPedra = function(pedra) {
 
     pedra.sprite.CarregarSpritePhaser({
-        x: this.maoPrincipal.posicaoProximaPedra.x,
-		y: this.maoPrincipal.posicaoProximaPedra.y
+        x: this.posicaoProximaPedra.x,
+		y: this.posicaoProximaPedra.y
     });
 
     var x = this.posicaoProximaPedra.x;    
