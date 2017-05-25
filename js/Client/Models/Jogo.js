@@ -31,7 +31,7 @@ Jogo.prototype.PodeJogar = function(){
 
 Jogo.prototype.RegistrarEntrada = function(player) {
     var pedras = PedraFactory.CriarPedrasAPartirDoServer(player.dominoes);
-    this.jogador = new Jogador(pedras);
+    this.jogador = new Jogador(player.id, pedras);
     
     console.log("[JOGO] Jogador criado e registrado no Server.");
 
@@ -43,8 +43,12 @@ Jogo.prototype.AlterarEstado = function(state){
     this.iniciado = state === "STARTED";
 };
 
-Jogo.prototype.AlterarTurno = function(turn) {
-    this.vez = turn;
+Jogo.prototype.AlterarTurno = function(turns) {
+    for(var i = 0; i < turns.length; i++) {
+        if (this.jogador.id == turns[i].playerId) {
+            this.vez = turns[i].turn;
+        }
+    }    
 };
 
 Jogo.prototype.MoverPedraParaMesa = function(domino, moveType) {
@@ -52,7 +56,7 @@ Jogo.prototype.MoverPedraParaMesa = function(domino, moveType) {
 	
     if (pedra == null) {
         pedra = PedraFactory.CriarPedra(domino.value1, domino.value2);
-        pedra.CarregarSpritePhaser({x: 0, y: 0});
+        pedra.sprite.CarregarSpritePhaser({x: 0, y: 0});
     }
 	
     this.tela.mesa.JogarPedra(pedra, moveType);

@@ -126,15 +126,16 @@ class RoomService {
                 game.playDomino(domino, data.moveType);
                 game.passTurnToNextPlayer();
 
-                let turn = game.isTurn(player.id);
-
+                let turns = [];
                 game.getPlayers().forEach((p) => {
-                    let isTurn = game.isTurn(p.getId());
-                    GameConnectionPool.notifyTurnForPlayer(p.getId(), gameId, {turn : isTurn})
+                    turns.push({
+                        playerId: p.getId(),
+                        turn: game.isTurn(p.getId())
+                    });                
                 });
 
-                resolve({domino: domino, moveType: moveType, turn : turn});
-            }catch(err){
+                resolve({domino: domino, moveType: moveType, turns : turns});
+            } catch(err) {
                 reject(err.message);
             }
         });
