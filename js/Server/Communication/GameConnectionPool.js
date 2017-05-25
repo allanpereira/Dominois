@@ -41,8 +41,8 @@ module.exports = GameConnectionPool;
 
 //Definition after module.exports to solve problems caused by circular dependencies.
 const ClientEventsRegister = require('./Events/ClientEventsRegister');
-GameConnectionPool.addConnectionFor = function(gameId, socket){
-    ClientEventsRegister.register(gameId, socket, function(gId, s){
+GameConnectionPool.addConnectionFor = function(gameId, socket, io){
+    ClientEventsRegister.register(gameId, socket, io, function(gId, s){
         GameConnectionPool.removeSocketFor(gId, s);
     }, function(playerId, data){
         GameConnectionPool.notifyPlayerLeave(gameId, playerId, data);

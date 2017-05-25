@@ -13,11 +13,16 @@ MaoPrincipal.prototype.AdicionarPedra = function(pedra) {
 
     this.pedras.push({"nome":pedra.nome,"x":this.posicaoProximaPedra.x,"y":this.posicaoProximaPedra.y});    
 
+    pedra.sprite.CarregarSpritePhaser({
+        x: this.posicaoProximaPedra.x,
+		y: this.posicaoProximaPedra.y
+    });
+
     var x = this.posicaoProximaPedra.x;    
 
     if (x >= 706 ){
         this.posicaoProximaPedra.x = 162;
-        this.posicaoProximaPedra.y = this.posicaoProximaPedra.y - 130;
+        this.posicaoProximaPedra.y = this.posicaoProximaPedra.y - pedra.sprite.altura;
     } else {
         this.posicaoProximaPedra.x = x + pedra.sprite.largura;
     }

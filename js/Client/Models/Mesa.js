@@ -28,10 +28,6 @@ Mesa.prototype.VerificarMovimentosPossiveisParaPedra = function(pedra) {
         (pedra.valorInferior == this.valorDireita)) {
             movimentosPossiveis.push(MoveType.RightSide);
     }
-    
-    if (movimentosPossiveis.length == 0) {
-        movimentosPossiveis.push(MoveType.NoMove);
-    }
 
     return movimentosPossiveis;
 }

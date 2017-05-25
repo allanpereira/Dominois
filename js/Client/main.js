@@ -8,14 +8,19 @@ var gameId = url.substr(url.lastIndexOf("/") + 1);
 var jogo = new Jogo(gameId);
 
 var game = new Phaser.Game(
-    jogo.ObterLarguraTela(),
-    jogo.ObterAlturaTela(), 
+    jogo.tela.largura,
+    jogo.tela.altura, 
     Phaser.AUTO, 
     jogo.tela.containerId
 );
 
 
 console.log("[MAIN] Jogo criado, dando start...");
-game.state.add('Start', jogo.ObterEstadoInicial());
-game.state.add('Game', jogo.ObterEstadoPrincipal());
-game.state.start('Start');
+
+var estadoInicialJogo = new EstadoInicial(jogo);
+game.state.add(estadoInicialJogo.nome, estadoInicialJogo);
+
+var estadoPrincipalJogo = new EstadoPrincipal(jogo);
+game.state.add(estadoPrincipalJogo.nome, estadoPrincipalJogo);
+
+game.state.start(estadoInicialJogo.nome);

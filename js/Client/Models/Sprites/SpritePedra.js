@@ -4,3 +4,7 @@ var SpritePedra = function(nome) {
     this.largura = 68;
     this.phaserSprite;
 }
+
+SpritePedra.prototype.CarregarSpritePhaser = function(posicao) {
+   this.phaserSprite = game.add.sprite(posicao.x, posicao.y, this.nome);
+}
