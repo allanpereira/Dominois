@@ -6,8 +6,8 @@ TornarPedraClicavel.prototype.Tornar = function(jogo, pedra, opcoesJogada) {
 	}
 		
 	if (opcoesJogada.length == 1) {
-		return new JogarEmUnicaOpcaoClick().Tonar(jogo, pedra, opcoesJogada); 
+		return new JogarEmUnicaOpcaoClick().Tornar(jogo, pedra, opcoesJogada); 
 	}
 	
-	return new EscolherEmQualOpcaoJogarClick().Tornar(pedra, opcoesJogada);
+	return new EscolherEmQualOpcaoJogarClick().Tornar(jogo, pedra, opcoesJogada);
 }

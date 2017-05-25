@@ -48,7 +48,7 @@ Jogo.prototype.AlterarTurno = function(turn) {
 };
 
 Jogo.prototype.MoverPedraParaMesa = function(domino, moveType) {
-	var pedra = jogador.BuscarPedraPorValores(domino.value1, domino.value2);
+	var pedra = this.jogador.BuscarPedraPorValores(domino.value1, domino.value2);
 	
     if (pedra == null) {
         pedra = PedraFactory.CriarPedra(domino.value1, domino.value2);

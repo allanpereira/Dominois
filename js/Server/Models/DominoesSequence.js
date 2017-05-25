@@ -14,7 +14,7 @@ class DominoesSequence {
         if (domino.value2 == this.nextExpectedValue) {
             this.nextDominoSequence = new DominoesSequence(domino, domino.value1, this);			
         }
-        
+
         return this.nextDominoSequence;
     }
 }

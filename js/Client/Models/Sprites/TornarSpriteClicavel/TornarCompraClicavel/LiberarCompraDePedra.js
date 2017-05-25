@@ -1,10 +1,10 @@
-var BloquearComprarDePedra = function() {}
+var LiberarCompraDePedra = function() {}
 
-BloquearComprarDePedra.prototype.Tornar = function(jogo, spriteComprar) {
+LiberarCompraDePedra.prototype.Tornar = function(jogo, spriteComprar) {
 	
 	var Callback = function() {
 		jogo.socketClient.comprarPedra(jogo.gameId);
 	}
 	
-	return new TornarSpriteClicavel().Tonar(spriteComprar.phaserSprite, Callback);
+	return new TornarSpriteClicavel().Tornar(spriteComprar.phaserSprite, Callback);
 }

@@ -1,10 +1,10 @@
-var BloquearComprarDePedra = function() {}
+var BloquearCompraDePedra = function() {}
 
-BloquearComprarDePedra.prototype.Tornar = function(spriteComprar) {
+BloquearCompraDePedra.prototype.Tornar = function(spriteComprar) {
 	
 	var Callback = function() {
-		alert("Você possui pedras disponíveis para jogar.");
+		alert("VocÃª possui pedras disponÃ­veis para jogar.");
 	}
 	
-	return new TornarSpriteClicavel().Tonar(spriteComprar.phaserSprite, Callback);
+	return new TornarSpriteClicavel().Tornar(spriteComprar.phaserSprite, Callback);
 }

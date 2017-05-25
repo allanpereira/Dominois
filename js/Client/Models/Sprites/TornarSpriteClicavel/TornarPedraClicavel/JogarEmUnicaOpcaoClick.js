@@ -1,6 +1,6 @@
 var JogarEmUnicaOpcaoClick = function() {}
 
-JogarEmUnicaOpcaoClick.prototype.Tornar(jogo, pedra, opcoesJogada) {
+JogarEmUnicaOpcaoClick.prototype.Tornar = function(jogo, pedra, opcoesJogada) {
 	
 	var Callback = function() {
 		jogo.JogarPedra(pedra, opcoesJogada[0]);

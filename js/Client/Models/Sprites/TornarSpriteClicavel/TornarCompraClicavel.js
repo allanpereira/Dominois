@@ -1,7 +1,7 @@
 var TornarCompraClicavel = function() {}
 
-TornarPedraClicavel.prototype.Tornar = function(jogo, spriteComprar, liberarCompraPedra) {
-	
+TornarCompraClicavel.prototype.Tornar = function(jogo, spriteComprar, liberarCompraPedra) {
+
 	if (liberarCompraPedra) {
 		return new LiberarCompraDePedra().Tornar(jogo, spriteComprar);
 	}

@@ -42,7 +42,6 @@ var SocketClient = function(jogo){
     });
 
     this.socket.on(EventosHelper.eventosServer.vez, function (result) {
-        debugger;
         new AoMudarVez().Disparar(jogo, result.data);
     });
 };

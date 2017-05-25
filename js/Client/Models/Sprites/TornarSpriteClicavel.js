@@ -1,7 +1,7 @@
 var TornarSpriteClicavel = function() {}
 
 TornarSpriteClicavel.prototype.Tornar = function(sprite, Callback) {
-	
+
 	var CallbackAoClicar = function(sprite) {
 		Callback();
 	};
@@ -13,5 +13,5 @@ TornarSpriteClicavel.prototype.Tornar = function(sprite, Callback) {
 
 
 TornarSpriteClicavel.prototype.Remover = function(sprite) {
-	sprite.eventos.onInputDown.removeAll();
+	sprite.events.onInputDown.removeAll();
 }
