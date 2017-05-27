@@ -3,6 +3,18 @@ $(function(){
     var txtUsername = $("#txtUsername");
     var txtPassword = $("#txtPassword");
 
+
+    if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
+        txtUsername.val("akamine");
+    }else{
+        var fs = window.RequestFileSystem || window.webkitRequestFileSystem;
+        if (fs) {
+            fs(window.TEMPORARY, 100, function() {}, function() {
+                txtUsername.val("akamine");
+            });
+        }
+    }
+
     btnLogin.click(function(){
         var data = {
             "username" : txtUsername.val(),
