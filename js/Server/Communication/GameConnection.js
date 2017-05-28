@@ -23,9 +23,16 @@ class GameConnection{
         this.sockets.map(s => s.emit(event, data));
     }
 
+    emitFor(playerId, event, data) {
+        this.sockets.map(s => {
+            if(s.request.session.user && s.request.session.user.id === playerId)
+                s.emit(event, data)
+        });
+    }
+
     emitExcept(playerId, event, data) {
         this.sockets.map(s => {
-            if(s.request.session.user.id != playerId)
+            if(s.request.session.user && s.request.session.user.id != playerId)
                 s.emit(event, data)
         });
     }

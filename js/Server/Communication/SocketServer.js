@@ -16,7 +16,7 @@ class SocketServer{
             let gameId = parseInt(socket.request._query["gameId"]);
 
             console.log(`New client connection received, adding to pool...`);
-            GameConnectionPool.addConnectionFor(gameId, socket);
+            GameConnectionPool.addConnectionFor(gameId, socket, self.io);
         });
 
     }

@@ -1,10 +1,77 @@
-html, body, #game{
+body {
+    margin: 0;
+	background: #76b852; fallback for old browsers
+	background: -webkit-linear-gradient(right, #76b852, #8DC26F);
+	background: -moz-linear-gradient(right, #76b852, #8DC26F);
+	background: -o-linear-gradient(right, #76b852, #8DC26F);
+	background: linear-gradient(to left, #76b852, #8DC26F);
+	font-family: "Roboto", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;     
+}
+
+.conteudo{
+	width:1150px;
+	height:600px;
+	margin:60px;
+	border:1px solid red;
+	position:relative;
+	//left:20%;
+	padding: 3%;
+
+}
+
+/* .container{	
+	margin:60px;
+	width:1200px;
+	height:700px;
+	position:center;
+	//margin:25px;
+	border:1px solid blue;
+	
+	}*/ 
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 500px;
+  margin: 0 auto;
+  background:#ffFFFF;
+}
+
+	.menu-left{
+
+	width:200px;
+	height:350px;
+	//margin:25px;
+	border:1px solid orange;
+	
+	}
+
+li {
+	height: 60px;
+	text-align:center;
+	list-style:none;
+	border: 1px solid black;
+	
+}
+
+
+
+
+/* html, #game{
     font-family: "Roboto", "Arial", "sans-serif";
 }
 
-body{
-    margin: 0;
-}
+
+
+.all
+	{
+		background:red;
+  		max-width:800px;
+  		padding: 45px;
+  		text-align: center;
+  		box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+	}
 
 #game{
     display: flex;
@@ -17,3 +84,48 @@ body{
     top: 10px;
     left: 10px;
 }
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 500px;
+  margin: 0 auto;
+  background:blue;
+}
+.container:before, .container:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.container .info {
+  margin: 50px auto;
+  text-align: center;
+}
+.container .info h1 {
+  margin: 0 0 15px;
+  padding: 0;
+  font-size: 36px;
+  font-weight: 300;
+  color: #1a1a1a;
+}
+.container .info span {
+  color: #4d4d4d;
+  font-size: 12px;
+}
+.container .info span a {
+  color: #000000;
+  text-decoration: none;
+}
+.container .info span .fa {
+  color: #EF3B3A;
+}
+
+.menu-left {
+	width:80px;
+	margin-left:-15px;
+	height:200px;	
+	float:left;
+	background:orange;
+}
+*/
+

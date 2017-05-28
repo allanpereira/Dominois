@@ -6,10 +6,10 @@ const EventosHelper = require('../../../Shared/Helpers/EventosHelper');
  * Handle registration of client events for each new socket connection.
  */
 class ClientEventsRegister{
-    static register(gameId, socket, disconnectionCallback, notifyPlayerLeaveCallback){
+    static register(gameId, socket, io, disconnectionCallback, notifyPlayerLeaveCallback){
         ClientEventsRegister.registerDisconnection(gameId, socket, disconnectionCallback, notifyPlayerLeaveCallback);
         ClientEventsRegister.registerPlayerHasEntered(gameId, socket);
-        ClientEventsRegister.registerMove(gameId, socket);
+        ClientEventsRegister.registerMove(gameId, socket, io);
         ClientEventsRegister.registerTakeFromBoneyard(gameId, socket);
     }
 
@@ -46,13 +46,13 @@ class ClientEventsRegister{
         });
     }
 
-    static registerMove(gameId, socket){
+    static registerMove(gameId, socket, io){
         socket.on(EventosHelper.instance.eventosClient.jogadaRealizada, function(req) {
             let userId = socket.request.session.user.id;
             RoomService.play(req, userId, DB)
             .then((data) => {
                 console.log(`The domino ${data.domino.value1} | ${data.domino.value2} has been placed on board.`);
-                socket.emit(EventosHelper.instance.eventosServer.jogadaRealizadaComSucesso, { success : true, data : data});
+                io.emit(EventosHelper.instance.eventosServer.jogadaRealizadaComSucesso, { success : true, data : data});
             })
             .catch((err) => {
                 console.log(err);

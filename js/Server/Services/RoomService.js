@@ -1,5 +1,6 @@
 const GameConnectionPool = require('../Communication/GameConnectionPool');
 const Game = require('../Models/Game');
+const GameState = require('../Models/GameState');
 const Player = require('../Models/Player');
 
 class RoomService {
@@ -29,7 +30,7 @@ class RoomService {
                 game.addPlayer(new Player(user));
                 db.games.push(game);
 
-                resolve(game.getPublicInterface());
+                resolve(game.getPublicInterface(user.id));
             }catch(err){
                 reject(err.message);
             }
@@ -41,7 +42,7 @@ class RoomService {
             try{
                 let games = db.games
                     .filter(g => !g.isFull())
-                    .map(g => g.getPublicInterface());
+                    .map(g => g.getPublicInterface(userId));
                     
                 resolve(games);
             }catch(err){
@@ -60,12 +61,18 @@ class RoomService {
                     game.addPlayer(player);
                 }
 
+                if(game.isFull())
+                    game.start();
+
                 let boneyardData = game.getBoneyard().getPublicInterface();
                 let playerData = player.getPublicInterface();
-                let gameData = game.getPublicInterface();
-                
+                let gameData = game.getPublicInterface(user.id);
+
                 GameConnectionPool.notifyBoneyardChanged(gameId, { boneyard : boneyardData });
                 GameConnectionPool.notifyPlayerEntered(gameId, player.getId(), { player : playerData });
+
+                if(game.state === GameState.STARTED)
+                    GameConnectionPool.notifyGameStarted(gameId, player.getId());
 
                 resolve({
                     player : playerData, 
@@ -106,18 +113,29 @@ class RoomService {
                 let value2 = data.value2;
                 let gameId = data.gameId;
                 let moveType = data.moveType;
-                
+                let game = RoomService.findGame(gameId, db);
                 let player = RoomService.findPlayer(gameId, userId, db);
-                
+
+                if(!game.isTurn(player.getId()))
+                    reject(`It's not your turn!`);
+
                 if(!player.hasDomino(value1, value2))
                     reject(`The player doesn't have the domino with value ${value1}|${value2}.`);
 
                 let domino = player.removeDomino(value1, value2);
-                let game = RoomService.findGame(gameId, db);
                 game.playDomino(domino, data.moveType);
+                game.passTurnToNextPlayer();
 
-                resolve({domino: domino, moveType: moveType});
-            }catch(err){
+                let turns = [];
+                game.getPlayers().forEach((p) => {
+                    turns.push({
+                        playerId: p.getId(),
+                        turn: game.isTurn(p.getId())
+                    });                
+                });
+
+                resolve({domino: domino, moveType: moveType, turns : turns});
+            } catch(err) {
                 reject(err.message);
             }
         });

@@ -2,50 +2,47 @@ var SocketClient = function(jogo){
     this.socket = io.connect('localhost:8081', {query : "gameId=" + jogo.gameId, 'sync disconnect on unload' : true });
     
     this.socket.on(EventosHelper.eventosServer.entradaRegistrada, function (result) {
-        if(!result.success)
-            return;
-
+        if(!result.success) return;
         console.log("[CLIENT] Jogador recebido do Server e encaminhado para o game. Id: " + result.data.player.id + " - Nome: " + result.data.player.name + ".");
-        jogo.AoRegistrarEntrada(result.data);
+        new AoRegistrarEntrada().Disparar(jogo, result.data);
     });
 
     this.socket.on(EventosHelper.eventosServer.jogadaRealizadaComSucesso, function (result) {
-        if(!result.success)
-            return;
-
+        if(!result.success)  return;
         console.log("[CLIENT] Jogada realizada com sucesso!");
-        jogo.AoRealizarJogadaComSucesso(result.data);
+        new AoRealizarJogadaComSucesso().Disparar(jogo, result.data);
     });
 
     this.socket.on(EventosHelper.eventosServer.areaDeCompraAlterada, function (result) {
-        if(!result.success)
-            return;
-
+        if(!result.success) return;
         console.log("[CLIENT] A área de compra foi alterada!");
-        jogo.AoAlterarAreaDeCompra(result.data);
+        new AoAlterarAreaDeCompra().Disparar(jogo, result.data);
     });
 
     this.socket.on(EventosHelper.eventosServer.entradaDeJogador, function (result) {
-        if(!result.success)
-            return;
-
+        if(!result.success) return;
         console.log("[CLIENT] Um novo jogador entrou na partida!");
-        jogo.AoEntrarNovoJogador(result.data);
+        new AoEntrarNovoJogador().Disparar(jogo, result.data);
     });
 
     this.socket.on(EventosHelper.eventosServer.saidaDeJogador, function (result) {
-        if(!result.success)
-            return;
-        
+        if(!result.success) return;        
         console.log("[CLIENT] Um jogador saiu da partida!");
-        jogo.AoSairJogador(result.data);
+        new AoSairJogador().Disparar(jogo, result.data);
+    });
+
+    this.socket.on(EventosHelper.eventosServer.jogoIniciado, function (result) {
+        console.log("[CLIENT] O jogo começou!");
+        new AoIniciarJogo().Disparar(jogo, result);
     });
 
     this.socket.on(EventosHelper.eventosServer.enviaPedra, function (result) {
-        if(result.success)
-            console.log("[CLIENT] Nova pedra enviada pelo server!");
+        if(result.success) console.log("[CLIENT] Nova pedra enviada pelo server!");
+        new AoReceberPedra().Disparar(jogo, result);
+    });
 
-        jogo.AoReceberPedra(result);
+    this.socket.on(EventosHelper.eventosServer.vez, function (result) {
+        new AoMudarVez().Disparar(jogo, result.data);
     });
 };
 
