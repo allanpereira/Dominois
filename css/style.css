@@ -11,9 +11,3 @@ body{
     align-items: center;
     justify-content: center;
 }
-
-#boneyard{
-    position: absolute;
-    top: 10px;
-    left: 10px;
-}
