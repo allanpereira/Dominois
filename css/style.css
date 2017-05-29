@@ -5,9 +5,3 @@ html, body, #game{
 body{
     margin: 0;
 }
-
-#game{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
