@@ -10,26 +10,6 @@ body {
 	-moz-osx-font-smoothing: grayscale;     
 }
 
-.conteudo{
-	width:1150px;
-	height:600px;
-	margin:60px;
-	border:1px solid red;
-	position:relative;
-	//left:20%;
-	padding: 3%;
-
-}
-
-/* .container{	
-	margin:60px;
-	width:1200px;
-	height:700px;
-	position:center;
-	//margin:25px;
-	border:1px solid blue;
-	
-	}*/ 
 .container {
   position: relative;
   z-index: 1;
@@ -38,51 +18,25 @@ body {
   background:#ffFFFF;
 }
 
-	.menu-left{
-
-	width:200px;
-	height:350px;
-	//margin:25px;
-	border:1px solid orange;
-	
-	}
-
-li {
-	height: 60px;
-	text-align:center;
-	list-style:none;
-	border: 1px solid black;
-	
-}
-
-
-
-
-/* html, #game{
+html, #game{
     font-family: "Roboto", "Arial", "sans-serif";
 }
-
-
-
-.all
-	{
-		background:red;
-  		max-width:800px;
-  		padding: 45px;
-  		text-align: center;
-  		box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-	}
 
 #game{
     display: flex;
     align-items: center;
-    justify-content: center;
-}
+		margin-left:320px;
+		margin-top:120px;
+		max-width: 400px;
+		box-shadow: 20px 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+
+		}
 
 #boneyard{
     position: absolute;
     top: 10px;
     left: 10px;
+		border:5px solid red;
 }
 
 .container {
@@ -97,6 +51,7 @@ li {
   display: block;
   clear: both;
 }
+
 .container .info {
   margin: 50px auto;
   text-align: center;
@@ -119,13 +74,3 @@ li {
 .container .info span .fa {
   color: #EF3B3A;
 }
-
-.menu-left {
-	width:80px;
-	margin-left:-15px;
-	height:200px;	
-	float:left;
-	background:orange;
-}
-*/
-
