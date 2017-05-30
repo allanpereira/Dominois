@@ -37,5 +37,9 @@ Mesa.prototype.JogarPedra = function(pedra, moveType) {
     var baseJogada = {pedra: pedra, moveType: moveType, mesa: this };
     var jogada = new Jogada(MetodoSpriteMesa(MetodoMesa(TamanhoHorizontal(DesvioSprite(RotacaoPedra(ValoresMesa(baseJogada)))))));
     
+    var posini ={x:pedra.sprite.phaserSprite.x,y:pedra.sprite.phaserSprite.y};//variável temporária apenas para testar a animação.
+   
     jogada.EfetuarJogada();
+
+    jogada.AniMove(pedra,posini,null,1);//estou chamando depois do EfetuarJogada pois, assim, o sprite fica com a posição final e passo a posição inicial guardado na variável posini
 }
