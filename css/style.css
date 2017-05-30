@@ -2,3 +2,14 @@ html, body, #game{
     font-family: "Roboto", "Arial", "sans-serif";
 }
 
+#game{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#boneyard{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
