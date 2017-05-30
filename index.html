@@ -8,6 +8,7 @@
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/testestrap.css" rel="stylesheet">
+    <link href="css/teste.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script type="text/javascript" src="js/Client/Plugins/jquery.min.js"></script>
     <script type="text/javascript" src="js/Client/Plugins/bootstrap.min.js"></script>
@@ -95,9 +96,47 @@
         </div>
         <div class="row conteudo" id="aba02">
                 <h1> Ranking de Jogadores </h1>
-                 <ul id="lista">
-                 </ul>
-                 <button onclick="atualizalista()">Atualizar</button> </h1>
+                 <!-- <ul id="lista">
+                 </ul> -->
+                 <div class="row">
+
+                    <div class="col-md-11" id="salas">
+                        <table id="tabela" border=1 align="center" bordercolor="#C0C0C0">
+                            <tr>
+                                <th width=50>Colocação</th>
+                                <th width=400 class="cabecalho">Nome</th>
+                                <th width=100 class="cabecalho">Pontuação</th>
+                                <th width=50 class="cabecalho">Nível</th>
+                            </tr>
+                            <tr>
+                                <td>1º</td>
+                                <td>Maria Joao do Nascimento</td>
+                                <td>1000</td>
+                                <td>5</td>
+                            </tr>
+                            <tr>
+                                <td>2º</td>
+                                <td>Ricardo Silva</td>
+                                <td>900</td>
+                                <td>5</td>
+                            </tr>
+                            <tr>
+                                <td>3º</td>
+                                <td>Joao Nascimento</td>
+                                <td>600</td>
+                                <td>3</td>
+                            </tr>
+                            <tr>
+                                <td>4º</td>
+                                <td>Bianca Reis</td>
+                                <td>100</td>
+                                <td>1</td>
+                            </tr>
+                        </table>
+                    </div>
+                 </div>
+                 <button onclick="atualizalista()" type="button" class="btn btn-success" >Atualizar</button>
+                 <!-- <button onclick="atualizalista()">Atualizar</button> </h1> -->
         </div>
         <div class="row conteudo" id="aba03">
             <h1>Regras do Jogo</h1>
