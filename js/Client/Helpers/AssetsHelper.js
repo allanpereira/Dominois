@@ -20,6 +20,9 @@ var AssetsHelper = (function () {
         },
         BuscarImagemComprar: function(nomeSprite) { 
             return BuscarImagem([nomeSprite]);
+        },
+        BuscarImagemPassar: function(nomeSprite) { 
+            return BuscarImagem([nomeSprite]);
         }
     }
 

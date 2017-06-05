@@ -19,10 +19,22 @@ var EstadoPrincipal = function(jogo) {
         jogo.socketClient.comprarPedra(jogo.gameId);
     };
 
+    var aoClicarEmPassar = function() {
+        var boneyardCount = document.getElementById("boneyard");
+        boneyardCount.innerHTML = size;
+         if (size <= 0)
+         {
+             this.socketClient.PassarAVez(jogo.gameId);
+         }else{
+             alert("Ainda há pedras disponíveis para comprar.");
+         };
+    };
+
     this.preload = function(){
         console.log(jogo.tela.mesa);
         game.load.image(jogo.tela.mesa.sprite.nome, AssetsHelper.BuscarImagemMesa(jogo.tela.mesa.sprite.nome));
         game.load.image(jogo.tela.spriteComprar.nome, AssetsHelper.BuscarImagemComprar(jogo.tela.spriteComprar.nome));
+        game.load.image(jogo.tela.spritePassar.nome, AssetsHelper.BuscarImagemPassar(jogo.tela.spritePassar.nome));
 
 
         //TODO: Workaround. Fix it.
@@ -34,6 +46,7 @@ var EstadoPrincipal = function(jogo) {
      this.create = function() {
         game.add.sprite(jogo.tela.mesa.sprite.posicao.x, jogo.tela.mesa.sprite.posicao.y, jogo.tela.mesa.sprite.nome);
         jogo.tela.spriteComprar.CarregarSpritePhaser();
+        jogo.tela.spritePassar.CarregarSpritePhaser();
         jogo.jogador.ParaCadaPedra(function(pedra) {
             jogo.tela.maoPrincipal.AdicionarPedra(pedra);
         });

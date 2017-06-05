@@ -159,6 +159,34 @@ class RoomService {
         return player;
     }
 
+    static pass(data, userId, db){
+                return new Promise((resolve, reject) => {
+            try{
+                let gameId = data.gameId;
+                let game = RoomService.findGame(gameId, db);
+                let player = RoomService.findPlayer(gameId, userId, db);
+                let playerData = player.getPublicInterface();
+
+                if(!game.isTurn(player.getId()))
+                    reject(`It's not your turn!`);
+
+                game.passTurnToNextPlayer();
+
+                let turns = [];
+                game.getPlayers().forEach((p) => {
+                    turns.push({
+                        playerId: p.getId(),
+                        turn: game.isTurn(p.getId())
+                    });                
+                });
+
+                resolve({turns : turns, player : playerData});
+            } catch(err) {
+                reject(err.message);
+            }
+        });
+    }
+
 }
 
 module.exports = RoomService;
