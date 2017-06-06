@@ -34,7 +34,7 @@
 	<img src="./img/logo.jpeg" alt="logo">
     </header>
     <div class="row">
-    <div role="main" class="col-md-8 col-md-push-3">
+    <div role="main" class="col-md-8 col-md-push-3" id="regras">
     	<div class="row conteudo" id="aba01">
         <h1> SALAS DE JOGO </h1>
         <div class="row">
@@ -166,16 +166,18 @@
                     <form role="form">
                         <div id="name-group" class="form-group has-feedback">
                             <label for="name">Selecione a Skin</label>
-                            <input type="radio" class="form-control" id="skin" value="Skin 01" name="skins" checked><label id="optSkins">Padrão</label>
+                            <!--<input type="radio" class="form-control" id="skin" value="Skin 01" name="skins" checked><label id="optSkins">Padrão</label>
                             <input type="radio" class="form-control" id="skin" value="Skin 01" name="skins"><label id="optSkins">Paz</label>
                             <input type="radio" class="form-control" id="skin" value="Skin 01" name="skins"><label id="optSkins">Azul</label>
-                            <input type="radio" class="form-control" id="skin" value="Skin 01" name="skins"><label id="optSkins">Amor</label>
+                            <input type="radio" class="form-control" id="skin" value="Skin 01" name="skins"><label id="optSkins">Amor</label>-->
+                            <button type="button" class=" form-control btn btn-success" data-toggle="modal" onclick="EscolherSkin('')" value="Aplicar HP" >Normal Skin</button>
+                            <button type="button" class=" form-control btn btn-success" data-toggle="modal" onclick="EscolherSkin('skin/harryPotter/pedras/')" value="Aplicar HP" >Harry Potter Skin</button>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default btn-success" id="btnSelecionarSkin">Selecionar</button>
-                    <button type="button" class="btn btn-default btn-default" data-dismiss="modal" id="btnCancelSelecionarSkin">Cancelar</button>
+                    <!--<button type="button" class="btn btn-default btn-success" id="btnSelecionarSkin">Selecionar</button>-->
+                    <button type="button" class="btn btn-default btn-default" data-dismiss="modal" id="btnCancelSelecionarSkin">Fechar</button>
                     <h4 id="salvando-skin-loading" class="hidden">Salvando Alterações...</h4>
                 </div>
             </div>
@@ -200,5 +202,10 @@
         
     </footer>
 </div>
+<script>
+        var EscolherSkin = function(path) {
+            window.localStorage["skin"] = path;
+        }
+    </script>
 </body>
 </html>

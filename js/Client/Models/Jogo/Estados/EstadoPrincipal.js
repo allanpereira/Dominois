@@ -39,7 +39,12 @@ var EstadoPrincipal = function(jogo) {
 
         //TODO: Workaround. Fix it.
         PedraFactory.ParaCadaPedraPossivel(function(pedra) {
-            game.load.image(pedra.sprite.nome, AssetsHelper.BuscarImagemPedra(pedra.sprite.nome));
+            var pathSkin = localStorage["skin"];
+            var nomePedra = pedra.sprite.nome;
+            if (pathSkin != null && pathSkin.length != 0) {
+                nomePedra = pathSkin.concat(nomePedra);
+            }            
+            game.load.image(pedra.sprite.nome, AssetsHelper.BuscarImagemPedra(nomePedra));
         });
     };
 

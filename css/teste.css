@@ -8,4 +8,6 @@
 }
 .cabecalho {text-align: center}
 
-
+#regras{
+    overflow: auto
+}

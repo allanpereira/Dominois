@@ -32,8 +32,10 @@ Jogada.prototype.AniMove=function (pedra, posini,posfim,tipomove) {
         var inicial;
         var final;         
         if(posini!=null && posfim!=null){
-           inicial = {x:posini.x,y:posini.y};
-           final =  {x:posfim.x,y:posfim.y};
+            inicial = {x:posini.x,y:posini.y};
+            final =  {x:posfim.x,y:posfim.y};
+            stone.x=inicial.x;
+            stone.y=inicial.y;
         }
         else if(posini!=null && posfim==null){
             inicial = {x:posini.x,y:posini.y};
