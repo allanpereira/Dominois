@@ -34,8 +34,6 @@ MaoPrincipal.prototype.RemoverPedra = function(domino, jogador) {
     var nome = String(domino.value1) + String(domino.value2);
     var pedraPos = this.pedras.map(function(x) {return x.nome; }).indexOf(nome);
     var pedraRmv = this.pedras[pedraPos];
-    
-    debugger;
 
     for (var i = 0; i < maoJogador.length; i++){
         if (nome == maoJogador[i].nome){

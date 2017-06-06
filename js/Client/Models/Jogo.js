@@ -2,6 +2,7 @@
 // Require Tela
 // Require Mesa
 // Require SpriteComprar
+// Require SpritePassar
 // Require MaoPrincipal
 
 //Classe
@@ -11,7 +12,7 @@ var Jogo = function(gameId){
     this.vez = false;
     this.iniciado = false;
     this.notificacao = new Notificacao().Configurar();
-    this.tela = new Tela(new Mesa(), new MaoPrincipal(), new SpriteComprar());
+    this.tela = new Tela(new Mesa(), new MaoPrincipal(), new SpriteComprar(), new SpritePassar());
     this.socketClient = new SocketClient(this);
 };
 
@@ -82,7 +83,7 @@ var boneyardCount = document.getElementById("boneyard");
 
 Jogo.prototype.AtualizarAreaDeCompra = function(size){
     boneyardCount.innerHTML = size + " pedras na área de compra.";
-}
+};
 
 // Troca de Estados
 Jogo.prototype.TrocarEstadoParaPartida = function(){

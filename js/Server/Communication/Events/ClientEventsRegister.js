@@ -11,6 +11,7 @@ class ClientEventsRegister{
         ClientEventsRegister.registerPlayerHasEntered(gameId, socket);
         ClientEventsRegister.registerMove(gameId, socket, io);
         ClientEventsRegister.registerTakeFromBoneyard(gameId, socket);
+        ClientEventsRegister.registerPass(gameId, socket, io);
     }
 
     static registerDisconnection(gameId, socket, disconnectionCallback, notifyPlayerLeaveCallback){
@@ -72,6 +73,21 @@ class ClientEventsRegister{
             .catch((err) => {
                 console.log(err);
                 socket.emit(EventosHelper.instance.eventosServer.enviaPedra, { success : false, error : err});
+            });
+        });
+    }
+
+    static registerPass(gameId, socket, io){
+        socket.on(EventosHelper.instance.eventosClient.passadaAVez, function(req) {
+            let userId = socket.request.session.user.id;
+            RoomService.pass(req, userId, DB)
+            .then((data) => {
+                console.log(`The player ${data.player.id} has passed his turn.`);
+                io.emit(EventosHelper.instance.eventosServer.jogadaPassadaComSucesso, { success : true, data : data});
+            })
+            .catch((err) => {
+                console.log(err);
+                socket.emit(EventosHelper.instance.eventosServer.jogadaPassadaComSucesso, { success : false, error : err});
             });
         });
     }

@@ -10,6 +10,7 @@ Turno.prototype.AnalisarPedrasJogador = function (jogo) {
         possuiPedra = movimentos.length == 0;
     });
     jogo.tela.spriteComprar.TornarSpriteClicavel(jogo, possuiPedra);
+    jogo.tela.spritePassar.TornarSpriteClicavel(jogo, possuiPedra);
 }
 
 Turno.prototype.Iniciar = function(jogo) {
@@ -18,6 +19,7 @@ Turno.prototype.Iniciar = function(jogo) {
 
 Turno.prototype.LimparEventos = function(jogo) {
     jogo.tela.spriteComprar.RemoverEventoClick();
+    jogo.tela.spritePassar.RemoverEventoClick();
     jogo.jogador.ParaCadaPedra(function(pedra) {
         pedra.RemoverEventoClick();
     });

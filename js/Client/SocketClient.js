@@ -17,6 +17,7 @@ var SocketClient = function(jogo){
         if(!result.success) return;
         console.log("[CLIENT] A área de compra foi alterada!");
         new AoAlterarAreaDeCompra().Disparar(jogo, result.data);
+
     });
 
     this.socket.on(EventosHelper.eventosServer.entradaDeJogador, function (result) {
@@ -44,6 +45,12 @@ var SocketClient = function(jogo){
     this.socket.on(EventosHelper.eventosServer.vez, function (result) {
         new AoMudarVez().Disparar(jogo, result.data);
     });
+
+    this.socket.on(EventosHelper.eventosServer.jogadaPassadaComSucesso, function (result) {
+        if(!result.success)  return;
+        console.log("[CLIENT] Jogada passada com sucesso!");
+        new AoPassarJogadaComSucesso().Disparar(jogo, result.data);
+    });
 };
 
 SocketClient.prototype.RegistrarEntrada = function(gameId) {
@@ -59,4 +66,9 @@ SocketClient.prototype.RealizarJogada = function(gameId, value1, value2, moveTyp
 SocketClient.prototype.comprarPedra = function(gameId) {
     console.log("[CLIENT] Solicitando pedra ao servidor...");
     this.socket.emit(EventosHelper.eventosClient.pedirPedra, {gameId : gameId});
+};
+
+SocketClient.prototype.PassarAVez = function(gameId, moveType) {
+    console.log("[CLIENT] Resgistrando que o jogador passou no servidor...");
+    this.socket.emit(EventosHelper.eventosClient.passadaAVez, { gameId : gameId, moveType: moveType });
 };

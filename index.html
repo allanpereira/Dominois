@@ -1,16 +1,44 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
-    <link type="text/css" rel="stylesheet" href="css/style.css">
-    <title>Salas de Jogo - Dominois</title>
+    <title>Menu Principal - Dominois</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/testestrap.css" rel="stylesheet">
+    <link href="css/teste.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script type="text/javascript" src="js/Client/Plugins/jquery.min.js"></script>
+    <script type="text/javascript" src="js/Client/Plugins/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jsdomenu.js"></script>
+    <script type="text/javascript" src="js/Client/load_rooms.js"></script>
+    <script type="text/javascript" src="js/Client/create_room.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body>
     <div class="container">
+    <header class="row">
+    	<div class="row imglogo">
+        </div>
+    	<div class="row" id="nomeusu">
+            <div role="main" class="col-md-8 maxheight100">
+        	    <i class="material-icons md-48">person</i><label>Bem vindo, Vitor!</label>
+            </div>
+        </div>
+	<img src="./img/logo.jpeg" alt="logo">
+    </header>
+    <div class="row">
+    <div role="main" class="col-md-8 col-md-push-3">
+    	<div class="row conteudo" id="aba01">
+        <h1> SALAS DE JOGO </h1>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-11" id="salas">
                 <div class="alert alert-danger hidden">
                     <h4>Não foi possível carregar as salas disponíveis.</h4><br>
                     <button id="btnReload" class="btn btn-primary">Recarregar</button>
@@ -22,11 +50,10 @@
                 <h4 id="no-rooms" class="hidden">Não há salas disponíveis para entrar. Crie um jogo!</h4>
                 <br>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-11" id="salas">
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createGameModal">Criar Jogo</button>
             </div>
         </div>
-    </div>
 
     <div class="modal fade" id="createGameModal" data-backdrop="static" data-keyboard="false" role="dialog">
         <div class="modal-dialog">
@@ -64,12 +91,114 @@
                     <h4 id="create-room-loading" class="hidden">Salvando...</h4>
                 </div>
             </div>
-        </div>
+        </div> 
     </div>
-    
-    <script type="text/javascript" src="js/Client/Plugins/jquery.min.js"></script>
-    <script type="text/javascript" src="js/Client/Plugins/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/Client/load_rooms.js"></script>
-    <script type="text/javascript" src="js/Client/create_room.js"></script>
+        </div>
+        <div class="row conteudo" id="aba02">
+                <h1> Ranking de Jogadores </h1>
+                 <!-- <ul id="lista">
+                 </ul> -->
+                 <div class="row">
+
+                    <div class="col-md-11" id="salas">
+                        <table id="tabelaa" border=1 align="center" bordercolor="#C0C0C0">
+                            <tr>
+                                <th width=50>Colocação</th>
+                                <th width=400 class="cabecalho">Nome</th>
+                                <th width=100 class="cabecalho">Pontuação</th>
+                                <th width=50 class="cabecalho">Nível</th>
+                            </tr>
+                            <tr>
+                                <td>1º</td>
+                                <td>Maria Joao do Nascimento</td>
+                                <td>1000</td>
+                                <td>5</td>
+                            </tr>
+                            <tr>
+                                <td>2º</td>
+                                <td>Ricardo Silva</td>
+                                <td>900</td>
+                                <td>5</td>
+                            </tr>
+                            <tr>
+                                <td>3º</td>
+                                <td>Joao Nascimento</td>
+                                <td>600</td>
+                                <td>3</td>
+                            </tr>
+                            <tr>
+                                <td>4º</td>
+                                <td>Bianca Reis</td>
+                                <td>100</td>
+                                <td>1</td>
+                            </tr>
+                        </table>
+                    </div>
+                 </div>
+                 <button onclick="atualizalista()" type="button" class="btn btn-success" >Atualizar</button>
+                 <!-- <button onclick="atualizalista()">Atualizar</button> </h1> -->
+        </div>
+        <div class="row conteudo" id="aba03">
+            <h1>Regras do Jogo</h1>
+			<h3>Você sabe jogar dominó ?</h3>
+			<p>O objetivo do jogo é colocar todas a suas pedras na mesa antes dos demais.Somente o primeiro que colocar todas as pedras na mesa ganhará pontos pela partida.</p>
+			<h3>Começando</h3>
+			<p>Começará o jogador com a peça dobrada mais alta. Se não houver peça dobrada, começa o jogador com a peça mais alta. O jogador seguinte deverá colocar uma pedra que coincida com as pedras jogadas.</p>
+			<h3>O Dorme</h3>
+			<p>Será o lugar em que as pedras que sobrarem serão guardadas. Caso o jogador não possuir pedras para colocar na mesa, o jogador será obrigado a comprar uma pedra do dorme. Caso não haja peças no dorme, o jogador passará a vez.</p>
+			<h3>Fim de jogo</h3>
+			<p>Ganhará o jogador que colocar todas as pedras primeiro na mesa.</p>
+			<h3>Fecha</h3>
+			<p>Se nenhum jogador conseguir colocar mais pedras no jogo, ganhará o jogador ou jogadores com menos pedras.</p>
+			<h3>Pontuação</h3>
+			<p>O jogador vencedor ganhará 10 pontos.</p>
+        </div>
+        <div class="row conteudo" id="aba04">
+        <h1> Configurações </h1>
+          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createConfigModal">Alterar Skin</button>
+            <div class="modal fade" id="createConfigModal" data-backdrop="static" data-keyboard="false" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                         <div class="modal-header">
+                                 <h4>Alterar Skin</h4>
+                         </div>
+                <div class="modal-body">
+                    <form role="form">
+                        <div id="name-group" class="form-group has-feedback">
+                            <label for="name">Selecione a Skin</label>
+                            <input type="radio" class="form-control" id="skin" value="Skin 01" name="skins" checked><label id="optSkins">Padrão</label>
+                            <input type="radio" class="form-control" id="skin" value="Skin 01" name="skins"><label id="optSkins">Paz</label>
+                            <input type="radio" class="form-control" id="skin" value="Skin 01" name="skins"><label id="optSkins">Azul</label>
+                            <input type="radio" class="form-control" id="skin" value="Skin 01" name="skins"><label id="optSkins">Amor</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-success" id="btnSelecionarSkin">Selecionar</button>
+                    <button type="button" class="btn btn-default btn-default" data-dismiss="modal" id="btnCancelSelecionarSkin">Cancelar</button>
+                    <h4 id="salvando-skin-loading" class="hidden">Salvando Alterações...</h4>
+                </div>
+            </div>
+        </div> 
+    </div>
+        
+        </div>
+                   
+    </div>
+    <aside role="complementary" class="col-md-4 col-md-pull-8">
+         <div class="row menu"	>
+        <li><a href="#aba01"><i class="material-icons md-48">add</i><h4>Salas de Jogo</h4></a></li>
+        <li><a href="#aba02"><i class="material-icons md-48">navigation</i><h4>Ranking</h4></a></li>
+        <li><a href="#aba03"><i class="material-icons md-48">book</i><h4>Regras</h4></a></li>
+        <li><a href="#aba04"><i class="material-icons md-48">settings</i><h4>Configurações</h4></a></li>
+        </div>
+    </aside>
+</div>
+
+    <footer class="row">
+    <h4> Created by DominoisTeam. All rights reserved. </h4>
+        
+    </footer>
+</div>
 </body>
 </html>

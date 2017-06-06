@@ -11,14 +11,16 @@ var EventosHelper = (function() {
         saidaDeJogador : "saidaDeJogador",
         jogoIniciado : "jogoIniciado",
         enviaPedra : "enviaPedra",
-        vez : "vez"
+        vez : "vez",
+        jogadaPassadaComSucesso: "jogadaPassadaComSucesso"
     }
         
     var _eventosClient = {
         registrarEntrada : "registrarEntrada",
         jogadaRealizada: "jogadaRealizada",
         pedirPedra: "pedirPedra",
-        areaDeCompraAlterada : "boneyardChanged"
+        areaDeCompraAlterada : "boneyardChanged",
+        passadaAVez: "passadaAVez"
     }
     
     var _eventosSocketIo = {
