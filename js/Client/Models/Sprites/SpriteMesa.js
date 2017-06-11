@@ -19,15 +19,15 @@ var SpriteMesa = function() {
 
 SpriteMesa.prototype.Jogar = function(moveType, ladoPedra, pedra, pedraAnterior, mesa) {
 	var jogadaSprite = this.PrepararJogada(moveType, ladoPedra, pedraAnterior, mesa);
-	this.MoverPedra(jogadaSprite, pedra);
+	this.MoverPedra(jogadaSprite, pedra, pedraAnterior);
 }
 
 SpriteMesa.prototype.PrepararJogada = function(moveType, ladoPedra, pedraAnterior, mesa) {
 	switch (moveType) {
 		case MoveType.FirstDomino:
-			this.proximaJogadaEsquerda = new TentarJogarParaEsquerdaOuParaBaixo();
-			this.proximaJogadaDireita = new TentarJogarParaDireitaOuParaCima();
-			return new PrimeiraJogada().Jogar(ladoPedra, pedraAnterior);
+			this.proximaJogadaEsquerda = new JogarParaEsquerdaOuParaBaixo();
+			this.proximaJogadaDireita = new JogarParaDireitaOuParaCima();
+			return new PrimeiraJogada().Jogar(ladoPedra);
 		
 		case MoveType.LeftSide:
 			return this.proximaJogadaEsquerda.Jogar(this.proximaJogadaEsquerda, ladoPedra, pedraAnterior, mesa);;
@@ -38,10 +38,14 @@ SpriteMesa.prototype.PrepararJogada = function(moveType, ladoPedra, pedraAnterio
 }
 
 SpriteMesa.prototype.MoverPedra = function(jogadaSprite, pedra, pedraAnterior) {
-	pedra.sprite.phaserSprite.position.x = pedraAnterior.sprite.phaserSprite.position.x;
-	pedra.sprite.phaserSprite.position.y = pedraAnterior.sprite.phaserSprite.position.y;
+
+	if (pedraAnterior != null) {
+		pedra.sprite.phaserSprite.position.x = pedraAnterior.sprite.phaserSprite.position.x;
+		pedra.sprite.phaserSprite.position.y = pedraAnterior.sprite.phaserSprite.position.y;
+	}
 	
-	pedra.sprite.phaserSprite.rotation = jogadaSprite.rotacaoPedra;
+	debugger;
+	pedra.sprite.phaserSprite.rotation = jogadaSprite.rotacaoSprite;
 	pedra.sprite.phaserSprite.position.x = jogadaSprite.x;
 	pedra.sprite.phaserSprite.position.y = jogadaSprite.y;
 }
