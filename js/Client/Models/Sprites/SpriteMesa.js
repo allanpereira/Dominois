@@ -13,6 +13,7 @@ var SpriteMesa = function() {
         largura: 700
     };
 
+	this.phaserSprite;
 	this.proximaJogadaEsquerda;
 	this.proximaJogadaDireita;
 };
@@ -38,15 +39,16 @@ SpriteMesa.prototype.PrepararJogada = function(moveType, ladoPedra, pedraAnterio
 }
 
 SpriteMesa.prototype.MoverPedra = function(jogadaSprite, pedra, pedraAnterior) {
-
 	if (pedraAnterior != null) {
 		pedra.sprite.phaserSprite.position.x = pedraAnterior.sprite.phaserSprite.position.x;
 		pedra.sprite.phaserSprite.position.y = pedraAnterior.sprite.phaserSprite.position.y;
 	}
 	
-	debugger;
-	pedra.sprite.phaserSprite.rotation = jogadaSprite.rotacaoSprite;
+	pedra.sprite.phaserSprite.angle = jogadaSprite.rotacaoSprite;
 	pedra.sprite.phaserSprite.position.x = jogadaSprite.x;
 	pedra.sprite.phaserSprite.position.y = jogadaSprite.y;
 }
 
+SpriteMesa.prototype.CarregarSpritePhaser = function() {
+	this.phaserSprite = game.add.sprite(this.posicao.x, this.posicao.y, this.nome);
+}

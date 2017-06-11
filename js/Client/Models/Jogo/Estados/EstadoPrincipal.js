@@ -54,7 +54,7 @@ var EstadoPrincipal = function(jogo) {
     };
 
      this.create = function() {
-        game.add.sprite(jogo.tela.mesa.sprite.posicao.x, jogo.tela.mesa.sprite.posicao.y, jogo.tela.mesa.sprite.nome);
+        jogo.tela.mesa.sprite.CarregarSpritePhaser();
         jogo.tela.spriteComprar.CarregarSpritePhaser();
         jogo.tela.spritePassar.CarregarSpritePhaser();
         jogo.jogador.ParaCadaPedra(function(pedra) {
