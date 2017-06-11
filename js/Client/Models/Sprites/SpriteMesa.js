@@ -16,34 +16,34 @@ var SpriteMesa = function() {
     this.posicaoPedraInicial = { x: 330, y: 220 };
     this.posicaoPedraEsquerda = JSON.parse(JSON.stringify(self.posicaoPedraInicial));
     this.posicaoPedraDireita = JSON.parse(JSON.stringify(self.posicaoPedraInicial));
-    
-    this.JogarPrimeiraPedra = function(jogada) {
-        self.JogarPedra(jogada, self.AplicarDesvioSprite(jogada, self.posicaoPedraInicial));
-    }
-
-    this.JogarPedraEsquerda = function(jogada) {		
-		self.posicaoPedraEsquerda.x = self.posicaoPedraEsquerda.x - jogada.tamanhoHorizontal;
-        self.JogarPedra(jogada, self.AplicarDesvioSprite(jogada, self.posicaoPedraEsquerda));
-    }
-    
-    this.JogarPedraDireita = function(jogada) {
-		self.posicaoPedraDireita.x = self.posicaoPedraDireita.x + jogada.tamanhoHorizontal;
-        self.JogarPedra(jogada, self.AplicarDesvioSprite(jogada, self.posicaoPedraDireita));
-    }
-	
-	this.AplicarDesvioSprite = function (jogada, posicao) {
-		return { x: posicao.x + jogada.desvioSprite.x, y: posicao.y + jogada.desvioSprite.y };
-	}
-	
-	//this.CalcularPosicaoPedra = function(jogada, posicao) {		
-	//	posicao = self.AplicarDesvioSprite(jogada, posicao);
-	//	return posicao;
-	//}
-	    
-    this.JogarPedra = function(jogada, posicao) {		
-        jogada.pedra.sprite.phaserSprite.position.x = posicao.x;
-        jogada.pedra.sprite.phaserSprite.position.y = posicao.y;
-		jogada.pedra.sprite.phaserSprite.angle = jogada.rotacaoSprite;
-    }
 };
+
+SpriteMesa.prototype.Jogar = function(moveType, ladoPedra, pedra, pedraAnterior, mesa) {
+	var jogadaSprite = this.PrepararJogada(moveType, ladoPedra, pedraAnterior, mesa);
+	this.MoverPedra(jogadaSprite, pedra);
+}
+
+SpriteMesa.prototype.PrepararJogada = function(moveType, ladoPedra, pedraAnterior, mesa) {
+	switch (moveType) {
+		case MoveType.FirstDomino:
+			this.proximaJogadaEsquerda = new TentarJogarParaEsquerdaOuParaBaixo();
+			this.proximaJogadaDireita = new TentarJogarParaDireitaOuParaCima();
+			return new PrimeiraJogada().Jogar(ladoPedra, pedraAnterior);
+		
+		case MoveType.LeftSide:
+			return this.proximaJogadaEsquerda.Jogar(this.proximaJogadaEsquerda, ladoPedra, pedraAnterior, mesa);;
+		
+		case MoveType.RigthSide:
+			return this.proximaJogadaDireita.Jogar(jogarSpritePedra, ladoPedra, pedraAnterior, mesa);;
+	}
+}
+
+SpriteMesa.prototype.MoverPedra = function(jogadaSprite, pedra, pedraAnterior) {
+	pedra.sprite.phaserSprite.position.x = pedraAnterior.sprite.phaserSprite.position.x;
+	pedra.sprite.phaserSprite.position.y = pedraAnterior.sprite.phaserSprite.position.y;
+	
+	pedra.sprite.phaserSprite.rotation = jogadaSprite.rotacaoPedra;
+	pedra.sprite.phaserSprite.position.x = jogadaSprite.x;
+	pedra.sprite.phaserSprite.position.y = jogadaSprite.y;
+}
 

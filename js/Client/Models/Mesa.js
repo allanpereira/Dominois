@@ -33,13 +33,35 @@ Mesa.prototype.VerificarMovimentosPossiveisParaPedra = function(pedra) {
 }
 
 Mesa.prototype.JogarPedra = function(pedra, moveType) {
+    debugger;
 
-    var baseJogada = {pedra: pedra, moveType: moveType, mesa: this };
-    var jogada = new Jogada(MetodoSpriteMesa(MetodoMesa(TamanhoHorizontal(DesvioSprite(RotacaoPedra(ValoresMesa(baseJogada)))))));
-    
-    var posini ={x:pedra.sprite.phaserSprite.x,y:pedra.sprite.phaserSprite.y};//variável temporária apenas para testar a animação.
-   
-    jogada.EfetuarJogada();
+    // variável temporária apenas para testar a animação.
+    var posini = { x: pedra.sprite.phaserSprite.x, y: pedra.sprite.phaserSprite.y };
 
-    jogada.AniMove(pedra,posini,null,1);//estou chamando depois do EfetuarJogada pois, assim, o sprite fica com a posição final e passo a posição inicial guardado na variável posini
+    var jogadaMesa;
+	
+	switch (moveType) {
+		case MoveType.FirstDomino:
+			jogadaMesa;
+			this.valorPonta.esquerda = pedra.valorSuperior;
+			this.valorPonta.direita = pedra.valorInferior;
+			this.pedras.esquerda(pedra);
+			this.pedras.direita(pedra);
+			break;
+		case MoveType.LeftSide:
+			jogadaMesa = new TentarJogarNaEsquerdaMesa().Jogar();
+			this.valorPonta.esquerda = jogadaMesa.valorPonta;
+			this.pedras.esquerda(pedra);
+			break;
+		case MoveType.RightSide:
+			jogadaMesa = new TentarJogarNaDeireitaMesa().Jogar();
+			this.valorPonta.direita = jogadaMesa.valorPonta;
+			this.pedras.direita(pedra);
+			break;
+	}
+
+    this.sprite.Jogar(moveType, jogadaMesa.ladoPedra, jogadaMesa.pedraAnterior, this);
+
+//estou chamando depois do EfetuarJogada pois, assim, o sprite fica com a posição final e passo a posição inicial guardado na variável posini
+    jogada.AniMove(pedra,posini,null,1);
 }
