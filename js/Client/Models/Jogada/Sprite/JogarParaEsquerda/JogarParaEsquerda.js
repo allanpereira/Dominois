@@ -7,6 +7,6 @@ JogarParaEsquerda.prototype.Jogar = function(ladoPedra, pedra) {
 		case LadoPedra.Superior:
 			return new JogarValorSuperiorParaEsquerda().Jogar(pedra);
 		case LadoPedra.Inferior:
-			return new JogarValorInferiorParaEsquerda().Jogar(pedra);;
+			return new JogarValorInferiorParaEsquerda().Jogar(pedra);
 	}
 }

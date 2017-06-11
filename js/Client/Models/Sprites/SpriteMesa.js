@@ -31,22 +31,20 @@ SpriteMesa.prototype.PrepararJogada = function(moveType, ladoPedra, pedraAnterio
 			return new PrimeiraJogada().Jogar(ladoPedra);
 		
 		case MoveType.LeftSide:
-			return this.proximaJogadaEsquerda.Jogar(this.proximaJogadaEsquerda, ladoPedra, pedraAnterior, mesa);;
+			return this.proximaJogadaEsquerda.Jogar(this.proximaJogadaEsquerda, ladoPedra, pedraAnterior, mesa);
 		
 		case MoveType.RigthSide:
-			return this.proximaJogadaDireita.Jogar(jogarSpritePedra, ladoPedra, pedraAnterior, mesa);;
+			return this.proximaJogadaDireita.Jogar(jogarSpritePedra, ladoPedra, pedraAnterior, mesa);
 	}
 }
 
-SpriteMesa.prototype.MoverPedra = function(jogadaSprite, pedra, pedraAnterior) {
-	if (pedraAnterior != null) {
-		pedra.sprite.phaserSprite.position.x = pedraAnterior.sprite.phaserSprite.position.x;
-		pedra.sprite.phaserSprite.position.y = pedraAnterior.sprite.phaserSprite.position.y;
-	}
-	
-	pedra.sprite.phaserSprite.angle = jogadaSprite.rotacaoSprite;
+SpriteMesa.prototype.MoverPedra = function(jogadaSprite, pedra, pedraAnterior) {		
 	pedra.sprite.phaserSprite.position.x = jogadaSprite.x;
 	pedra.sprite.phaserSprite.position.y = jogadaSprite.y;
+
+	debugger;	
+	pedra.sprite.phaserSprite.angle = jogadaSprite.rotacaoSprite;
+	console.log(pedra);
 }
 
 SpriteMesa.prototype.CarregarSpritePhaser = function() {
