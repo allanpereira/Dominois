@@ -1,5 +1,11 @@
 var JogarEmPedraEmPeValorSuperiorParaEsquerda = function() {}
 
 JogarEmPedraEmPeValorSuperiorParaEsquerda.prototype.Jogar = function(pedra) {
-	return new JogadaSprite(0, 0, RotacaoSprite.Noventa);
+	console.log(this);
+	return new JogadaSprite
+	(
+		pedra.sprite.phaserSprite.position.x,
+		pedra.sprite.phaserSprite.position.y,
+		RotacaoSprite.Noventa
+	);
 }
