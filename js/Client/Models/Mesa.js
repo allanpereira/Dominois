@@ -20,7 +20,7 @@ Mesa.prototype.VerificarMovimentosPossiveisParaPedra = function(pedra) {
     
     var movimentosPossiveis = [];
  
-    if (this.pedrasJogadas.length == 0) {
+    if (this.pedras.esquerda.length == 0) {
         movimentosPossiveis.push(MoveType.FirstDomino);
         return movimentosPossiveis;
     }
@@ -51,18 +51,18 @@ Mesa.prototype.JogarPedra = function(pedra, moveType) {
 			jogadaMesa = new PrimeiraJogadaMesa().Jogar(pedra);
 			this.valorPonta.esquerda = pedra.valorSuperior;
 			this.valorPonta.direita = pedra.valorInferior;
-			this.pedras.esquerda(pedra);
-			this.pedras.direita(pedra);
+			this.pedras.esquerda.push(pedra);
+			this.pedras.direita.push(pedra);
 			break;
 		case MoveType.LeftSide:
 			jogadaMesa = new TentarJogarNaEsquerdaMesa().Jogar(pedra, this.valorPonta.esquerda);
 			this.valorPonta.esquerda = jogadaMesa.valorPonta;
-			this.pedras.esquerda(pedra);
+			this.pedras.esquerda.push(pedra);
 			break;
 		case MoveType.RightSide:
 			jogadaMesa = new TentarJogarNaDeireitaMesa().Jogar(pedra, this.valorPonta.direita);
 			this.valorPonta.direita = jogadaMesa.valorPonta;
-			this.pedras.direita(pedra);
+			this.pedras.direita.push(pedra);
 			break;
 	}
 
