@@ -1,28 +1,28 @@
 var TentarJogarNaEsquerdaMesa = function() {}
 
-TentarJogarNaEsquerdaMesa.prototype.Jogar = function(pedra, valorEsquerda) {
-  return this.TentarJogarDeitada(pedra, valorEsquerda);
+TentarJogarNaEsquerdaMesa.prototype.Jogar = function(pedra, pedraAnterior, valorEsquerda) {
+  return this.TentarJogarDeitada(pedra, pedraAnterior, valorEsquerda);
 }
 
-TentarJogarNaEsquerdaMesa.prototype.JogarDeitada = function(pedra, valorEsquerda) {
+TentarJogarNaEsquerdaMesa.prototype.TentarJogarDeitada = function(pedra, pedraAnterior, valorEsquerda) {
     try {
-        return new TentarJogarDeitadaNaEsquerdaMesa().Jogar(pedra, valorEsquerda);
+        return new TentarJogarDeitadaNaEsquerdaMesa().Jogar(pedra, pedraAnterior, valorEsquerda);
     } catch (ex) {
-        this.TentarJogarSuperior(pedra, valorEsquerda);
+        return this.TentarJogarSuperior(pedra, pedraAnterior, valorEsquerda);
     }
 }
 
-TentarJogarNaEsquerdaMesa.prototype.JogarSuperior = function(pedra, valorEsquerda) {
+TentarJogarNaEsquerdaMesa.prototype.TentarJogarSuperior = function(pedra, pedraAnterior, valorEsquerda) {
     try {
-        return new TentarJogarSuperiorNaEsquerdaMesa().Jogar(pedra, valorEsquerda);
+        return new TentarJogarSuperiorNaEsquerdaMesa().Jogar(pedra, pedraAnterior, valorEsquerda);
     } catch  (ex) {
-        this.TentarJogarInferior(pedra, valorEsquerda);
+        return this.TentarJogarInferior(pedra, pedraAnterior, valorEsquerda);
     }
 }
 
-TentarJogarNaEsquerdaMesa.prototype.JogarInferior = function(pedra, valorEsquerda) {
+TentarJogarNaEsquerdaMesa.prototype.TentarJogarInferior = function(pedra, pedraAnterior, valorEsquerda) {
     try {
-        return new TentarJogarInferiorNaEsquerdaMesa().Jogar(pedra, valorEsquerda);
+        return new TentarJogarInferiorNaEsquerdaMesa().Jogar(pedra, pedraAnterior, valorEsquerda);
     } catch  (ex)  {
         throw new Exception("Jogada inválida");
     }

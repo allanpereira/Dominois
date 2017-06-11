@@ -16,8 +16,7 @@ var Mesa = function() {
     }
 }
 
-Mesa.prototype.VerificarMovimentosPossiveisParaPedra = function(pedra) {
-    
+Mesa.prototype.VerificarMovimentosPossiveisParaPedra = function(pedra) {    
     var movimentosPossiveis = [];
  
     if (this.pedras.esquerda.length == 0) {
@@ -53,17 +52,18 @@ Mesa.prototype.JogarPedra = function(pedra, moveType) {
 			this.pedras.direita.push(pedra);
 			break;
 		case MoveType.LeftSide:
-			jogadaMesa = new TentarJogarNaEsquerdaMesa().Jogar(pedra, this.valorPonta.esquerda);
+			jogadaMesa = new TentarJogarNaEsquerdaMesa().Jogar(pedra, this.pedras.esquerda[this.pedras.esquerda.length - 1], this.valorPonta.esquerda);
 			this.valorPonta.esquerda = jogadaMesa.valorPonta;
 			this.pedras.esquerda.push(pedra);
 			break;
 		case MoveType.RightSide:
-			jogadaMesa = new TentarJogarNaDeireitaMesa().Jogar(pedra, this.valorPonta.direita);
+			jogadaMesa = new TentarJogarNaDireitaMesa().Jogar(pedra, this.pedras.direita[this.pedras.direita.length - 1] ,this.valorPonta.direita);
 			this.valorPonta.direita = jogadaMesa.valorPonta;
 			this.pedras.direita.push(pedra);
 			break;
 	}
 
+    debugger;
     this.sprite.Jogar(moveType, jogadaMesa.ladoPedra, pedra, jogadaMesa.pedraAnterior, this);
 
     //estou chamando depois do EfetuarJogada pois, assim, o sprite fica com a posição final e passo a posição inicial guardado na variável posini
