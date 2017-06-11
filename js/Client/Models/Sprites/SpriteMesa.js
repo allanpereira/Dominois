@@ -12,8 +12,7 @@ var SpriteMesa = function() {
         altura: 500,
         largura: 700
     };
-    
-    this.posicaoPedraInicial = { x: 330, y: 220 };
+
 	this.proximaJogadaEsquerda;
 	this.proximaJogadaDireita;
 };
