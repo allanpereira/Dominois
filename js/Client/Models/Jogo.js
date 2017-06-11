@@ -55,13 +55,13 @@ Jogo.prototype.AlterarTurno = function(turns) {
 
 Jogo.prototype.MoverPedraParaMesa = function(domino, moveType) {
 	var pedra = this.jogador.BuscarPedraPorValores(domino.value1, domino.value2);
-    this.tela.maoPrincipal.RemoverPedra(domino, this.jogador);
-	
+
     if (pedra == null) {
         pedra = PedraFactory.CriarPedra(domino.value1, domino.value2);
         pedra.sprite.CarregarSpritePhaser({x: 0, y: 0});
     }
 	
+    //this.tela.maoPrincipal.RemoverPedra(domino, this.jogador);
     this.tela.mesa.JogarPedra(pedra, moveType);
     console.log("[JOGO] A pedra " + domino.value1 + "|" + domino.value2 + " foi jogada. MoveType: " + moveType);
 };

@@ -25,13 +25,13 @@ Mesa.prototype.VerificarMovimentosPossiveisParaPedra = function(pedra) {
         return movimentosPossiveis;
     }
     
-    if ((pedra.valorSuperior == this.valorEsquerda) ||
-        (pedra.valorInferior == this.valorEsquerda)) {
+    if ((pedra.valorSuperior == this.valorPonta.esquerda) ||
+        (pedra.valorInferior == this.valorPonta.esquerda)) {
             movimentosPossiveis.push(MoveType.LeftSide);
     }
     
-    if ((pedra.valorSuperior == this.valorDireita) ||
-        (pedra.valorInferior == this.valorDireita)) {
+    if ((pedra.valorSuperior == this.valorPonta.direita) ||
+        (pedra.valorInferior == this.valorPonta.direita)) {
             movimentosPossiveis.push(MoveType.RightSide);
     }
 
@@ -39,8 +39,6 @@ Mesa.prototype.VerificarMovimentosPossiveisParaPedra = function(pedra) {
 }
 
 Mesa.prototype.JogarPedra = function(pedra, moveType) {
-    debugger;
-
     // variável temporária apenas para testar a animação.
     var posini = { x: pedra.sprite.phaserSprite.x, y: pedra.sprite.phaserSprite.y };
 
@@ -66,8 +64,8 @@ Mesa.prototype.JogarPedra = function(pedra, moveType) {
 			break;
 	}
 
-    this.sprite.Jogar(moveType, jogadaMesa.ladoPedra, jogadaMesa.pedraAnterior, this);
+    this.sprite.Jogar(moveType, jogadaMesa.ladoPedra, pedra, jogadaMesa.pedraAnterior, this);
 
-//estou chamando depois do EfetuarJogada pois, assim, o sprite fica com a posição final e passo a posição inicial guardado na variável posini
-    jogada.AniMove(pedra,posini,null,1);
+    //estou chamando depois do EfetuarJogada pois, assim, o sprite fica com a posição final e passo a posição inicial guardado na variável posini
+    //jogada.AniMove(pedra,posini,null,1);
 }
