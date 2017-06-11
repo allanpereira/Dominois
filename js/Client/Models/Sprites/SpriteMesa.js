@@ -14,8 +14,8 @@ var SpriteMesa = function() {
     };
     
     this.posicaoPedraInicial = { x: 330, y: 220 };
-    this.posicaoPedraEsquerda = JSON.parse(JSON.stringify(self.posicaoPedraInicial));
-    this.posicaoPedraDireita = JSON.parse(JSON.stringify(self.posicaoPedraInicial));
+	this.proximaJogadaEsquerda;
+	this.proximaJogadaDireita;
 };
 
 SpriteMesa.prototype.Jogar = function(moveType, ladoPedra, pedra, pedraAnterior, mesa) {
