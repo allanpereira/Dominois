@@ -62,7 +62,7 @@ Mesa.prototype.JogarPedra = function(pedra, moveType) {
 			this.pedras.direita.push(pedra);
 			break;
 	}
-
+    
     debugger;
     this.sprite.Jogar(moveType, jogadaMesa.ladoPedra, pedra, jogadaMesa.pedraAnterior, this);
 
