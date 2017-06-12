@@ -1,10 +1,10 @@
 var JogarDeitadaParaBaixo = function() {}
 
 JogarDeitadaParaBaixo.prototype.Jogar = function(pedra) {
-  return new JogadaSprite
-  (
-    pedra.sprite.spritePhaser.position.x + (pedra.sprite.largura*1.5),
-    pedra.sprite.spritePhaser.position.y + (pedra.sprite.altura),
-    Rotacao.Noventa
-  );
+	switch (pedra.sprite.rotacaoSprite) {
+        case RotacaoSprite.NaoRotacionar:
+            return new JogarEmPedraZeroDeitadaParaBaixo().Jogar(pedra);
+        case RotacaoSprite.CentoEOitenta:
+            return new JogarEmPedraCentoEOitentaDeitadaParaBaixo().Jogar(pedra);
+    }
 }

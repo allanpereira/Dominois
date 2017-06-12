@@ -6,10 +6,10 @@ JogarParaCima.prototype.Jogar = function(ladoPedra, pedra) {
 			return new JogarDeitadaParaCima().Jogar(pedra);
 			break;
 		case LadoPedra.Superior:
-			return new JogarValorSuperiorParaDireita().Jogar(pedra);
+			return new JogarValorSuperiorParaCima().Jogar(pedra);
 			break;
 		case LadoPedra.Inferior:
-			return new JogarValorInferiorParaDireita().Jogar(pedra);
+			return new JogarValorInferiorParaCima().Jogar(pedra);
 			break;
 	}
 }

@@ -17,21 +17,29 @@
 
     <div id="game"></div>
     
+	<!--  Shared -->
     <script type="text/javascript" src="/js/Shared/Helpers/EventosHelper.js"></script>
     <script type="text/javascript" src="/js/Shared/MoveType.js"></script>
 
+	<!-- ========================== Helpers ========================== -->
     <script type="text/javascript" src="/js/Client/Helpers/StringHelper.js"></script>
     <script type="text/javascript" src="/js/Client/Helpers/AssetsHelper.js"></script>
     <script type="text/javascript" src="/js/Client/Helpers/LadoPedra.js"></script>
     <script type="text/javascript" src="/js/Client/Helpers/RotacaoSprite.js"></script>
 
+	<!-- ========================== Factories ========================== -->
     <script type="text/javascript" src="/js/Client/Factories/PedraFactory.js"></script>
 
+	<!-- ========================== Controllers ========================== -->
     <script type="text/javascript" src="/js/Client/Controllers/MaoPrincipal.js"></script>
 
+	
+	<!-- ========================== Models ========================== -->
     <script type="text/javascript" src="/js/Client/Models/Sprites/SpritePedra.js"></script>    
     <script type="text/javascript" src="/js/Client/Models/Sprites/SpriteMesa.js"></script>    
     <script type="text/javascript" src="/js/Client/Models/Sprites/SpriteComprar.js"></script>
+	
+	<!-- ------------------------------- Models/Sprites ------------------------------- -->
     <script type="text/javascript" src="/js/Client/Models/Sprites/TornarSpriteClicavel.js"></script>
     <script type="text/javascript" src="/js/Client/Models/Sprites/TornarSpriteClicavel/TornarCompraClicavel.js"></script>
     <script type="text/javascript" src="/js/Client/Models/Sprites/TornarSpriteClicavel/TornarPedraClicavel.js"></script>    
@@ -40,11 +48,14 @@
     <script type="text/javascript" src="/js/Client/Models/Sprites/TornarSpriteClicavel/TornarPedraClicavel/EscolherEmQualOpcaoJogarClick.js"></script>
     <script type="text/javascript" src="/js/Client/Models/Sprites/TornarSpriteClicavel/TornarPedraClicavel/JogarEmUnicaOpcaoClick.js"></script>
     <script type="text/javascript" src="/js/Client/Models/Sprites/TornarSpriteClicavel/TornarPedraClicavel/NenhumaOpcaoAJogarClick.js"></script>
+	
     <script type="text/javascript" src="/js/Client/Models/Sprites/SpritePassar.js"></script>
+	
     <script type="text/javascript" src="/js/Client/Models/Sprites/TornarSpriteClicavel/TornarPassarClicavel.js"></script>
     <script type="text/javascript" src="/js/Client/Models/Sprites/TornarSpriteClicavel/TornarPassarClicavel/BloquearPassagemDeVez.js"></script>    
     <script type="text/javascript" src="/js/Client/Models/Sprites/TornarSpriteClicavel/TornarPassarClicavel/LiberarPassagemDeVez.js"></script>
-
+	
+	<!-- ------------------------------- Apagar ------------------------------- -->
     <script type="text/javascript" src="/js/Client/Models/MontarJogada/MetodoMesa.js"></script>
     <script type="text/javascript" src="/js/Client/Models/MontarJogada/MetodoSpriteMesa.js"></script>
     <script type="text/javascript" src="/js/Client/Models/MontarJogada/RotacaoPedra.js"></script>
@@ -52,8 +63,11 @@
     <script type="text/javascript" src="/js/Client/Models/MontarJogada/DesvioSprite.js"></script>
     <script type="text/javascript" src="/js/Client/Models/MontarJogada/ValoresMesa.js"></script>	
 
+	
+	<!-- ------------------------------- Models/Jogo ------------------------------- -->
     <script type="text/javascript" src="/js/Client/Models/Jogo/Notificacao.js"></script>
 
+	<!-- ------------------------------- Models/Jogo/Callbacks ------------------------------- -->
     <script type="text/javascript" src="/js/Client/Models/Jogo/Callbacks/AoRegistrarEntrada.js"></script>
     <script type="text/javascript" src="/js/Client/Models/Jogo/Callbacks/AoRealizarJogadaComSucesso.js"></script>
     <script type="text/javascript" src="/js/Client/Models/Jogo/Callbacks/AoAlterarAreaDeCompra.js"></script>
@@ -64,11 +78,11 @@
     <script type="text/javascript" src="/js/Client/Models/Jogo/Callbacks/AoMudarVez.js"></script>
     <script type="text/javascript" src="/js/Client/Models/Jogo/Callbacks/AoPassarJogadaComSucesso.js"></script>
 
+	<!-- ------------------------------- Models/Jogo/Estados ------------------------------- -->
     <script type="text/javascript" src="/js/Client/Models/Jogo/Estados/EstadoInicial.js"></script>
     <script type="text/javascript" src="/js/Client/Models/Jogo/Estados/EstadoPrincipal.js"></script>
 
-
-
+	<!-- ------------------------------- Models/Jogada/Mesa ------------------------------- -->
     <script type="text/javascript" src="/js/Client/Models/Jogada/Mesa/JogadaMesa.js"></script>
 
     <script type="text/javascript" src="/js/Client/Models/Jogada/Mesa/PrimeiraJogada/PrimeiraJogadaMesa.js"></script>
@@ -86,42 +100,47 @@
     
     <script type="text/javascript" src="/js/Client/Models/Jogada/Mesa/TentarJogarMesa.js"></script>
 
-
-
-
-
+	
+	
+	<!-- ------------------------------- Models/Jogada/Sprite ------------------------------- -->
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogadaSprite.js"></script>
-
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/PrimeiraJogada/PrimeiraJogada.js"></script>    
 
-    <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaBaixo/EmPedraDeitada/JogarEmPedraDeitadaValorInferiorParaBaixo.js"></script>
-    <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaBaixo/EmPedraDeitada/JogarEmPedraDeitadaValorSuperiorParaBaixo.js"></script>    
-    <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaBaixo/EmPedraEmPe/JogarEmPedraEmPeDeitadaParaBaixo.js"></script>    
-    <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaBaixo/EmPedraEmPe/JogarEmPedraEmPeValorInferiorParaBaixo.js"></script>    
-    <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaBaixo/EmPedraEmPe/JogarEmPedraEmPeValorSuperiorParaBaixo.js"></script>    
+	<!-- ------------------------------- JogarParaBaixo ------------------------------- -->
+	<script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaBaixo/EmPedraNoventa/JogarEmPedraNoventaValorInferiorParaBaixo.js"></script>
+    <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaBaixo/EmPedraNoventa/JogarEmPedraNoventaValorSuperiorParaBaixo.js"></script>   
+	
+    <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaBaixo/EmPedraZero/JogarEmPedraZeroDeitadaParaBaixo.js"></script>    
+    <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaBaixo/EmPedraZero/JogarEmPedraZeroValorInferiorParaBaixo.js"></script>    
+    <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaBaixo/EmPedraZero/JogarEmPedraZeroValorSuperiorParaBaixo.js"></script>
+	
+	<script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaBaixo/EmPedraCentoEOitenta/JogarEmPedraCentoEOitentaDeitadaParaBaixo.js"></script>    
+    <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaBaixo/EmPedraCentoEOitenta/JogarEmPedraCentoEOitentaValorInferiorParaBaixo.js"></script>    
+    <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaBaixo/EmPedraCentoEOitenta/JogarEmPedraCentoEOitentaValorSuperiorParaBaixo.js"></script>    
     
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaBaixo/JogarDeitadaParaBaixo.js"></script>    
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaBaixo/JogarValorInferiorParaBaixo.js"></script>    
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaBaixo/JogarValorSuperiorParaBaixo.js"></script>
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaBaixo/JogarParaBaixo.js"></script>
 
-
-
-
-    <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaCima/EmPedraDeitada/JogarEmPedraDeitadaValorInferiorParaCima.js"></script>
-    <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaCima/EmPedraDeitada/JogarEmPedraDeitadaValorSuperiorParaCima.js"></script>    
-    <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaCima/EmPedraEmPe/JogarEmPedraEmPeDeitadaParaCima.js"></script>    
-    <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaCima/EmPedraEmPe/JogarEmPedraEmPeValorInferiorParaCima.js"></script>    
-    <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaCima/EmPedraEmPe/JogarEmPedraEmPeValorSuperiorParaCima.js"></script>    
+	<!-- ------------------------------- JogarParaCima ------------------------------- -->
+    <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaCima/EmPedraNoventa/JogarEmPedraNoventaValorInferiorParaCima.js"></script>
+    <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaCima/EmPedraNoventa/JogarEmPedraNoventaValorSuperiorParaCima.js"></script>   
+	
+    <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaCima/EmPedraZero/JogarEmPedraZeroDeitadaParaCima.js"></script>    
+    <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaCima/EmPedraZero/JogarEmPedraZeroValorInferiorParaCima.js"></script>    
+    <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaCima/EmPedraZero/JogarEmPedraZeroValorSuperiorParaCima.js"></script>
+	
+	<script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaCima/EmPedraCentoEOitenta/JogarEmPedraCentoEOitentaDeitadaParaCima.js"></script>    
+    <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaCima/EmPedraCentoEOitenta/JogarEmPedraCentoEOitentaValorInferiorParaCima.js"></script>    
+    <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaCima/EmPedraCentoEOitenta/JogarEmPedraCentoEOitentaValorSuperiorParaCima.js"></script>  
     
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaCima/JogarDeitadaParaCima.js"></script>    
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaCima/JogarValorInferiorParaCima.js"></script>    
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaCima/JogarValorSuperiorParaCima.js"></script>  
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaCima/JogarParaCima.js"></script>  
 
-
-
-
+	<!-- ------------------------------- JogarParaDireita ------------------------------- -->
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaDireita/EmPedraDeitada/JogarEmPedraDeitadaValorInferiorParaDireita.js"></script>
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaDireita/EmPedraDeitada/JogarEmPedraDeitadaValorSuperiorParaDireita.js"></script>  
   
@@ -138,9 +157,7 @@
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaDireita/JogarValorSuperiorParaDireita.js"></script>  
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaDireita/JogarParaDireita.js"></script>  
 
-
-
-
+	<!-- ------------------------------- JogarParaEsquerda ------------------------------- -->
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaEsquerda/EmPedraDeitada/JogarEmPedraDeitadaValorInferiorParaEsquerda.js"></script>
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaEsquerda/EmPedraDeitada/JogarEmPedraDeitadaValorSuperiorParaEsquerda.js"></script>    
     
@@ -157,50 +174,72 @@
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaEsquerda/JogarValorSuperiorParaEsquerda.js"></script>   
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaEsquerda/JogarParaEsquerda.js"></script>   
 
-
-
-
+	<!-- ------------------------------- TentarJogar ------------------------------- -->
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/TentarJogar/TentarJogarParaBaixo.js"></script>
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/TentarJogar/TentarJogarParaCima.js"></script>
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/TentarJogar/TentarJogarParaDireita.js"></script>
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/TentarJogar/TentarJogarParaEsquerda.js"></script>
 
-
-
-
-    <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorInferior/EmPedraDeitada/VirarParaBaixoEmPedraDeitadaValorInferior.js"></script>
-    <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorInferior/EmPedraNoventa/VirarParaBaixoEmPedraNoventaValorInferior.js"></script>
-    <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorInferior/EmPedraDuzentosESetenta/VirarParaBaixoEmPedraDuzentosESetentaValorInferior.js"></script>
+	<!-- ------------------------------- VirarPedra/VirarValorInferior ------------------------------- -->
+    <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorInferior/EmPedraCentoEOitenta/VirarParaDireitaEmPedraCentoEOitentaValorInferior.js"></script>
+    <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorInferior/EmPedraCentoEOitenta/VirarParaEsquerdaEmPedraDeitadaValorInferior.js"></script>
+	
+	<script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorInferior/EmPedraDuzentosESetenta/VirarParaBaixoEmPedraDuzentosESetentaValorInferior.js"></script>
+    <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorInferior/EmPedraDuzentosESetenta/VirarParaCimaEmPedraDuzentosESetentaValorInferior.js"></script>
+	
+	<script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorInferior/EmPedraNoventa/VirarParaBaixoEmPedraNoventaValorInferior.js"></script>
+	<script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorInferior/EmPedraNoventa/VirarParaCimaEmPedraNoventaValorInferior.js"></script>
+	<script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorInferior/EmPedraNoventa/VirarParaEsquerdaEmPedraNoventaValorInferior.js"></script>
+	<script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorInferior/EmPedraNoventa/VirarParaDireitaEmPedraNoventaValorInferior.js"></script>
+	
+	<script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorInferior/EmPedraZero/VirarParaBaixoEmPedraZeroValorInferior.js"></script>
+	<script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorInferior/EmPedraZero/VirarParaCimaEmPedraZeroValorInferior.js"></script>
+	<script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorInferior/EmPedraZero/VirarParaDireitaEmPedraZeroValorInferior.js"></script>
+	<script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorInferior/EmPedraZero/VirarParaEsquerdaEmPedraZeroValorInferior.js"></script>
+	
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorInferior/VirarParaBaixoValorInferior.js"></script>
-
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorInferior/VirarParaCimaValorInferior.js"></script>
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorInferior/VirarParaDireitaValorInferior.js"></script>
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorInferior/VirarParaEsquerdaValorInferior.js"></script>
 
-
-    <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorSuperior/EmPedraDeitada/VirarParaBaixoEmPedraDeitadaValorSuperior.js"></script>
-    <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorSuperior/EmPedraNoventa/VirarParaBaixoEmPedraNoventaValorSuperior.js"></script>
-    <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorSuperior/EmPedraDuzentosESetenta/VirarParaBaixoEmPedraDuzentosESetentaValorSuperior.js"></script>
+	<!-- ------------------------------- VirarPedra/VirarValorSuperior ------------------------------- -->
+    <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorSuperior/EmPedraCentoEOitenta/VirarParaDireitaEmPedraCentoEOitentaValorSuperior.js"></script>
+    <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorSuperior/EmPedraCentoEOitenta/VirarParaEsquerdaEmPedraDeitadaValorSuperior.js"></script>
+	
+	<script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorSuperior/EmPedraDuzentosESetenta/VirarParaBaixoEmPedraDuzentosESetentaValorSuperior.js"></script>
+    <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorSuperior/EmPedraDuzentosESetenta/VirarParaCimaEmPedraDuzentosESetentaValorSuperior.js"></script>
+	
+	<script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorSuperior/EmPedraNoventa/VirarParaBaixoEmPedraNoventaValorSuperior.js"></script>
+	<script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorSuperior/EmPedraNoventa/VirarParaCimaEmPedraNoventaValorSuperior.js"></script>
+	<script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorSuperior/EmPedraNoventa/VirarParaEsquerdaEmPedraNoventaValorSuperior.js"></script>
+	<script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorSuperior/EmPedraNoventa/VirarParaDireitaEmPedraNoventaValorSuperior.js"></script>
+	
+	<script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorSuperior/EmPedraZero/VirarParaBaixoEmPedraZeroValorSuperior.js"></script>
+	<script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorSuperior/EmPedraZero/VirarParaCimaEmPedraZeroValorSuperior.js"></script>
+	<script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorSuperior/EmPedraZero/VirarParaDireitaEmPedraZeroValorSuperior.js"></script>
+	<script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorSuperior/EmPedraZero/VirarParaEsquerdaEmPedraZeroValorSuperior.js"></script>
+	
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorSuperior/VirarParaBaixoValorSuperior.js"></script>
-    
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorSuperior/VirarParaCimaValorSuperior.js"></script>
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorSuperior/VirarParaDireitaValorSuperior.js"></script>
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorSuperior/VirarParaEsquerdaValorSuperior.js"></script>
+    <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarValorSuperior/VirarParaEsquerdaValorSuperior.js"></script>
 
+	<!-- ------------------------------- VirarPedra ------------------------------- -->	
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarParaBaixo.js"></script>
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarParaCima.js"></script>
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarParaEsquerda.js"></script>
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/VirarPedra/VirarParaDireita.js"></script>
-
+	
+	<!-- ------------------------------- Jogar ------------------------------- -->
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaBaixoOuParaDireita.js"></script>
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaCimaOuParaEsquerda.js"></script>
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaDireitaOuParaCima.js"></script>
     <script type="text/javascript" src="/js/Client/Models/Jogada/Sprite/JogarParaEsquerdaOuParaBaixo.js"></script>
 
-
-
-
-
+	
+	
+	<!-- ------------------------------- ModelsPrincpais ------------------------------- -->
     <script type="text/javascript" src="/js/Client/Models/Turno.js"></script>
     <script type="text/javascript" src="/js/Client/Models/Pedra.js"></script>
     <script type="text/javascript" src="/js/Client/Models/Jogador.js"></script>
@@ -209,6 +248,7 @@
     <script type="text/javascript" src="/js/Client/Models/Tela.js"></script>
     <script type="text/javascript" src="/js/Client/Models/Jogo.js"></script>
     
+	<!-- ========================== Main ========================== -->
     <script type="text/javascript" src="/js/Client/SocketClient.js"></script>
     <script type="text/javascript" src="/js/Client/main.js"></script>
 </body>

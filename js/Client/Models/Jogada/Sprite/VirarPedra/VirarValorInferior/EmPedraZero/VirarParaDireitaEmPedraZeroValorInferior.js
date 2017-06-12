@@ -1,6 +1,6 @@
-var VirarParaDireitaEmPedraDeitadaValorInferior = function() {}
+var VirarParaDireitaEmPedraZeroValorInferior = function() {}
 
-VirarParaDireitaEmPedraDeitadaValorInferior.prototype.Jogar = function(pedra) {
+VirarParaDireitaEmPedraZeroValorInferior.prototype.Jogar = function(pedra) {
 	console.log(this);
 	return new JogadaSprite
 	(
