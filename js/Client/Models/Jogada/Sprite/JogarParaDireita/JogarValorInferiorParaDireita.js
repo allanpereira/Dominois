@@ -1,7 +1,7 @@
 var JogarValorInferiorParaDireita = function() {}
 
 JogarValorInferiorParaDireita.prototype.Jogar = function(pedra) {
-	switch (pedra.sprite.phaserSprite.angle) {
+	switch (pedra.sprite.rotacaoSprite) {
 		case RotacaoSprite.NaoRotacionar:
 			return new JogarEmPedraDeitadaValorInferiorParaDireita().Jogar(pedra);
 		case RotacaoSprite.Noventa:

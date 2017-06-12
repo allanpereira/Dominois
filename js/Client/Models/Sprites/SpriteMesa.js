@@ -42,6 +42,7 @@ SpriteMesa.prototype.MoverPedra = function(jogadaSprite, pedra, pedraAnterior) {
 	pedra.sprite.phaserSprite.position.x = jogadaSprite.x;
 	pedra.sprite.phaserSprite.position.y = jogadaSprite.y;
 	pedra.sprite.phaserSprite.angle = jogadaSprite.rotacaoSprite;
+	pedra.sprite.rotacaoSprite = jogadaSprite.rotacaoSprite;
 	console.log(pedra);
 }
 
