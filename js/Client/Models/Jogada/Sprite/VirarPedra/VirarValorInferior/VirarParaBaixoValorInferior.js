@@ -3,7 +3,7 @@ var VirarParaBaixoValorInferior = function() {}
 VirarParaBaixoValorInferior.prototype.Jogar = function(pedra) {
 	switch (pedra.sprite.rotacaoSprite) {
         case RotacaoSprite.NaoRotacionar: 
-            return new VirarParaBaixoEmPedraDeitadaValorInferior().Jogar(pedra);
+            return new VirarParaBaixoEmPedraZeroValorInferior().Jogar(pedra);
         case RotacaoSprite.Noventa:
             return new VirarParaBaixoEmPedraNoventaValorInferior().Jogar(pedra);
         case RotacaoSprite.DuzentosESetenta:
