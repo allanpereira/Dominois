@@ -1,5 +1,10 @@
 var JogarDeitadaParaEsquerda = function() {}
 
 JogarDeitadaParaEsquerda.prototype.Jogar = function(pedra) {
-  return new JogarEmPedraEmPeDeitadaParaEsquerda().Jogar(pedra);
+    switch (pedra.sprite.rotacaoSprite) {
+        case RotacaoSprite.Noventa:
+            return new JogarEmPedraNoventaDeitadaParaEsquerda().Jogar(pedra);
+        case RotacaoSprite.DuzentosESetenta:
+            return new JogarEmPedraDuzentosESetentaDeitadaParaEsquerda().Jogar(pedra);
+    }
 }

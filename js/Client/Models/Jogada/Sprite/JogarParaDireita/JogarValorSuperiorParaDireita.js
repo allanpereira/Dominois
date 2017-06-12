@@ -1,7 +1,7 @@
 var JogarValorSuperiorParaDireita = function() {}
 
 JogarValorSuperiorParaDireita.prototype.Jogar = function(pedra) {
-	switch (pedra.sprite.phaserSprite.angle) {
+	switch (pedra.sprite.rotacaoSprite) {
 		case RotacaoSprite.NaoRotacionar:
 			return new JogarEmPedraDeitadaValorSuperiorParaDireita().Jogar(pedra);
 		case RotacaoSprite.Noventa:

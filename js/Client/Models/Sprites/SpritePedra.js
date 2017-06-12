@@ -3,6 +3,7 @@ var SpritePedra = function(nome) {
     this.altura = 130;
     this.largura = 68;
     this.phaserSprite;
+    this.rotacaoSprite;
 }
 
 SpritePedra.prototype.CarregarSpritePhaser = function(posicao) {
