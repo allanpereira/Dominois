@@ -1,6 +1,6 @@
-var JogarEmPedraEmPeValorInferiorParaDireita = function() {}
+var JogarEmPedraNoventaInferiorParaDireita = function() {}
 
-JogarEmPedraEmPeValorInferiorParaDireita.prototype.Jogar = function(pedra) {
+JogarEmPedraNoventaInferiorParaDireita.prototype.Jogar = function(pedra) {
 	console.log(this);
 	return new JogadaSprite
 	(

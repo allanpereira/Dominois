@@ -1,9 +1,12 @@
 var JogarValorInferiorParaDireita = function() {}
 
 JogarValorInferiorParaDireita.prototype.Jogar = function(pedra) {
-	if (pedra.valorSuperior == pedra.valorInferior) {
-		return new JogarEmPedraDeitadaValorInferiorParaDireita().Jogar(pedra);
-	} else {
-		return new JogarEmPedraEmPeValorInferiorParaDireita().Jogar(pedra);
+	switch (pedra.sprite.phaserSprite.angle) {
+		case RotacaoSprite.NaoRotacionar:
+			return new JogarEmPedraDeitadaValorInferiorParaDireita().Jogar(pedra);
+		case RotacaoSprite.Noventa:
+			return new JogarEmPedraNoventaValorInferiorParaDireita().Jogar(pedra);
+		case RotacaoSprite.DuzentosESetenta:
+			return new JogarEmPedraDuzentosESetentaValorInferiorParaDireita().Jogar(pedra);
 	}
 }
