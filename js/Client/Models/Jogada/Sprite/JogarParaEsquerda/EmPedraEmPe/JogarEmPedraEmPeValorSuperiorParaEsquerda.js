@@ -5,7 +5,7 @@ JogarEmPedraEmPeValorSuperiorParaEsquerda.prototype.Jogar = function(pedra) {
 	return new JogadaSprite
 	(
 		pedra.sprite.phaserSprite.position.x,
-		pedra.sprite.phaserSprite.position.y,
+		pedra.sprite.phaserSprite.position.y - pedra.sprite.largura,
 		RotacaoSprite.Noventa
 	);
 }

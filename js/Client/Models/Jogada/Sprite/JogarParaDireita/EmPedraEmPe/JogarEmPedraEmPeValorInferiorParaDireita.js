@@ -1,10 +1,11 @@
 var JogarEmPedraEmPeValorInferiorParaDireita = function() {}
 
 JogarEmPedraEmPeValorInferiorParaDireita.prototype.Jogar = function(pedra) {
+	console.log(this);
 	return new JogadaSprite
 	(
-		pedra.sprite.phaserSprite.position.x + pedra.sprite.altura,
-		pedra.sprite.phaserSprite.position.y,
+		pedra.sprite.phaserSprite.position.x + (2*pedra.sprite.altura),
+		pedra.sprite.phaserSprite.position.y - pedra.sprite.largura,
 		RotacaoSprite.Noventa
 	);
 }
