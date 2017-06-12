@@ -1,6 +1,6 @@
-var JogarEmPedraDuzentosESetentaSuperiorParaDireita = function() {}
+var JogarEmPedraDuzentosESetentaValorSuperiorParaDireita = function() {}
 
-JogarEmPedraDuzentosESetentaSuperiorParaDireita.prototype.Jogar = function(pedra) {
+JogarEmPedraDuzentosESetentaValorSuperiorParaDireita.prototype.Jogar = function(pedra) {
 	console.log(this);
 	return new JogadaSprite
 	(
