@@ -28,26 +28,25 @@ MaoPrincipal.prototype.AdicionarPedra = function(pedra) {
     }
 };
 
-MaoPrincipal.prototype.RemoverPedra = function(domino, jogador) {
+MaoPrincipal.prototype.RemoverPedra = function(pedraRmv, jogador) {
 
-    var maoJogador = jogador.pedras;
-    var nome = String(domino.value1) + String(domino.value2);
-    var pedraPos = this.pedras.map(function(x) {return x.nome; }).indexOf(nome);
-    var pedraRmv = this.pedras[pedraPos];
+    for (var i = 0; i < jogador.pedras.length; i++) {
+        if (pedraRmv.nome != jogador.pedras[i].nome) continue;
 
-    for (var i = 0; i < maoJogador.length; i++){
-        if (nome == maoJogador[i].nome){
-            if (pedraRmv.x <= 162 && pedraRmv.y >=320){
-                maoJogador[i].sprite.phaserSprite.x = 706;
-                maoJogador[i].sprite.phaserSprite.y += 130;
-            } else {
-                for (var z = i; z < maoJogador.length; z++){
-                    maoJogador[z].sprite.phaserSprite.x -= 68;
-                }
+        if (pedraRmv.x <= 162 && pedraRmv.y >=320){
+            jogador.pedras[i].sprite.phaserSprite.x = 706;
+            jogador.pedras[i].sprite.phaserSprite.y += 130;
+        } else {
+            for (var z = i; z < jogador.pedras.length; z++){
+                jogador.pedras[z].sprite.phaserSprite.x -= 68;
             }
         }
+
+        break;
     }
 
-    this.posicaoProximaPedra.x = maoJogador[maoJogador.length - 1].sprite.phaserSprite.x + 68;
-    this.posicaoProximaPedra.y = maoJogador[maoJogador.length - 1].sprite.phaserSprite.y;
+    jogador.pedras.splice(i, 1);
+
+    this.posicaoProximaPedra.x = jogador.pedras[jogador.pedras.length - 1].sprite.phaserSprite.x + 68;
+    this.posicaoProximaPedra.y = jogador.pedras[jogador.pedras.length - 1].sprite.phaserSprite.y;
 };

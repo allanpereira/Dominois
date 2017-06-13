@@ -5,7 +5,7 @@ JogarParaDireitaOuParaCima.prototype.Jogar = function(jogarSpritePedra, ladoPedr
 		return new TentarJogarParaDireita().Jogar(ladoPedra, pedra, mesa);
 	} catch (ex) {
 		console.log(ex);
-		jogarSpritePedra.proximaJogada = new JogarParaCimaOuParaEsquerda();
+		jogarSpritePedra.jogada = new JogarParaCimaOuParaEsquerda();
 		return new VirarParaCima().Jogar(ladoPedra, pedra);
 	}
 }

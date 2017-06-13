@@ -13,5 +13,10 @@ TornarSpriteClicavel.prototype.Tornar = function(sprite, Callback) {
 
 
 TornarSpriteClicavel.prototype.Remover = function(sprite) {
+
+    if (sprite.input != null) {
+        sprite.inputEnabled = false;
+        sprite.input.useHandCursor = false;
+    }
 	sprite.events.onInputDown.removeAll();
 }

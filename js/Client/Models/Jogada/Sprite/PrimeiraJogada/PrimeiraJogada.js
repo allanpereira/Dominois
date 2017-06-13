@@ -1,5 +1,5 @@
 var PrimeiraJogada = function() {
-    this.posicaoPedraInicial = { x: 330, y: 220 };
+    this.posicaoPedraInicial = { x: 330, y: 250 };
 }
 
 PrimeiraJogada.prototype.Jogar = function(ladoPedra) {
