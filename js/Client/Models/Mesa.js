@@ -38,7 +38,7 @@ Mesa.prototype.VerificarMovimentosPossiveisParaPedra = function(pedra) {
 }
 
 Mesa.prototype.JogarPedra = function(pedra, moveType) {
-    // variável temporária apenas para testar a animação.
+
     var posini = { x: pedra.sprite.phaserSprite.x, y: pedra.sprite.phaserSprite.y };
 
     var jogadaMesa;
@@ -65,6 +65,5 @@ Mesa.prototype.JogarPedra = function(pedra, moveType) {
     
     this.sprite.Jogar(moveType, jogadaMesa.ladoPedra, pedra, jogadaMesa.pedraAnterior, this);
 
-    //estou chamando depois do EfetuarJogada pois, assim, o sprite fica com a posição final e passo a posição inicial guardado na variável posini
-    //jogada.AniMove(pedra,posini,null,1);
+    pedra.sprite.AnimarMovimento(posini, null, 1);
 }
