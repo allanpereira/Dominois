@@ -27,7 +27,7 @@ const restricted = function(req, res, next) {
     var isLoginCall = req.path === "/login" || req.path === "/api/login";
     var isLoginPagePath = 
         req.path.startsWith("/css") ||
-        req.path.startsWith("/js/plugins/") ||
+        req.path.startsWith("/js/plugins/") || req.path.startsWith("/assets/") ||
         req.path.startsWith("/js/Client");
 
     if (isLoggedIn && isLoginCall) {
