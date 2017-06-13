@@ -4,8 +4,8 @@ VirarParaCimaEmPedraDuzentosESetentaValorInferior.prototype.Jogar = function(ped
 	console.log(this);
 	return new JogadaSprite
 	(
-		pedra.sprite.phaserSprite.position.x,
-		pedra.sprite.phaserSprite.position.y,
-		RotacaoSprite.CentoEOitenta
+		pedra.sprite.phaserSprite.position.x + pedra.sprite.largura - 5,
+		pedra.sprite.phaserSprite.position.y - (pedra.sprite.largura + pedra.sprite.altura),
+		RotacaoSprite.NaoRotacionar
 	);
 }

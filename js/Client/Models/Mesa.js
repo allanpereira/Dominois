@@ -63,7 +63,6 @@ Mesa.prototype.JogarPedra = function(pedra, moveType) {
 			break;
 	}
     
-    debugger;
     this.sprite.Jogar(moveType, jogadaMesa.ladoPedra, pedra, jogadaMesa.pedraAnterior, this);
 
     //estou chamando depois do EfetuarJogada pois, assim, o sprite fica com a posição final e passo a posição inicial guardado na variável posini

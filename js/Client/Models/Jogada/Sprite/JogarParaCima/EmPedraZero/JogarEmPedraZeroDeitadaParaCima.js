@@ -1,6 +1,7 @@
 var JogarEmPedraZeroDeitadaParaCima = function() {}
 
 JogarEmPedraZeroDeitadaParaCima.prototype.Jogar = function(pedra) {
+    console.log(this);
 	return new JogadaSprite
 	(
 		pedra.sprite.phaserSprite.position.x,

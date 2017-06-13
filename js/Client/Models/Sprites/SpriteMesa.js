@@ -26,15 +26,15 @@ SpriteMesa.prototype.Jogar = function(moveType, ladoPedra, pedra, pedraAnterior,
 SpriteMesa.prototype.PrepararJogada = function(moveType, ladoPedra, pedraAnterior, mesa) {
 	switch (moveType) {
 		case MoveType.FirstDomino:
-			this.proximaJogadaEsquerda = new JogarParaEsquerdaOuParaBaixo();
-			this.proximaJogadaDireita = new JogarParaDireitaOuParaCima();
+			this.proximaJogadaEsquerda = { jogada: new JogarParaEsquerdaOuParaBaixo() };
+			this.proximaJogadaDireita = { jogada: new JogarParaDireitaOuParaCima()};
 			return new PrimeiraJogada().Jogar(ladoPedra);
 		
 		case MoveType.LeftSide:
-			return this.proximaJogadaEsquerda.Jogar(this.proximaJogadaEsquerda, ladoPedra, pedraAnterior, mesa);
+			return this.proximaJogadaEsquerda.jogada.Jogar(this.proximaJogadaEsquerda, ladoPedra, pedraAnterior, mesa);
 		
 		case MoveType.RightSide:
-			return this.proximaJogadaDireita.Jogar(this.proximaJogadaDireita, ladoPedra, pedraAnterior, mesa);
+			return this.proximaJogadaDireita.jogada.Jogar(this.proximaJogadaDireita, ladoPedra, pedraAnterior, mesa);
 	}
 }
 
