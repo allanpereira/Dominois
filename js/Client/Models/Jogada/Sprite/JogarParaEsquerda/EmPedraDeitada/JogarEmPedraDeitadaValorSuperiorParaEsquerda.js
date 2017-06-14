@@ -6,6 +6,7 @@ JogarEmPedraDeitadaValorSuperiorParaEsquerda.prototype.Jogar = function(pedra) {
   (
     pedra.sprite.phaserSprite.position.x,
     pedra.sprite.phaserSprite.position.y + (0.5*pedra.sprite.largura),
-    RotacaoSprite.Noventa
+    RotacaoSprite.Noventa,
+    pedra.sprite.phaserSprite.position.x - pedra.sprite.altura
   );
 }

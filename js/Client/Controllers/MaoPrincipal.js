@@ -1,7 +1,7 @@
 var MaoPrincipal = function() {
     this.posicaoInicial = {
         x : 162,
-        y : 450
+        y : 500
     };
     
     this.posicaoProximaPedra = this.posicaoInicial;
@@ -47,6 +47,8 @@ MaoPrincipal.prototype.RemoverPedra = function(pedraRmv, jogador) {
 
     jogador.pedras.splice(i, 1);
 
-    this.posicaoProximaPedra.x = jogador.pedras[jogador.pedras.length - 1].sprite.phaserSprite.x + 68;
-    this.posicaoProximaPedra.y = jogador.pedras[jogador.pedras.length - 1].sprite.phaserSprite.y;
+    if (jogador.pedras.length != 0) {
+        this.posicaoProximaPedra.x = jogador.pedras[jogador.pedras.length - 1].sprite.phaserSprite.x + 68;
+        this.posicaoProximaPedra.y = jogador.pedras[jogador.pedras.length - 1].sprite.phaserSprite.y;
+    }
 };

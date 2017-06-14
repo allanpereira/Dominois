@@ -1,6 +1,6 @@
 var VirarParaEsquerdaValorInferior = function() {}
 
-VirarParaEsquerdaValorInferior.prototype.Jogar = function(ladoPedra, pedra) {
+VirarParaEsquerdaValorInferior.prototype.Jogar = function(pedra) {
 	switch (pedra.sprite.rotacaoSprite) {
         case RotacaoSprite.NaoRotacionar: 
             return new VirarParaEsquerdaEmPedraZeroValorInferior().Jogar(pedra);
