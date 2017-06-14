@@ -6,6 +6,7 @@ JogarEmPedraCentoEOitentaDeitadaParaBaixo.prototype.Jogar = function(pedra) {
 	(
 		pedra.sprite.phaserSprite.position.x + (0.5 * pedra.sprite.largura),
 		pedra.sprite.phaserSprite.position.y,
-		RotacaoSprite.Noventa
+		RotacaoSprite.Noventa,
+		pedra.sprite.phaserSprite.position.y + pedra.sprite.largura
 	);
 }

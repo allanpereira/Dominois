@@ -6,6 +6,6 @@ VirarParaBaixoEmPedraDuzentosESetentaValorSuperior.prototype.Jogar = function(pe
 	(
 		pedra.sprite.phaserSprite.position.x,
 		pedra.sprite.phaserSprite.position.y,
-		RotacaoSprite.CentoEOitenta
+		RotacaoSprite.NaoRotacionar
 	);
 }

@@ -6,6 +6,7 @@ JogarEmPedraZeroValorSuperiorParaBaixo.prototype.Jogar = function(pedra) {
 	(
 		pedra.sprite.phaserSprite.position.x,
 		pedra.sprite.phaserSprite.position.y + pedra.sprite.altura,
-		RotacaoSprite.NaoRotacionar
+		RotacaoSprite.NaoRotacionar,
+		pedra.sprite.phaserSprite.position.y + (2*pedra.sprite.altura)
 	);
 }

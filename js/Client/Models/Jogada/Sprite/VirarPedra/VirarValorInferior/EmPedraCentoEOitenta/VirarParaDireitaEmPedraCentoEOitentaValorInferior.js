@@ -4,8 +4,8 @@ VirarParaDireitaEmPedraCentoEOitentaValorInferior.prototype.Jogar = function(ped
 	console.log(this);
 	return new JogadaSprite
 	(
-		pedra.sprite.phaserSprite.position.x,
-		pedra.sprite.phaserSprite.position.y,
-		RotacaoSprite.NaoRotacionar
+		pedra.sprite.phaserSprite.position.x + pedra.sprite.altura,
+		pedra.sprite.phaserSprite.position.y - pedra.sprite.largura,
+		RotacaoSprite.Noventa
 	);
 }

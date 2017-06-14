@@ -5,7 +5,7 @@ VirarParaBaixoEmPedraZeroValorSuperior.prototype.Jogar = function(pedra) {
 	return new JogadaSprite
 	(
 		pedra.sprite.phaserSprite.position.x,
-		pedra.sprite.phaserSprite.position.y,
+		pedra.sprite.phaserSprite.position.y + pedra.sprite.altura,
 		RotacaoSprite.NaoRotacionar
 	);
 }

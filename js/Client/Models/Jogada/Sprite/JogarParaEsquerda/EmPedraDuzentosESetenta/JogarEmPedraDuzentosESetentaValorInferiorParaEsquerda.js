@@ -6,6 +6,7 @@ console.log(this);
  (
     pedra.sprite.phaserSprite.position.x - pedra.sprite.altura,
     pedra.sprite.phaserSprite.position.y,
-    RotacaoSprite.DuzentosESetenta
+    RotacaoSprite.DuzentosESetenta,
+    pedra.sprite.phaserSprite.position.x - pedra.sprite.altura
  );
 }
