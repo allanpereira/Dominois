@@ -146,8 +146,13 @@ class RoomService {
                         turn: game.isTurn(p.getId())
                     });                
                 });
+				//aki começa a verificação do fim do jogo...implementar a verificação de monte de compra vazio e sem peças jogaveis nas mãos.
+				if(player.dominoes.length==0){                    
+                    game.state="FINISHED";
+                }
 
-                resolve({domino: domino, moveType: moveType, turns : turns});
+                resolve({domino: domino, moveType: moveType, turns : turns, gamestate:game.state,player: player.id});
+
             } catch(err) {
                 reject(err.message);
             }
