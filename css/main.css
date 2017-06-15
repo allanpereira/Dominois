@@ -1,0 +1,117 @@
+body {
+    margin: 0;
+    background: #76b852; /* fallback for old browsers */
+    background: -webkit-linear-gradient(right, #76b852, #8DC26F);
+    background: -moz-linear-gradient(right, #76b852, #8DC26F);
+    background: -o-linear-gradient(right, #76b852, #8DC26F);
+    background: linear-gradient(to left, #76b852, #8DC26F);
+    font-family: "Roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;     
+}
+.container, .container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+    background-color: #f9f9f9;
+}
+.row {
+    margin-bottom: 20px;
+}
+header{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #FFFFFF;
+    text-align: center;
+}
+.username-box{
+    padding: 10px 20px 10px 10px;
+    text-align: right;
+}
+.username-box span{
+    display: inline-block;
+    vertical-align: middle;
+}
+footer{
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 0!important;
+    background-color: rgba(86,61,124,.15);
+    border: 1px solid #ddd;
+    border: 1px solid rgba(86,61,124,.2);
+}
+div[role="main"] > div{
+    background-color: #fff;
+}
+div[role="main"] > div{
+    padding: 10px;
+    text-align: center;
+}
+div[role="main"], aside {
+    min-height: 600px;
+}
+aside{
+    background-color: rgba(86,61,124,.15);
+    text-align: center;
+}
+aside[role="complementary"] { 
+    width:200px;
+}
+aside[role="complementary"] li {
+    list-style:none;
+    text-decoration:none;
+}
+aside[role="complementary"] li:hover { 
+    text-decoration:none;
+    background-color:#BBB;
+}
+ 
+aside[role="complementary"] li a { 
+    text-decoration:none;
+}
+.menu{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.menu a{
+    display: block;
+    padding-top:10px;
+    padding-bottom:10px;
+}
+#menu-item {
+    text-decoration:none;
+}
+#salas {
+    margin-left:35px;
+}
+
+#username {
+    float:right;
+}
+#main-logo{
+    width: 550px;
+}
+.logo {
+    padding:45px;
+    margin-bottom:-70px;
+    margin-left:260px;
+}
+
+.room {
+    margin-left:8px;
+    float:left;
+    border: 2px solid blue;
+}
+#tabelaa{
+    margin: auto;
+    padding:10px;
+    width:600px;
+}
+.cabecalho {
+    text-align: center;
+}
+#regras {
+    overflow: auto;
+    text-align: center;
+}

@@ -22,21 +22,3 @@ $(document).ready(function() {
         return false; // Evita que ao clicar no link a página role para o topo.
     });
 });
-
-function atualizalista() {
-    var p = document.getElementById('lista');
-    var filhos = p.childNodes;
-    for(var i = filhos.length - 1; i >= 0; i-- ) {
-        if( filhos[i].tagName == 'LI' ) {
-            p.removeChild( filhos[i] );
-        }
-    }
-
-    var li = document.createElement('li');
-    li.innerHTML = 'seis';
-    p.appendChild(li);
-
-    var li = document.createElement('li');
-    li.innerHTML = 'sete';
-    p.appendChild(li);
-}
