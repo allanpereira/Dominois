@@ -71,13 +71,26 @@ class RoomService {
                 GameConnectionPool.notifyBoneyardChanged(gameId, { boneyard : boneyardData });
                 GameConnectionPool.notifyPlayerEntered(gameId, player.getId(), { id: player.getId(), name : player.getName(), dominoes: player.getDominoes().length});
 
-                if(game.state === GameState.STARTED)
-                    GameConnectionPool.notifyGameStarted(gameId, player.getId());
+                let turns = [];
+                game.getPlayers().forEach((p) => {
+                    turns.push({
+                        playerId: p.getId(),
+                        name: p.getName(),
+                        dominoes: p.getDominoes().length,
+                        turn: game.isTurn(p.getId())
+                    });                
+                });
+
+                if(game.state === GameState.STARTED) {
+                    
+                    GameConnectionPool.notifyGameStarted(gameId, player.getId(), {turns: turns});
+                }
 
                 resolve({
                     player : playerData, 
                     boneyard : boneyardData, 
-                    game : gameData
+                    game : gameData,
+                    turns: turns
                 });
             } catch(err) {
                 reject(err.message);
@@ -88,8 +101,6 @@ class RoomService {
     static buyPiece(gameId, user, db){
         return new Promise((resolve, reject) => {
             try{
-                //TODO: Validate action
-                
                 let game = RoomService.findGame(gameId, db);
                 let domino = game.boneyard.take(1)[0];
 

@@ -1,8 +1,8 @@
 var AoIniciarJogo = function() {}
 AoIniciarJogo.prototype.Disparar = function(jogo, data) {
-    debugger;
     jogo.iniciado = true;
-    jogo.notificacao.NotificarEstado(jogo);
+    jogo.tela.spriteQtdePedrasJogadores.AtualizarTexto(jogo, data.turns);
+    jogo.notificacao.NotificarEstado(jogo, data.turns);
     if (!jogo.PodeJogar()) return;
     var turno = new Turno();
     turno.AnalisarPedrasJogador(jogo);

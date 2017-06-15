@@ -8,12 +8,11 @@
 //Classe
 var Jogo = function(gameId){
     this.jogador = null;
-    this.jogadores = [];
     this.gameId = gameId;
     this.vez = false;
     this.iniciado = false;
     this.notificacao = new Notificacao().Configurar();
-    this.tela = new Tela(new Mesa(), new MaoPrincipal(), new SpriteComprar());
+    this.tela = new Tela(new Mesa(), new MaoPrincipal(), new SpriteComprar(), new SpriteQtdePedrasJogadores());
     this.socketClient = new SocketClient(this);
 };
 
