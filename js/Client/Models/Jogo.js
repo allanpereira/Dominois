@@ -276,8 +276,7 @@ Jogo.prototype.AniMove=function (pedra, posini,posfim,tipomove) {
     }
     else{
         textwin.text = "You Win";
-    }
-    
+    }  
 
 }
 

@@ -24,7 +24,7 @@ var EstadoPrincipal = function(jogo) {
     };
 
      this.create = function() {
-        jogo.tela.mesa.sprite.CarregarSpritePhaser();
+        jogo.tela.mesa.sprite.CarregarSpritePhaser(jogo.tela.tamanho.largura, jogo.tela.tamanho.altura);
         jogo.tela.spriteComprar.CarregarSpritePhaser(jogo.tela.spriteComprar.texto.quantidade);
         jogo.jogador.ParaCadaPedra(function(pedra) {
             jogo.tela.maoPrincipal.AdicionarPedra(pedra);
