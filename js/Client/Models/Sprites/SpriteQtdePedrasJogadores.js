@@ -7,8 +7,7 @@ SpriteQtdePedrasJogadores.prototype.AtualizarTexto = function(jogo, turns) {
     if (jogo.tela.mesa.sprite.phaserSprite == null) return;
 
     if (this.phaserObjeto == null) {
-        this.phaserObjeto = game.add.text(250, 15, "", { strokeThickness: 1});
-        //jogo.tela.mesa.sprite.phaserSprite.addChild(this.phaserObjeto);
+        this.phaserObjeto = game.add.text(290, 30, "", { strokeThickness: 1});
     }
     this.phaserObjeto.setText(this.Mensagem(jogo, turns));
 }
