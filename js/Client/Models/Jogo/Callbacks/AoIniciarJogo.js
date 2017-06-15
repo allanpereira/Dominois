@@ -5,5 +5,4 @@ AoIniciarJogo.prototype.Disparar = function(jogo, data) {
     if (!jogo.PodeJogar()) return;
     var turno = new Turno();
     turno.AnalisarPedrasJogador(jogo);
-    turno.Iniciar(jogo);
 }
