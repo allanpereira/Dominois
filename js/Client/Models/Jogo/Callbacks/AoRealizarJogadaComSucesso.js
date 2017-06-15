@@ -3,14 +3,31 @@ AoRealizarJogadaComSucesso.prototype.Disparar = function(jogo, data) {
     debugger;
 
     jogo.MoverPedraParaMesa(data.domino, data.moveType);
-    jogo.AlterarTurno(data.turns);
+	//delay para q a pedra possa finalizar o movimento antes da próxima ação
+	 game.time.events.add(3000, function(){
 
-    jogo.notificacao.NotificarEstado(jogo, data.turns);
-    if (!jogo.PodeJogar()) {
-        new Turno().LimparEventos(jogo);
-        return;
-    }
+        if(data.gamestate=="FINISHED"){
+            new Turno().LimparEventos(jogo);
+            jogo.FinalizarJogo (data);
+            return;
+        }
+		jogo.AlterarTurno(data.turns);
+
+		jogo.notificacao.NotificarEstado(jogo, data.turns);
+		if (!jogo.PodeJogar()) {
+			new Turno().LimparEventos(jogo);
+			return;
+		}
+		
+		var turno = new Turno();
+		turno.AnalisarPedrasJogador(jogo);        
+
+    });
+	
+	
+	
+	
+	
+	
     
-    var turno = new Turno();
-    turno.AnalisarPedrasJogador(jogo);
 }
