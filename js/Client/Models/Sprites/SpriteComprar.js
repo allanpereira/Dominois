@@ -3,7 +3,7 @@ var SpriteComprar = function() {
     
     this.posicao = {
         x: 51,
-        y: 0
+        y: 10
     };
     
     this.tamanho = {
