@@ -4,13 +4,13 @@ var SpriteMesa = function() {
     this.nome = "mesa";
     
     this.posicao = {
-        x: 50,
+        x: 80,
         y: 50
     };
     
     this.tamanho = {
-        altura: 500,
-        largura: 700
+        altura: 600,
+        largura: 950
     };
 
 	this.phaserSprite;

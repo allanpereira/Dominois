@@ -2,7 +2,7 @@ var SpriteComprar = function() {
     this.nome = "comprar";
     
     this.posicao = {
-        x: 51,
+        x: 100,
         y: 10
     };
     

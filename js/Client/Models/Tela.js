@@ -1,7 +1,7 @@
 var Tela = function(mesa, maoPrincipal, spriteComprar, spriteQtdePedrasJogadores) {
     this.tamanho = {
-        largura : 800,
-        altura : 650
+        largura : 1100,
+        altura : 680
     };
     
     this.containerId = 'game';
