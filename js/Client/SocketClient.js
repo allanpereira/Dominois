@@ -34,7 +34,7 @@ var SocketClient = function(jogo){
 
     this.socket.on(EventosHelper.eventosServer.jogoIniciado, function (result) {
         console.log("[CLIENT] O jogo começou!");
-        new AoIniciarJogo().Disparar(jogo, result);
+        new AoIniciarJogo().Disparar(jogo, result.data);
     });
 
     this.socket.on(EventosHelper.eventosServer.enviaPedra, function (result) {

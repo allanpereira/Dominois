@@ -1,5 +1,6 @@
-var Jogador = function(id, pedras) {
+var Jogador = function(id, nome, pedras) {
 	this.id = id;
+	this.nome = nome;
     this.pedras = pedras;
 };
 

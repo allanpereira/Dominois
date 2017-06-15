@@ -23,9 +23,10 @@ class ServerEventsRegister{
                 .emitExcept(playerId, EventosHelper.instance.eventosServer.saidaDeJogador, result);
         }
 
-        gameConnectionPool.notifyGameStarted = function(gameId, playerId){
+        gameConnectionPool.notifyGameStarted = function(gameId, playerId, data) {
+            let result = {success: true, data: data }
             this.resolveFor(gameId)
-                .emitExcept(playerId, EventosHelper.instance.eventosServer.jogoIniciado);
+                .emitExcept(playerId, EventosHelper.instance.eventosServer.jogoIniciado, result);
         }
 
         gameConnectionPool.notifyTurnForPlayer = function(playerId, gameId, data){

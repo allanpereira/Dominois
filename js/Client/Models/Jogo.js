@@ -8,6 +8,7 @@
 //Classe
 var Jogo = function(gameId){
     this.jogador = null;
+    this.jogadores = [];
     this.gameId = gameId;
     this.vez = false;
     this.iniciado = false;
@@ -32,7 +33,7 @@ Jogo.prototype.PodeJogar = function(){
 
 Jogo.prototype.RegistrarEntrada = function(player) {
     var pedras = PedraFactory.CriarPedrasAPartirDoServer(player.dominoes);
-    this.jogador = new Jogador(player.id, pedras);
+    this.jogador = new Jogador(player.id, player.name, pedras);
     
     console.log("[JOGO] Jogador criado e registrado no Server.");
 

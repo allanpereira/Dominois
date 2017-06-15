@@ -69,7 +69,7 @@ class RoomService {
                 let gameData = game.getPublicInterface(user.id);
 
                 GameConnectionPool.notifyBoneyardChanged(gameId, { boneyard : boneyardData });
-                GameConnectionPool.notifyPlayerEntered(gameId, player.getId(), { player : playerData });
+                GameConnectionPool.notifyPlayerEntered(gameId, player.getId(), { id: player.getId(), name : player.getName(), dominoes: player.getDominoes().length});
 
                 if(game.state === GameState.STARTED)
                     GameConnectionPool.notifyGameStarted(gameId, player.getId());
@@ -79,7 +79,7 @@ class RoomService {
                     boneyard : boneyardData, 
                     game : gameData
                 });
-            }catch(err){
+            } catch(err) {
                 reject(err.message);
             }
         });
@@ -130,6 +130,8 @@ class RoomService {
                 game.getPlayers().forEach((p) => {
                     turns.push({
                         playerId: p.getId(),
+                        name: p.getName(),
+                        dominoes: p.getDominoes().length,
                         turn: game.isTurn(p.getId())
                     });                
                 });
@@ -176,6 +178,8 @@ class RoomService {
                 game.getPlayers().forEach((p) => {
                     turns.push({
                         playerId: p.getId(),
+                        name: p.getName(),
+                        dominoes: p.getDominoes().length,
                         turn: game.isTurn(p.getId())
                     });                
                 });
