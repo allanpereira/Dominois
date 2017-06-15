@@ -8,8 +8,10 @@ var EstadoPrincipal = function(jogo) {
 		
 		game.load.atlasJSONArray('megaman', '/assets/AniSprites/megaman.png', '/assets/AniSprites/megaman.json');
         game.load.image('dominoback','/assets/AniSprites/dominoback.png',68,130);
-        game.load.image('bullet', '/assets/AniSprites/bullet45.png');
-        game.load.spritesheet('explosion', '/assets/AniSprites/explosion.png', 32, 32);        
+        game.load.image('bullet', '/assets/AniSprites/bullet45.png');       
+        game.load.spritesheet('explosion', '/assets/AniSprites/explosion.png', 32, 32);  
+		game.load.atlasJSONArray('win', '/assets/AniSprites/win.png', '/assets/AniSprites/win.json');        
+        game.load.bitmapFont('desyrel', '/assets/AniSprites/desyrel.png', '/assets/AniSprites/desyrel.xml');
 
         PedraFactory.ParaCadaPedraPossivel(function(pedra) {
             var pathSkin = localStorage["skin"];
@@ -22,15 +24,17 @@ var EstadoPrincipal = function(jogo) {
     };
 
      this.create = function() {
-        jogo.tela.mesa.sprite.CarregarSpritePhaser();
+        jogo.tela.mesa.sprite.CarregarSpritePhaser(jogo.tela.tamanho.largura, jogo.tela.tamanho.altura);
         jogo.tela.spriteComprar.CarregarSpritePhaser(jogo.tela.spriteComprar.texto.quantidade);
         jogo.jogador.ParaCadaPedra(function(pedra) {
             jogo.tela.maoPrincipal.AdicionarPedra(pedra);
         });
 		jogo.AniEntrada(jogo.jogador);
+		jogo.PreFinalizarJogo();
     };
 	
 	this.update = function(){
-        var colide = game.physics.arcade.overlap(bullets, backdom, jogo.collisionHandler, null, this);
+        game.physics.arcade.overlap(bullets, backdom, jogo.collisionHandler, null, this);
+        game.physics.arcade.collide(textwin, aniwin,  jogo.onCollidewin);
     }
 }

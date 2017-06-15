@@ -4,13 +4,13 @@ var SpriteMesa = function() {
     this.nome = "mesa";
     
     this.posicao = {
-        x: 50,
-        y: 50
+        x: 0,
+        y: 0
     };
     
     this.tamanho = {
-        altura: 500,
-        largura: 700
+        altura: 900,
+        largura: 600
     };
 
 	this.phaserSprite;
@@ -46,6 +46,6 @@ SpriteMesa.prototype.MoverPedra = function(jogadaSprite, pedra, pedraAnterior) {
 	console.log(pedra);
 }
 
-SpriteMesa.prototype.CarregarSpritePhaser = function() {
-	this.phaserSprite = game.add.sprite(this.posicao.x, this.posicao.y, this.nome);
+SpriteMesa.prototype.CarregarSpritePhaser = function(larguraTela, alturaTela) {
+	this.phaserSprite = game.add.tileSprite(0, 0, larguraTela, alturaTela, this.nome);
 }

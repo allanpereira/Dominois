@@ -2,8 +2,8 @@ var SpriteComprar = function() {
     this.nome = "comprar";
     
     this.posicao = {
-        x: 51,
-        y: 0
+        x: 100,
+        y: 10
     };
     
     this.tamanho = {

@@ -1,7 +1,7 @@
 var MaoPrincipal = function() {
     this.posicaoInicial = {
-        x : 162,
-        y : 500
+        x : 100,
+        y : 530
     };
     
     this.posicaoProximaPedra = this.posicaoInicial;

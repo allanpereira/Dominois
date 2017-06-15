@@ -1,8 +1,8 @@
-var Tela = function(mesa, maoPrincipal, spriteComprar) {
+var Tela = function(mesa, maoPrincipal, spriteComprar, spriteQtdePedrasJogadores) {
     this.tamanho = {
-        largura : 800,
-        altura : 650
-    };
+        largura : $(window).width(),
+        altura : $(window).height()
+    }
     
     this.containerId = 'game';
     this.backgroundColor = "#FFF";
@@ -10,4 +10,5 @@ var Tela = function(mesa, maoPrincipal, spriteComprar) {
     this.mesa = mesa;	
     this.maoPrincipal = maoPrincipal;
     this.spriteComprar = spriteComprar;
+    this.spriteQtdePedrasJogadores = spriteQtdePedrasJogadores;
 };

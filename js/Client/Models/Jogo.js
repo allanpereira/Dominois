@@ -13,7 +13,7 @@ var Jogo = function(gameId){
     this.vez = false;
     this.iniciado = false;
     this.notificacao = new Notificacao().Configurar();
-    this.tela = new Tela(new Mesa(), new MaoPrincipal(), new SpriteComprar());
+    this.tela = new Tela(new Mesa(), new MaoPrincipal(), new SpriteComprar(), new SpriteQtdePedrasJogadores());
     this.socketClient = new SocketClient(this);
 };
 
@@ -231,3 +231,52 @@ Jogo.prototype.AniMove=function (pedra, posini,posfim,tipomove) {
         tween.start();
 
     };
+	
+	 var textwin;
+    var aniwin;
+    Jogo.prototype.PreFinalizarJogo = function(data){
+            
+            game.physics.startSystem(Phaser.Physics.ARCADE);
+
+            textwin = game.add.bitmapText(-200, -200, 'desyrel', 'You Win', 64);
+            aniwin = game.add.sprite(-250, -150, 'win');
+            game.physics.arcade.enable([ textwin, aniwin ]);
+            
+    }
+    Jogo.prototype.FinalizarJogo = function(data){
+       
+        if(this.jogador.id==data.player){ 
+
+            textwin.x=200;
+            textwin.y=120;
+            textwin.body.velocity.setTo(200, -150);
+            textwin.body.collideWorldBounds = true;
+            textwin.body.bounce.set(1);            
+            
+            aniwin.x=250;
+            aniwin.y=100;
+            aniwin.z=99;
+            aniwin.body.immovable = true;
+            aniwin.scale.setTo(3,3);
+            aniwin.animations.add('rock');
+            aniwin.play('rock', 15, true, false);
+        }
+        else{
+            var explosion = game.add.sprite(250, 150, 'explosion'); 
+            explosion.scale.setTo(3,3);
+            explosion.animations.add('boom');
+            explosion.play('boom', 15, true, false);
+        }
+
+};
+
+ Jogo.prototype.onCollidewin=function() {
+    if(textwin.text=="You Win"){
+        textwin.text = "Voce Venceu";
+    }
+    else{
+        textwin.text = "You Win";
+    }  
+
+}
+
