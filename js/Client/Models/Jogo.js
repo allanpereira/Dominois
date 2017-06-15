@@ -12,7 +12,7 @@ var Jogo = function(gameId){
     this.vez = false;
     this.iniciado = false;
     this.notificacao = new Notificacao().Configurar();
-    this.tela = new Tela(new Mesa(), new MaoPrincipal(), new SpriteComprar(), new SpritePassar());
+    this.tela = new Tela(new Mesa(), new MaoPrincipal(), new SpriteComprar());
     this.socketClient = new SocketClient(this);
 };
 
@@ -81,11 +81,8 @@ Jogo.prototype.IniciarPartida = function(){
     console.log(this.jogador);
 };
 
-// Isto será removido quando tivermos o "monte de compra" na tela do jogo.
-var boneyardCount = document.getElementById("boneyard");
-
 Jogo.prototype.AtualizarAreaDeCompra = function(size){
-    boneyardCount.innerHTML = size + " pedras na área de compra.";
+    this.tela.spriteComprar.AtualizarTexto(size);
 };
 
 // Troca de Estados

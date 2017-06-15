@@ -1,6 +1,6 @@
-var JogarEmPedraDeitadaValorSuperiorParaCima = function() {}
+var JogarEmPedraNoventaValorSuperiorParaCima = function() {}
 
-JogarEmPedraDeitadaValorSuperiorParaCima.prototype.Jogar = function(pedra) {
+JogarEmPedraNoventaValorSuperiorParaCima.prototype.Jogar = function(pedra) {
     console.log(this);
   return new JogadaSprite
   (
