@@ -28,11 +28,14 @@ $(function(){
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             async: false,
-            success: function() {
+            success: function(response) {
+                if(typeof(Storage) !== "undefined")
+                    localStorage.username = response.user.username;
+
                 window.location.href = "/";
             },
-            error : function(res){
-                alert("Deu ruim!"); //TODO: Change this feedback.
+            error : function(){
+                alert("Não foi possível realizar login. Tente novamente mais tarde.");
             }
         });
     });

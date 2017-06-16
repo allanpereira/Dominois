@@ -1,6 +1,7 @@
 const express = require('express');
 const RoomController = require('../../Controllers/RoomController');
 const LoginController = require('../../Controllers/LoginController');
+const LogoutController = require('../../Controllers/LogoutController');
 
 const router = express.Router();
 
@@ -9,6 +10,9 @@ let games = [];
 
 /* POST api/login */
 router.post('/login', LoginController.post);
+
+/* POST api/logout */
+router.post('/logout', LogoutController.post);
 
 /* GET api/rooms/avaliable */
 //Gambiarra para compartilhar o dado enquanto nao implementamos acesso a BD.

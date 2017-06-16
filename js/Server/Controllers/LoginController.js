@@ -16,10 +16,6 @@ class LoginController {
             res.status(500).send({ message: 'Error while logging in.', error : err});
         });
     }
-
-    static delete(req){
-        req.session.destroy();
-    }
 }
 
 module.exports = LoginController;

@@ -159,6 +159,18 @@ class RoomService {
         });
     }
 
+    static forEachGameOfPlayer(playerId, callback, db){
+        db.games.forEach((g) => {
+            let players = g.getPlayers();
+            for(let i = 0; i < players.length; i++){
+                if(players[i].getId() == playerId){
+                    callback(g);
+                    break;
+                }
+            }
+        });
+    }
+
     static findGame(gameId, db){
         let game = db.games.find(g => g.getId() == gameId);
         if(!game)
