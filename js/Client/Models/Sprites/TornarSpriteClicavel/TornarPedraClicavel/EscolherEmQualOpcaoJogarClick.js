@@ -3,11 +3,15 @@ var EscolherEmQualOpcaoJogarClick = function() {}
 EscolherEmQualOpcaoJogarClick.prototype.Tornar = function(jogo, pedra, opcoesJogada) {
 	
 	var Callback = function() {
-        var opcao = prompt("Digite 1 para jogar na esquerda e 2 para jogar na direita", "1");
-        while (opcao != 1 && opcao != 2) {
-            opcao = prompt("Valor inválido. Digite 1 para jogar na esquerda e 2 para jogar na direita", "1");
+        jogo.JogarNaEsquerda = function() {
+            jogo.JogarPedra(pedra, MoveType.LeftSide);
         }
-		jogo.JogarPedra(pedra, opcoesJogada[Number(opcao) - 1]);
+
+        jogo.JogarNaDireita = function() {
+            jogo.JogarPedra(pedra, MoveType.RightSide);
+        }
+
+        $("#escolherLado").modal("show");
 	}
 
 	return new TornarSpriteClicavel().Tornar(pedra.sprite.phaserSprite, Callback);
