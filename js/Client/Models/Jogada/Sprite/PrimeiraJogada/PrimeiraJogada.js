@@ -3,10 +3,14 @@ var PrimeiraJogada = function() {
     this.posicaoPedraInicialDeitada = { x: 330, y: 230 };
 }
 
-PrimeiraJogada.prototype.Jogar = function(ladoPedra) {
+PrimeiraJogada.prototype.Jogar = function(centroMesa, ladoPedra) {
     if (ladoPedra == LadoPedra.Deitada) {
-        return new JogadaSprite(this.posicaoPedraInicialDeitada.x, this.posicaoPedraInicialDeitada.y, RotacaoSprite.NaoRotacionar);            
+        var x = centroMesa.x - (this.posicaoPedraInicialDeitada.x/2.5);
+        var y = centroMesa.y - (this.posicaoPedraInicialDeitada.y);
+        return new JogadaSprite(x, y, RotacaoSprite.NaoRotacionar);            
     } else {
-        return new JogadaSprite(this.posicaoPedraInicialEmPe.x, this.posicaoPedraInicialEmPe.y, RotacaoSprite.DuzentosESetenta);
+        var x = centroMesa.x - (this.posicaoPedraInicialEmPe.x/2);
+        var y = centroMesa.y - (this.posicaoPedraInicialEmPe.y/2);
+        return new JogadaSprite(x, y, RotacaoSprite.DuzentosESetenta);
     }
 }
