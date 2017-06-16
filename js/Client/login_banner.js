@@ -10,11 +10,11 @@ window.onload = function () {
 
     var preload = function() {                   
         game2.load.spritesheet('pedras', '/assets/AniSprites/spritesheetpedras.png', 68, 130);
-        game2.load.image('logo', '/assets/AniSprites/logo-dominois.jpg');
+        game2.load.image('logo', '/assets/AniSprites/logo-dominois.png');
     }
 
     function create () {                    
-        game2.stage.backgroundColor = '#8DC26F';
+        game2.stage.backgroundColor = '#76b852';
         var sprites = game2.add.spriteBatch();
         pedras = [];
         var frame;
@@ -63,5 +63,5 @@ window.onload = function () {
         update: update 
     };
 
-    var game2 = new Phaser.Game(766, 199, Phaser.AUTO, document.getElementById('banner'), options);
+    var game2 = new Phaser.Game(360, 92, Phaser.AUTO, document.getElementById('banner'), options);
 }
