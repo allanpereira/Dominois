@@ -11,11 +11,15 @@ var MaoPrincipal = function() {
 
 MaoPrincipal.prototype.AdicionarPedra = function(pedra) {
 
-    this.pedras.push({"nome":pedra.nome,"x":this.posicaoProximaPedra.x,"y":this.posicaoProximaPedra.y});    
+    this.pedras.push({
+        "nome" : pedra.nome,
+        "x" : this.posicaoProximaPedra.x,
+        "y" : this.posicaoProximaPedra.y
+    });
 
     pedra.sprite.CarregarSpritePhaser({
-        x: this.posicaoProximaPedra.x,
-		y: this.posicaoProximaPedra.y
+        x : this.posicaoProximaPedra.x,
+        y : this.posicaoProximaPedra.y
     });
 
     var x = this.posicaoProximaPedra.x;    
