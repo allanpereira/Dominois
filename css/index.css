@@ -115,3 +115,6 @@ aside[role="complementary"] li a {
     overflow: auto;
     text-align: center;
 }
+.welcome-msg, .username-msg{
+    display: none;
+}
