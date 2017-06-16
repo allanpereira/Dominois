@@ -13,7 +13,7 @@ var Jogo = function(gameId){
     this.vez = false;
     this.iniciado = false;
     this.notificacao = new Notificacao().Configurar();
-    this.tela = new Tela(new Mesa(), new MaoPrincipal(), new SpriteComprar(), new SpriteQtdePedrasJogadores());
+    this.tela = new Tela(new Mesa(), new SpriteComprar(), new SpriteQtdePedrasJogadores());
     this.socketClient = new SocketClient(this);
 };
 
@@ -61,7 +61,7 @@ Jogo.prototype.MoverPedraParaMesa = function(domino, moveType) {
         this.tela.maoPrincipal.RemoverPedra(pedra, this.jogador);
     } else {
         pedra = PedraFactory.CriarPedra(domino.value1, domino.value2);
-        pedra.sprite.CarregarSpritePhaser({x: 0, y: 0});
+        pedra.sprite.CarregarSpritePhaser({x: this.tela.mesa.sprite.posicao.x, y: this.tela.mesa.sprite.posicao.y});
     }
 
     new TornarSpriteClicavel().Remover(pedra.sprite.phaserSprite);
@@ -73,7 +73,7 @@ Jogo.prototype.MoverPedraParaMesa = function(domino, moveType) {
 Jogo.prototype.AdicionarPedra = function(domino) {	
     var pedra = PedraFactory.CriarPedra(domino.value1, domino.value2);
 	this.jogador.AdicionarPedra(pedra);
-	this.tela.maoPrincipal.AdicionarPedra(pedra);
+	this.tela.maoPrincipal.AdicionarPedra(pedra, this.tela.tamanho);
 };
 
 Jogo.prototype.IniciarPartida = function(){

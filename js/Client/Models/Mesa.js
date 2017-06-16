@@ -38,9 +38,6 @@ Mesa.prototype.VerificarMovimentosPossiveisParaPedra = function(pedra) {
 }
 
 Mesa.prototype.JogarPedra = function(pedra, moveType) {
-
-    var posini = { x: pedra.sprite.phaserSprite.x, y: pedra.sprite.phaserSprite.y };
-
     var jogadaMesa;
 	
 	switch (moveType) {
@@ -65,5 +62,5 @@ Mesa.prototype.JogarPedra = function(pedra, moveType) {
     
     this.sprite.Jogar(moveType, jogadaMesa.ladoPedra, pedra, jogadaMesa.pedraAnterior, this);
 
-    pedra.sprite.AnimarMovimento(posini, null, 1);
+    pedra.sprite.AnimarMovimento(this.sprite.posicao, null, 1);
 }
