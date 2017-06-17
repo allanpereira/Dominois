@@ -183,6 +183,7 @@
     </div>
     <script>
         var EscolherSkin = function(path) {
+            debugger;
             window.localStorage["skin"] = path;
             $("#MensagemSkinAlterada").modal("show");
         }
@@ -197,11 +198,11 @@
                 <div class="modal-body">
                     <form role="form">
                         <div id="name-group" class="has-feedback">
-                            <button type="button" class="form-control btn btn-success margin-bottom-5" data-dimiss="modal" onclick="EscolherSkin('')" value="Aplicar HP" >Normal</button>
-                            <button type="button" class="form-control btn btn-success margin-bottom-5" data-dimiss="modal" onclick="EscolherSkin('skin/roxo/pedras/')" value="Roxo">Roxo</button>
-                            <button type="button" class="form-control btn btn-success margin-bottom-5" data-dimiss="modal" onclick="EscolherSkin('skin/vermelho/pedras/')" value="Vermelho">Vermelho</button>
-                            <button type="button" class="form-control btn btn-success margin-bottom-5" data-dimiss="modal" onclick="EscolherSkin('skin/Domino_Color/pedras/')" value="Colorido">Colorido</button>
-                            <button type="button" class="form-control btn btn-success margin-bottom-5" data-dimiss="modal" onclick="EscolherSkin('skin/Domino_HP/pedras/')" value="Harry Potter">Harry Potter</button>
+                            <button type="button" class="form-control btn btn-success margin-bottom-5" data-dimiss="modal" onclick="EscolherSkin('default/')" value="Normal" >Normal</button>
+                            <button type="button" class="form-control btn btn-success margin-bottom-5" data-dimiss="modal" onclick="EscolherSkin('airplane_skin/')" value="Avião">Avião</button>
+                            <button type="button" class="form-control btn btn-success margin-bottom-5" data-dimiss="modal" onclick="EscolherSkin('flash_skin/')" value="Flash">Flash</button>
+                            <button type="button" class="form-control btn btn-success margin-bottom-5" data-dimiss="modal" onclick="EscolherSkin('Domino_Color/')" value="Colorido">Colorido</button>
+                            <button type="button" class="form-control btn btn-success margin-bottom-5" data-dimiss="modal" onclick="EscolherSkin('Domino_HP/')" value="Harry Potter">Harry Potter</button>
                         </div>
                     </form>
                 </div>
