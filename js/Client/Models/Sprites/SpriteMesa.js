@@ -13,27 +13,19 @@ var SpriteMesa = function() {
 			y: 0
 		},
 		Calcular: function() {
-			var esquerda = self.posicao.x + self.tamanho.largura*0.1;
-			var superior = self.posicao.x + self.tamanho.altura*0.1;
+			this.centro.x = self.tamanho.largura/2;
+			this.centro.y = self.tamanho.altura/2;
 
-			this.superior = esquerda;
-			this.esquerda = superior;
-			this.inferior = self.superior + self.tamanhoBase.altura;
-			this.direita = self.esquerda + self.tamanhoBase.largura;
-
-			this.centro.x = self.tamanho.largura/2.3;
-			this.centro.y = self.tamanho.altura/2.3;
+			this.superior = this.centro.x - self.tamanhoBase.largura/2;
+			this.esquerda = this.centro.y - self.tamanhoBase.altura/2;
+			this.inferior = this.centro.y + self.tamanhoBase.altura/2;
+			this.direita = this.centro.x + self.tamanhoBase.largura/2;	
 		}
 	}
 
-	this.posicaoBase = {
-        x: 100,
-        y: 300
-    };
-
     this.tamanhoBase = {
-        altura: 900,
-        largura: 900
+        altura: 1100,
+        largura: 1100
     };
 
 	this.posicao = {
@@ -42,8 +34,8 @@ var SpriteMesa = function() {
     };
 
 	this.tamanho = {
-        altura: 0,
-        largura: 0
+        altura: self.tamanhoBase.altura,
+        largura: self.tamanhoBase.largura
     };
 
 	this.phaserSprite;
@@ -84,24 +76,33 @@ SpriteMesa.prototype.MoverPedra = function(jogadaSprite, pedra, pedraAnterior) {
 
 SpriteMesa.prototype.CarregarSpritePhaser = function(larguraTela, alturaTela) {
 
-	this.tamanho.largura = this.tamanhoBase.largura + 2*this.posicao.x;
-	this.tamanho.altura = this.tamanhoBase.altura + 2*this.posicao.y;
-	
-	if (larguraTela > this.tamanho.largura) this.tamanho.largura = larguraTela;
-	if (alturaTela > this.tamanho.altura) this.tamanho.altura = alturaTela;
-	
+	if (larguraTela > this.tamanho.largura) {
+		this.tamanho.largura = larguraTela;
+	} else {
+		if (alturaTela > larguraTela) {
+			this.tamanho.largura *= larguraTela/alturaTela;
+		}
+	}
 
-	this.tamanho.largura *= 4;
-	this.tamanho.altura *= 4;
-	this.posicao.x = -0.3*this.tamanho.largura;
-	this.posicao.y = -0.3*this.tamanho.altura;
+	if (alturaTela > this.tamanho.altura) {
+		this.tamanho.altura = alturaTela;
+	} else {
+		if (larguraTela > alturaTela) {
+			this.tamanho.altura *= alturaTela/larguraTela;
+		}
+	}
+	
+	this.tamanho.largura *= 10;
+	this.tamanho.altura *= 10;
+	this.posicao.x = (this.tamanho.largura - larguraTela)/2;
+	this.posicao.y = (this.tamanho.altura - alturaTela)/2;
 
 	this.auxiliarPedra.Calcular();
 
 	this.phaserSprite = game.add.tileSprite
 	(
-		this.posicao.x,
-		this.posicao.y,
+		-1*this.posicao.x,
+		-1*this.posicao.y,
 		this.tamanho.largura,
 		this.tamanho.altura,
 		this.nome

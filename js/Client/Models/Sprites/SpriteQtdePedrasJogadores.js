@@ -7,7 +7,19 @@ SpriteQtdePedrasJogadores.prototype.AtualizarTexto = function(jogo, turns) {
     if (jogo.tela.mesa.sprite.phaserSprite == null) return;
 
     if (this.phaserObjeto == null) {
-        this.phaserObjeto = game.add.text(290, 30, "", { strokeThickness: 1});
+        this.phaserObjeto = game.add.text
+        (
+            350, 
+            15, 
+            "", 
+            { 
+                strokeThickness: 1, 
+                fill: 'white', 
+                align: 'left', 
+                wordWrap: true, 
+                wordWrapWidth: jogo.tela.tamanho.largura * 0.4
+            }
+        );
     }
     this.phaserObjeto.setText(this.Mensagem(jogo, turns));
 }

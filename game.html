@@ -2,10 +2,13 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" src="/socket.io/socket.io.js"></script>
     <script type="text/javascript" src="/js/Client/Plugins/phaser.min.js"></script>
     <script type="text/javascript" src="/js/Client/Plugins/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/Client/Plugins/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js/Client/Plugins/toastr.min.js"></script>
+    <link type="text/css" href="/css/bootstrap.min.css" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="/css/style.css">
     <link type="text/css" rel="stylesheet" href="/css/toastr.min.css">
     <title>Dominois</title>
@@ -13,7 +16,83 @@
 <body>
 
     <div id="game"></div>
+
+
+    <!-- ========================== Modal ========================== -->
     
+    <div class="modal fade" id="pedrasDisponiveis" data-backdrop="static" data-keyboard="false" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Mensagem</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form">
+                        <div id="name-group" class="form-group has-feedback">
+                            Você possui pedras disponíveis para jogar!
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">
+                        Ok
+                    </button>
+                </div>
+            </div>
+        </div> 
+    </div>
+
+    <div class="modal fade" id="escolherLado" data-backdrop="static" data-keyboard="false" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Mensagem</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form">
+                        <div id="name-group" class="form-group has-feedback">
+                            Escolha em qual lado jogar a pedra.
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-success" data-dismiss="modal" onclick="jogo.JogarNaEsquerda()">
+                        Jogar na ponta esquerda
+                    </button>
+                    <button type="button" class="btn btn-default btn-success" data-dismiss="modal" onclick="jogo.JogarNaDireita()">
+                        Jogar na ponta direita
+                    </button>
+                </div>
+            </div>
+        </div> 
+    </div>
+
+    <div class="modal fade" id="naoExisteJogadaPossivel" data-backdrop="static" data-dismiss="modal" data-keyboard="false" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Mensagem</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form">
+                        <div id="name-group" class="form-group has-feedback">
+                            Não existe nenhuma jogada disponivel para essa pedra.
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal">
+                        Ok
+                    </button>
+                </div>
+            </div>
+        </div> 
+    </div>
+
+
+
+    <!-- ========================== Scripts ========================== -->
+
 	<!--  Shared -->
     <script type="text/javascript" src="/js/Shared/Helpers/EventosHelper.js"></script>
     <script type="text/javascript" src="/js/Shared/MoveType.js"></script>
