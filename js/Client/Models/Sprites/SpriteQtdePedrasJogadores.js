@@ -14,7 +14,7 @@ SpriteQtdePedrasJogadores.prototype.AtualizarTexto = function(jogo, turns) {
             "", 
             { 
                 strokeThickness: 1, 
-                fill: 'white', 
+                fill: 'black', 
                 align: 'left', 
                 wordWrap: true, 
                 wordWrapWidth: jogo.tela.tamanho.largura * 0.4

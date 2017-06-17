@@ -1,6 +1,6 @@
 var MaoPrincipal = function(alturaTela) {
     this.posicaoInicial = {
-        x : 120,
+        x : 150,
         y : alturaTela - 150
     };
     
