@@ -1,0 +1,7 @@
+vermelho = 0
+azul = 1
+verde = 2
+amarelo = 3
+roxo = 4
+marrom = 5
+preto=6
