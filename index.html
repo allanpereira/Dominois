@@ -8,7 +8,6 @@
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script type="text/javascript" src="js/Client/Plugins/jquery.min.js"></script>
     <script type="text/javascript" src="js/Client/Plugins/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/Client/load_rooms.js"></script>
@@ -28,24 +27,26 @@
                 <img src="./assets/logo.jpg" alt="logo" id="main-logo">
             </div>
             <div class="col-md-3 col-xs-12 pull-right username-box">
-                <span><i class="material-icons md-48">person</i></span>
+                <div class="row top">
+                <span><img src="./assets/icons/person.png" class="person"></span>
                 <span class="welcome-msg">Bem vindo,&nbsp;</span><span class="username-msg"></span>
                 <br>
                 <a class="logout">Sair</a>
+                </div>
             </div>
         </header>
         <div class="row">
             <div class="col-md-3 hidden-xs hidden-sm">
                 <aside role="complementary">
                     <ul class="menu">
-                        <li><a href="#aba01"><i class="material-icons md-48">add</i><h4>Salas de Jogo</h4></a></li>
-                        <li><a href="#aba02"><i class="material-icons md-48">navigation</i><h4>Ranking</h4></a></li>
-                        <li><a href="#aba03"><i class="material-icons md-48">book</i><h4>Regras</h4></a></li>
-                        <li><a href="#aba04"><i class="material-icons md-48">settings</i><h4>Configurações</h4></a></li>
+                        <li><a href="#aba01"><img src="./assets/icons/novasala.png"><h4>Salas de Jogo</h4></a></li>
+                        <li><a href="#aba02"><img src="./assets/icons/ranking.png"><h4>Ranking</h4></a></li>
+                        <li><a href="#aba03"><img src="./assets/icons/regras.png"><h4>Regras</h4></a></li>
+                        <li><a href="#aba04"><img src="./assets/icons/config.png"><h4>Alterar Skin</h4></a></li>
                     </ul>
                 </aside>
             </div>
-            <div role="main" class="col-md-6 col-xs-12 col-sm-12">
+            <div role="main" class="col-md-8 col-xs-12 col-sm-12">
                 <div>
                     <div class="conteudo" id="aba01">
                         <h1> SALAS DE JOGO </h1>
@@ -62,6 +63,8 @@
                                 <h4 id="no-rooms" class="hidden">Não há salas disponíveis para entrar. Crie um jogo!</h4>
                                 <br>
                             </div>
+                        </div>
+                            <div class="row">
                             <div class="col-md-11" id="salas">
                                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createGameModal">Criar Jogo</button>
                             </div>
@@ -170,8 +173,28 @@
                         <p>O jogador vencedor ganhará 10 pontos.</p>
                     </div>
                     <div class="conteudo" id="aba04">
-                        <h1> Configurações </h1>
-                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#createConfigModal">Alterar Skin</button>
+                        <h1> Alterar Skin </h1>
+                        <div class="row margin-top-50">
+                            <div class="col-md-6">
+                              <img src="../assets/skin/default/pedras/11.png" class="imgskin">
+                              <button type="button" class="form-control btn btn-success margin-bottom-5" data-dimiss="modal" onclick="EscolherSkin('default/')" value="Normal" >Normal</button>
+                            </div>
+                            <div class="col-md-6 ">
+                                 <img src="../assets/skin/airplane_skin/pedras/11.png"class="imgskin">
+                                 <button type="button" class="form-control btn btn-success margin-bottom-5" data-dimiss="modal" onclick="EscolherSkin('airplane_skin/')" value="Avião">Avião</button>
+                             </div>
+                        </div>
+                         <div class="row margin-top-50">
+                             <div class="col-md-6">
+                                     <img src="../assets/skin/flash_skin/pedras/11.png" class="imgskin">
+                                     <button type="button" class="form-control btn btn-success margin-bottom-5" data-dimiss="modal" onclick="EscolherSkin('flash_skin/')" value="Flash">Flash</button>
+                            </div>
+                              <div class="col-md-6">
+                                 <img src="../assets/skin/Domino_Color/pedras/11.png" class="imgskin">
+                                 <button type="button" class="form-control btn btn-success margin-bottom-5 margin-left-5" data-dimiss="modal" onclick="EscolherSkin('Domino_Color/')" value="Colorido">Colorido</button>                        
+                             </div>
+                         </div>
+
                     </div>
                 </div>
             </div>            
@@ -188,7 +211,7 @@
         }
     </script>
 
-    <div class="modal fade" id="createConfigModal" data-backdrop="static" data-keyboard="false" role="dialog">
+  <!--  <div class="modal fade" id="createConfigModal" data-backdrop="static" data-keyboard="false" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -210,7 +233,9 @@
                 </div>
             </div>
         </div> 
-    </div>
+    </div> 
+
+    -->
 
     <div class="modal fade" id="MensagemSkinAlterada" data-backdrop="static" data-keyboard="false" role="dialog">
         <div class="modal-dialog">

@@ -36,9 +36,9 @@ footer{
     padding-top: 15px;
     padding-bottom: 15px;
     margin-bottom: 0!important;
-    background-color: rgba(86,61,124,.15);
+    background-color: #d9d9d9;
     border: 1px solid #ddd;
-    border: 1px solid rgba(86,61,124,.2);
+    border: 1px solid #d9d9d9;
 }
 div[role="main"] > div{
     background-color: #fff;
@@ -51,7 +51,7 @@ div[role="main"], aside {
     min-height: 600px;
 }
 aside{
-    background-color: rgba(86,61,124,.15);
+    background-color: #d9d9d9;
     text-align: center;
 }
 aside[role="complementary"] { 
@@ -99,10 +99,14 @@ aside[role="complementary"] li a {
 }
 
 .room {
-    margin-left:8px;
+    margin-left:50px;
+    margin-top:50px;
     float:left;
-    border: 2px solid blue;
-}
+     padding:6px;
+    border:1px solid #76b852;
+    background-color:#ccffcc;
+    }
+
 #tabelaa{
     margin: auto;
     padding:10px;
@@ -121,4 +125,22 @@ aside[role="complementary"] li a {
 
 .margin-bottom-5 {
     margin-bottom: 5px;
+}
+
+.imgskin {
+    margin-bottom: 10px;
+}
+
+.margin-top-50
+{
+    margin-top:50px;
+}
+
+.person {
+    margin-right:10px;
+    margin-bottom:6px;
+}
+
+.top {
+    margin-top:60px;
 }
