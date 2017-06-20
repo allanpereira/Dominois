@@ -21,13 +21,8 @@ var EstadoPrincipal = function(jogo) {
         game.load.image('1Up', '/assets/AniSprites/1up.png');
         game.load.image('btnLetstry', '/assets/AniSprites/btnLetstry.png');
 
-        PedraFactory.ParaCadaPedraPossivel(function(pedra) {
-            var pathSkin = localStorage["skin"];
-            var nomePedra = pedra.sprite.nome;
-            if (pathSkin != null && pathSkin.length != 0) {
-                nomePedra = pathSkin.concat(nomePedra);
-            }            
-            game.load.image(pedra.sprite.nome, AssetsHelper.BuscarImagemPedra(nomePedra));
+        PedraFactory.ParaCadaPedraPossivel(function(pedra) {      
+            game.load.image(pedra.sprite.nome, AssetsHelper.BuscarImagemPedra(pedra.sprite.nome));
         });
     };
 
