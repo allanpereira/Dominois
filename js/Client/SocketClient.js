@@ -1,5 +1,9 @@
 var SocketClient = function(jogo){
-    this.socket = io.connect('localhost:8081', {query : "gameId=" + jogo.gameId, 'sync disconnect on unload' : true });
+    let address = 'http://localhost:8081';
+    //let address = 'http://10.0.0.1:8081';
+    //let address = 'http://ec2-54-232-229-64.sa-east-1.compute.amazonaws.com:8081';
+
+    this.socket = io.connect(address, {query : "gameId=" + jogo.gameId, 'sync disconnect on unload' : true });
     
     this.socket.on(EventosHelper.eventosServer.entradaRegistrada, function (result) {
         if(!result.success) return;

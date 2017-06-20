@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+@import url('roboto.css');
 
 .login-page {
   width: 360px;
@@ -99,6 +99,6 @@ body {
   margin-bottom:-70px;
   margin-left:260px;
 }
-canvas {    
-    margin: auto;   
+canvas {
+    margin: auto;
 }

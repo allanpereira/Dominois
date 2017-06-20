@@ -82,7 +82,6 @@ class RoomService {
                 });
 
                 if(game.state === GameState.STARTED) {
-                    
                     GameConnectionPool.notifyGameStarted(gameId, player.getId(), {turns: turns});
                 }
 
@@ -144,14 +143,21 @@ class RoomService {
                         name: p.getName(),
                         dominoes: p.getDominoes().length,
                         turn: game.isTurn(p.getId())
-                    });                
+                    });
                 });
-				//aki começa a verificação do fim do jogo...implementar a verificação de monte de compra vazio e sem peças jogaveis nas mãos.
-				if(player.dominoes.length==0){                    
-                    game.state="FINISHED";
+                
+                //aki começa a verificação do fim do jogo...implementar a verificação de monte de compra vazio e sem peças jogaveis nas mãos.
+                if(player.dominoes.length == 0){
+                    game.state = GameState.FINISHED;
                 }
 
-                resolve({domino: domino, moveType: moveType, turns : turns, gamestate:game.state,player: player.id});
+                resolve({
+                    domino: domino, 
+                    moveType: moveType, 
+                    turns : turns, 
+                    gamestate:game.state,
+                    player: player.id
+                });
 
             } catch(err) {
                 reject(err.message);
