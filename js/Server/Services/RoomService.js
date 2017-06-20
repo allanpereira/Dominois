@@ -2,6 +2,8 @@ const GameConnectionPool = require('../Communication/GameConnectionPool');
 const Game = require('../Models/Game');
 const GameState = require('../Models/GameState');
 const Player = require('../Models/Player');
+var playerwinID;
+var playerwinNome;
 
 class RoomService {
     
@@ -146,23 +148,56 @@ class RoomService {
                     });
                 });
                 
-                //aki começa a verificação do fim do jogo...implementar a verificação de monte de compra vazio e sem peças jogaveis nas mãos.
-                if(player.dominoes.length == 0){
-                    game.state = GameState.FINISHED;
+                //aki começa a verificação do fim do jogo
+				
+                if(player.dominoes.length==0){                    
+                    game.state="FINISHED";
+                    playerwinID = player.id;
+                    playerwinNome=player.name;
                 }
-
+                if(game.boneyard.dominoes.length==0){
+                    
+                    this.VerificarPedrasJogaveis(game);
+                }
+                
                 resolve({
                     domino: domino, 
                     moveType: moveType, 
                     turns : turns, 
                     gamestate:game.state,
-                    player: player.id
+                    getplayerwinID: playerwinID,
+                    getplayerwinNome:playerwinNome
                 });
 
             } catch(err) {
                 reject(err.message);
             }
         });
+    }
+
+    static VerificarPedrasJogaveis(game){
+        var lado1 = game.boardSequencies.sequence1.nextExpectedValue;
+        var lado2 = game.boardSequencies.sequence2.nextExpectedValue;
+        var pedrajogavel = false;                    
+        for(let i = 0; i < game.playersAmount; i++){
+            for(let d = 0; d < game.players[i].dominoes.length; d++){
+                if(game.players[i].dominoes[d].value1==lado1 || game.players[i].dominoes[d].value1==lado2 ||  game.players[i].dominoes[d].value2==lado1 || game.players[i].dominoes[d].value2==lado2){
+                    pedrajogavel=true;
+                    break;
+                }
+            }                        
+        }
+        if(!pedrajogavel){
+            game.state="FINISHED";
+            var qtdpedras=99;
+                for(let i = 0; i < game.playersAmount; i++){
+                    if(qtdpedras>game.players[i].dominoes.length){                        
+                        playerwinID = game.players[i].id;
+                        playerwinNome=game.players[i].name;
+                        qtdpedras=game.players[i].dominoes.length;
+                    }
+                }
+        }
     }
 
     static forEachGameOfPlayer(playerId, callback, db){
@@ -218,7 +253,8 @@ class RoomService {
                     });                
                 });
 
-                resolve({turns : turns, player : playerData});
+                this.VerificarPedrasJogaveis(game);
+                resolve({turns : turns, player : playerData, gamestate:game.state,getplayerwinID: playerwinID,getplayerwinNome:playerwinNome});
             } catch(err) {
                 reject(err.message);
             }
